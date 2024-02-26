@@ -6,7 +6,9 @@ import Cursor from '@/app/utils/mouseTrail'
 import Tilt from '@/app/utils/tilt'
 import Link from 'next/link'
 
+
 export default function Home() {
+  // await new Promise((resolve) => setTimeout(resolve, 1000))
   return (
     <main>
     <Cursor />
