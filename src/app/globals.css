@@ -57,3 +57,6 @@ body{
   justify-content: center;
   align-items: center;
 }
+nextjs-portal{
+  display: none;
+}
