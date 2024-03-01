@@ -56,6 +56,7 @@ body{
   background: var(--darkBG);
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 .loader{
   content:"";
@@ -81,4 +82,17 @@ body{
 }
 .fourOfour p{
   color: white
+}
+.noise{
+  content:"";
+  top:  0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: url('/images/noise.svg');
+  mix-blend-mode: normal;
+  pointer-events: none;
+  filter: brightness(2) contrast(1) saturate(0);
+  z-index: 5;
 }

@@ -12,9 +12,9 @@ export const CodeBlock = ({className, children}) => {
     </SyntaxHighlighter>
   )
 }
-export const PreBlock = ({children, ...rest}) => {
+export const PreBlock = ({children}) => {
   if ('type' in children && children ['type'] === 'code') {
     return CodeBlock(children['props']);
   }
-  return <pre {...rest}>{children}</pre>;
+  return <pre>{children}</pre>;
 }

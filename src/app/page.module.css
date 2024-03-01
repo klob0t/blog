@@ -83,60 +83,58 @@
   grid-template-rows: repeat(14, minmax(1vh, 100px));
   gap: 1em;
 }
-.noise{
-  content:"";
-  top:  0;
-  left: 0;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  opacity: 0.5;
-  background: url('/images/noise.svg');
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  filter: brightness(2) contrast(1) saturate(0);
-  z-index: 250;
-}
+
 .bento > div{
   background: var(--bgCol1);
   color: var(--txtCol1);
   position: relative;
-  border-radius: 30px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
   animation: loadIn 600ms ease-in-out backwards;
   display: flex;
   width: 100%;
   height: 100%;
 }
-.bento > div::before{
+.bento > div::after{
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-top: 1px solid var(--col9);
+  border-top: 1px solid rgb(51, 51, 51);
   pointer-events: none;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 .engineeringCard{
   justify-content: center;
   align-items: center;
   grid-area: A;
   animation-delay: calc(1 * var(--stagger)) !important;
-  background: linear-gradient(0deg, rgba(47, 47, 47, 0.162) 0%, var(--bgCol1) 100%), url('/images/engineerings.png') center / 100% no-repeat, var(--bgCol1) !important;
 }
 .productDesignCard{
+  overflow: hidden;
   justify-content: center;
   align-items: center;
   grid-area: B;
   animation-delay: calc(2 * var(--stagger)) !important;
-  background: linear-gradient(0deg, rgba(14, 14, 14, 0.383) 0%, var(--bgCol1) 100%), url('/images/products.jpg') center / 115% no-repeat, var(--bgCol1) !important;
+}
+.productDesignCard::after{
+    top: 0; left: 0;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    content: '';
+    position: absolute;
+    background: linear-gradient(0deg, rgba(14, 14, 14, 0.383) 50%, var(--bgCol1) 90%) !important;
+    z-index: 1;
 }
 .engineeringCard h1,
 .productDesignCard h1{
   font-size: 3em;
   margin: -0.4em 0em 0em 0em;
+  z-index: 10;
+  mix-blend-mode: difference;
 }
 .profileCard{
   position: relative;
@@ -174,9 +172,8 @@
   margin: -0.4em 0em 0em 0.4em;
 }
 .mbtiCard h2{
-  align-self: center;
   text-align: left;
-  margin-left: -0.8em;
+  margin-left: 0.8em;
   margin-top: -0.3em;
   font-size: 2em;
 }
@@ -188,14 +185,14 @@
   font-size: 0em;
 }
 .mbtiCard img{
-  text-align: right;
-  margin: 0em 2em;
+  margin: 0em 8em;
 }
 .curriculumVitaeCard{
   grid-area: E;
   justify-content: center;
   align-items: center;
   animation-delay: calc(5 * var(--stagger)) !important;
+  background: rgb(197, 198, 168) !important;
 }
 .curriculumVitaeCard h1{
   font-family: var(--serifFont);
@@ -203,19 +200,32 @@
   font-size: 3em;
   text-align: left;
   line-height: 90%;
+  color: rgb(0, 0, 0);
 }
 .artCard{
+  overflow: hidden;
   grid-area: F;
   justify-content: center;
   align-items: center;
   animation-delay: calc(7 * var(--stagger)) !important;
-  background:  linear-gradient(180deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%, rgb(46, 2, 2) 98%), url('/images/study.jpg') 3% 20% / 100vw no-repeat !important;
+  /* background:  linear-gradient(180deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%, rgb(46, 2, 2) 98%), url('/images/study.jpg') 3% 20% / 100vw no-repeat !important; */
+}
+.artCard::after{
+  top: 0; left: 0;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    content: '';
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 80%, rgb(53, 3, 3) 100%) !important;
+    z-index: 1;
 }
 .artCard h1{
   text-align: left;
   font-family: var(--serifFont);
   font-size: 5em;
   font-weight: 100;
+  z-index: 1;
 }
 .codingJourneyCard{
   grid-area: G;
@@ -268,11 +278,11 @@
   background: var(--transparent) !important;
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
-.instagram::before,
-.linkedin::before,
-.youtube::before,
-.twitter::before,
-.footer::before{
+.instagram::after,
+.linkedin::after,
+.youtube::after,
+.twitter::after,
+.footer::after{
   border-top: 2px solid var(--transparent) !important;
   pointer-events: none;
 }
@@ -284,8 +294,7 @@
   height: 100%;
   width: 100%;
   color: var(--grey);
-  display: flex;
-  
+  display: flex;  
 }
 .fa-instagram:hover{
   color: transparent;
@@ -324,32 +333,31 @@
     gap: 1em;
   }
   .engineeringCard{
+    overflow: hidden;
     justify-content: start;
     align-items: start;
     grid-area: A;
     animation-delay: calc(1 * var(--stagger)) !important;
-    background: linear-gradient(0deg, rgba(47, 47, 47, 0.162) 0%, var(--bgCol1) 100%), url('/images/engineerings.png') center / 100% no-repeat, var(--bgCol1) !important;
   }
   .productDesignCard{
+    position: relative;
     justify-content: start;
     align-items: start;
     grid-area: B;
     animation-delay: calc(2 * var(--stagger)) !important;
-    background: linear-gradient(0deg, rgba(14, 14, 14, 0.383) 0%, var(--bgCol1) 100%), url('/images/products.jpg') center / 115% no-repeat, var(--bgCol1) !important;
-
   }
   .engineeringCard h1,
   .productDesignCard h1{
     font-size: 2.1rem;
     margin: 0.3em 0.6em;
+    z-index: 2;
   }
   .profileCard{
     align-items: start;
     flex-direction: column;
     animation-delay: calc(7 * var(--stagger)) !important;
   }
-  .profileCard::before{
-    z-index: 0;
+  .profileCard::after{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -397,13 +405,16 @@
     font-weight: 700;
     font-size:  2em;
     align-self: center;
-    margin: 0.5em 0em 1em 0em;
   }
   .mbtiCard p{
     font-size: 1em;
+    margin: 18em 0em 0em 0em;
   }
   .mbtiCard i{
     font-size: 0.7em;
+  }
+  .mbtiCard img{
+  margin: 0em 0em;
   }
   .curriculumVitaeCard{
     animation-delay: calc(6 * var(--stagger)) !important;
@@ -431,7 +442,7 @@
     align-items: flex-end;
     justify-content: start;
     animation-delay: calc(4 * var(--stagger)) !important;
-    background:  linear-gradient(180deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%, rgb(46, 2, 2) 98%), url('/images/study.jpg') -3% 50% / 19em no-repeat !important;
+    /* background:  linear-gradient(180deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%, rgb(46, 2, 2) 98%) !important; */
   }
   .artCard h1{
     text-align: left;

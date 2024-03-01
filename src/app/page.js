@@ -1,19 +1,17 @@
 'use client'
 import Image from 'next/image'
 import styles from './page.module.css'
-import Scrambled from '@/app/utils/textScramble'
-import Cursor from '@/app/utils/mouseTrail'
-import Tilt from '@/app/utils/tilt'
+import Scrambled from './utils/textScramble'
+import Cursor from './utils/mouseTrail'
+import Tilt from './utils/tilt'
 import Link from 'next/link'
 
 
 export default function Home() {
-  // await new Promise((resolve) => setTimeout(resolve, 1000))
   return (
     <main>
     <Cursor />
     <Tilt />
-    <div className={styles.noise}></div>
     <div className={styles.gradient}>
       <div id={styles.gradient1}></div>
       <div id={styles.gradient2}></div>
@@ -22,9 +20,23 @@ export default function Home() {
     <div className={styles.bento} id='bento'>
       <div className={styles.engineeringCard} data-type='look'>
         <h1>Engineering&#8859;</h1>
+       <Link href='/engineering'> <Image 
+          src='/images/engineerings.png'
+          sizes='100%'
+          fill
+          style={{objectFit:'cover'}}
+          alt='engineering works'
+        /></Link>
       </div>
       <div className={styles.productDesignCard} data-type='look'>
-        <h1>Product Design&#8859;</h1>
+       <h1>Product Design&#8859;</h1>
+       <Link href='/product-design'> <Image 
+          src='/images/products.jpg'
+          sizes='100%'
+          fill
+          style={{objectFit:'cover'}}
+          alt='product design works'
+        /></Link>
       </div>
       <div className={styles.profileCard} data-type='star'>
         <h1>Hello, <br />i'm <Scrambled />&#8859;</h1>
@@ -34,22 +46,29 @@ export default function Home() {
         <h1>Logician</h1>
         <h2>INTP-T</h2>
         <Image
+          fill
           src='/images/logician.svg'
-          width={250}
-          height={250}
+          style={{objectFit:'contain'}}
           alt='Sir Isaac Newton'
          />
-        <p>...by the way, Sir Isaac Newton<br />is an INTP too</p>
+        <p>...by the way, Sir Isaac Newton<br />was an INTP too</p>
         <Link href='https://16personalities.com'><i>16personalities.com</i></Link>
       </div>
       <div className={styles.curriculumVitaeCard} data-type='look'>
-        <h1>Curriculum Vitae&#8277;</h1>
+        <h1>Curriculum Vitae&#8859;</h1>
       </div>
       <div className={styles.codingJourneyCard} data-type='read'>
         <h1>&gt;coding journey<span className={styles.blink}>_</span></h1>
       </div>
       <div className={styles.artCard} data-type='look'>
         <h1>Art&#8859;</h1>
+        <Link href='/art'><Image 
+          src='/images/study.jpg'
+          sizes='100%'
+          fill
+          style={{objectFit:'cover'}}
+          alt='art works'
+        /></Link>
       </div>
       <div className={styles.instagram} id='footer'>
         <Link href='https://instagram.com/airlanggga' target='blank'><i className='fa-brands fa-instagram fa-2x' /></Link>

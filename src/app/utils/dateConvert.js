@@ -1,4 +1,3 @@
-import React from 'react';
 
 function formatDateWithOrdinal(dateString) {
     // Parse the date

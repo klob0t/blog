@@ -1,0 +1,29 @@
+.container{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   width: 100vw
+}
+.linkWrapper{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0; left: 0;
+   z-index: 1;
+}
+.imgWrapper{
+   z-index: 2;
+   border-radius: 20px;
+   height: 80%;
+   aspect-ratio: 4/5;
+   border: 1px solid rgb(63, 63, 63)
+}
+.buttons{
+   z-index: 2;
+   background: hotpink !important;
+}
+/* img{
+
+} */
