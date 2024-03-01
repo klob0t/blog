@@ -1,12 +1,13 @@
 
 'use client'
-import { useEffect, useState, useRouter } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
 
-export default function Carousel(props) {
-  const id = props.params.id
+export default function Carousel({params}) {
+  const id = params.id
+  console.log(id)
   const [images, setImages] = useState([]);
   const [curIndex, setcurIndex] = useState(0);
 
@@ -36,7 +37,7 @@ export default function Carousel(props) {
 
   return (
     <div className={styles.container}>
-    <Link href='/'> <div className={styles.linkWrapper}></div></Link>
+    {/* <Link href='/'> <div className={styles.linkWrapper}></div></Link> */}
    
       <div className={styles.imgWrapper}>
         <img
@@ -46,7 +47,7 @@ export default function Carousel(props) {
           margin= 'auto'
           key={curIndex}
           src={images[curIndex]}
-          alt='`${folder}`'
+          alt={curIndex}
         />
       </div>
       <div className={styles.buttons}>

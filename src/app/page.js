@@ -5,38 +5,51 @@ import Scrambled from './utils/textScramble'
 import Cursor from './utils/mouseTrail'
 import Tilt from './utils/tilt'
 import Link from 'next/link'
+import {useState, useEffect, use} from 'react'
+import Carousel from './component/modal/page'
 
 
 export default function Home() {
+  const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState(null);
+  const openModal = (id) => {
+    setId(id);
+    setShowModal(true);
+  };
+
   return (
     <main>
     <Cursor />
     <Tilt />
+    
+      {showModal && <Carousel params={{ id }} />}
+    
     <div className={styles.gradient}>
       <div id={styles.gradient1}></div>
       <div id={styles.gradient2}></div>
       <div id={styles.gradient3}></div>
     </div>
     <div className={styles.bento} id='bento'>
-      <div className={styles.engineeringCard} data-type='look'>
+
+      <div onClick={() => openModal('engineering')} className={styles.engineeringCard} data-type='look'>
         <h1>Engineering&#8859;</h1>
-       <Link href='/engineering'> <Image 
+       <Image 
           src='/images/engineerings.png'
           sizes='100%'
           fill
           style={{objectFit:'cover'}}
           alt='engineering works'
-        /></Link>
+        />
       </div>
-      <div className={styles.productDesignCard} data-type='look'>
+      <div onClick={() => openModal('product-design')} className={styles.productDesignCard} data-type='look'>
        <h1>Product Design&#8859;</h1>
-       <Link href='/product-design'> <Image 
+        <Image 
           src='/images/products.jpg'
           sizes='100%'
           fill
           style={{objectFit:'cover'}}
           alt='product design works'
-        /></Link>
+        />
       </div>
       <div className={styles.profileCard} data-type='star'>
         <h1>Hello, <br />i'm <Scrambled />&#8859;</h1>
@@ -60,15 +73,15 @@ export default function Home() {
       <div className={styles.codingJourneyCard} data-type='read'>
         <h1>&gt;coding journey<span className={styles.blink}>_</span></h1>
       </div>
-      <div className={styles.artCard} data-type='look'>
+      <div onClick={() => openModal('engineering')} className={styles.artCard} data-type='look'>
         <h1>Art&#8859;</h1>
-        <Link href='/art'><Image 
+        <Image 
           src='/images/study.jpg'
           sizes='100%'
           fill
           style={{objectFit:'cover'}}
           alt='art works'
-        /></Link>
+        />
       </div>
       <div className={styles.instagram} id='footer'>
         <Link href='https://instagram.com/airlanggga' target='blank'><i className='fa-brands fa-instagram fa-2x' /></Link>
