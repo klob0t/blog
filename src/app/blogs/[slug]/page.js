@@ -1,6 +1,6 @@
 import Markdown from 'markdown-to-jsx'
 import Convert from '../../utils/dateConvert'
-import styles from './page.module.css'
+import styles from './page.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import {PreBlock, CodeBlock} from '../../utils/syntaxHighlight'

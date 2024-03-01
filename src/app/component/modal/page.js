@@ -37,8 +37,7 @@ export default function Carousel({params}) {
 
   return (
     <div className={styles.container}>
-    {/* <Link href='/'> <div className={styles.linkWrapper}></div></Link> */}
-   
+   <Link href='/'> <div className={styles.linkWrapper} onClick={() => setShowModal(false)}></div></Link>
       <div className={styles.imgWrapper}>
         <img
           style={{objectFit:'cover', borderRadius:'20px'}}

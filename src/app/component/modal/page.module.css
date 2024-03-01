@@ -3,15 +3,21 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   height: 100vh;
-   width: 100vw
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 4;
+   top: 0; left: 0;
 }
 .linkWrapper{
    width: 100%;
    height: 100%;
-   position: absolute;
    top: 0; left: 0;
    z-index: 1;
+   position: absolute;
+   background-color: rgba(8, 8, 8, 0.76) !important;
+   backdrop-filter: blur(5px);
+   background-attachment: fixed;
 }
 .imgWrapper{
    z-index: 2;

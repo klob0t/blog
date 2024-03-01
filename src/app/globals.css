@@ -28,6 +28,13 @@
   --transparent: rgba(0, 0, 0, 0);
   --stagger: 100ms;
   --grey: #3a3a3a;
+  --articleCol: rgb(170, 168, 165);
+  --dateCol: rgb(82, 78, 78);
+  --codeCol: rgb(240, 220, 220);
+  --titleCol: rgb(232, 218, 218);
+  --linkCol: rgb(44, 60, 207);
+  --postBG: rgb(22, 22, 22);
+  --preCol: #282c34;
 }
 h1{
   font-family: var(--sansDisplay);
@@ -56,7 +63,6 @@ body{
   background: var(--darkBG);
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 .loader{
   content:"";
