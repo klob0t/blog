@@ -12,7 +12,7 @@
   --bgCol1: #131212;
   --txtCol1: rgb(230, 230, 230);
   --txtCol2: rgb(68, 68, 68);
-  --col1: rgb(14, 14, 14);
+  --col1: rgb(17, 15, 15);
   --col2: rgb(12, 12, 189);
   --col2a:rgb(34, 86, 197);
   --col3: rgb(170, 20, 95);
@@ -27,7 +27,7 @@
   --H3: 30%;
   --transparent: rgba(0, 0, 0, 0);
   --stagger: 100ms;
-  --grey: #3a3a3a;
+  --grey: #7c7474;
   --articleCol: rgb(170, 168, 165);
   --dateCol: rgb(82, 78, 78);
   --codeCol: rgb(240, 220, 220);
@@ -99,6 +99,9 @@ body{
   background: url('/images/noise.svg');
   mix-blend-mode: normal;
   pointer-events: none;
-  filter: brightness(2) contrast(1) saturate(0);
-  z-index: 5;
+  filter: brightness(1) contrast(1) saturate(0);
+  z-index: 3;
+}
+nextjs-portal{
+  display: none;
 }

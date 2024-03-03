@@ -126,8 +126,12 @@
     width: 100%;
     content: '';
     position: absolute;
-    background: linear-gradient(0deg, rgba(14, 14, 14, 0.383) 50%, var(--bgCol1) 90%) !important;
+    /* background: linear-gradient(270deg, rgba(14, 14, 14, 0.383) 80%, var(--bgCol1) 100%) !important; */
     z-index: 1;
+}
+.ornament{
+  font-size: 0.6em;
+  vertical-align: super;
 }
 .engineeringCard h1,
 .productDesignCard h1{
@@ -137,12 +141,13 @@
   mix-blend-mode: difference;
 }
 .profileCard{
+  overflow: hidden;
   position: relative;
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle at 70% 80%,
   #13151869 0%,
   #131518b4 35%,
-  #131518 90%), url('/images/4x5.png')  50% 40% / 80em no-repeat  !important;
+  #131518 90%), url('/images/4x5.png')  50% 40% / 80em no-repeat  !important; */
   grid-area: C;
   align-items: end;
   animation-delay: calc(3 * var(--stagger)) !important;
@@ -155,6 +160,10 @@
 }
 .profileCard p{
   font-size: 0px;
+}
+.profileCard img{
+  position: absolute;
+  margin: 0em 0em 0em 8em;
 }
 .mbtiCard{
   grid-area: D;
@@ -192,7 +201,7 @@
   justify-content: center;
   align-items: center;
   animation-delay: calc(5 * var(--stagger)) !important;
-  background: rgb(197, 198, 168) !important;
+  /* background: rgb(197, 198, 168) !important; */
 }
 .curriculumVitaeCard h1{
   font-family: var(--serifFont);
@@ -200,7 +209,7 @@
   font-size: 3em;
   text-align: left;
   line-height: 90%;
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
 }
 .artCard{
   overflow: hidden;
@@ -208,18 +217,8 @@
   justify-content: center;
   align-items: center;
   animation-delay: calc(7 * var(--stagger)) !important;
-  /* background:  linear-gradient(180deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%, rgb(46, 2, 2) 98%), url('/images/study.jpg') 3% 20% / 100vw no-repeat !important; */
 }
-.artCard::after{
-  top: 0; left: 0;
-    pointer-events: none;
-    height: 100%;
-    width: 100%;
-    content: '';
-    position: absolute;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 80%, rgb(53, 3, 3) 100%) !important;
-    z-index: 1;
-}
+
 .artCard h1{
   text-align: left;
   font-family: var(--serifFont);
@@ -227,6 +226,7 @@
   font-weight: 100;
   z-index: 1;
 }
+
 .codingJourneyCard{
   grid-area: G;
   animation-delay: calc(6 * var(--stagger)) !important;
@@ -353,6 +353,7 @@
     z-index: 2;
   }
   .profileCard{
+    overflow: hidden;
     align-items: start;
     flex-direction: column;
     animation-delay: calc(7 * var(--stagger)) !important;
@@ -363,14 +364,6 @@
     height: 100%;
     content: '';
     pointer-events: none;
-    background: radial-gradient(
-      circle at 106% 80%,
-      #fdf49700 0%,
-      #fdf49700 27%,
-      var(--bgCol1) 50%), url('/images/4x5.png')  105% 20% / 18em no-repeat, radial-gradient(
-      circle at 106% 80%,
-      #040404 20%,
-      var(--bgCol1) 40%)!important;
   }
   .profileCard h1{
     font-size: 3rem;
@@ -385,6 +378,10 @@
     font-size: 1.2em;
     line-height: 130%;
     z-index: 1;
+  }
+  .profileCard img{
+    position: absolute;
+    margin: 1em 0em 0em 11em;
   }
   .mbtiCard{
     grid-area: D;
@@ -440,16 +437,15 @@
   }
   .artCard{
     align-items: flex-end;
-    justify-content: start;
+    justify-content: end;
     animation-delay: calc(4 * var(--stagger)) !important;
     /* background:  linear-gradient(180deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%, rgb(46, 2, 2) 98%) !important; */
   }
   .artCard h1{
-    text-align: left;
+    margin: 0em 0.3em 0.1em 0em;
     font-family: var(--serifFont);
     font-size: 3em;
     font-weight: 100;
-    margin: 0.1em 0.5em;
     mix-blend-mode: exclusion;
   }
   .instagram{

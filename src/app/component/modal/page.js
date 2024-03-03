@@ -5,7 +5,7 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
 
-export default function Carousel({params}) {
+export default function Carousel({params, onClose}) {
   const id = params.id
   console.log(id)
   const [images, setImages] = useState([]);
@@ -35,9 +35,13 @@ export default function Carousel({params}) {
     setcurIndex((curIndex - 1 + images.length) % images.length);
   };
 
+  const closeModal =() => {
+    onClose();
+  }
+
   return (
     <div className={styles.container}>
-   <Link href='/'> <div className={styles.linkWrapper} onClick={() => setShowModal(false)}></div></Link>
+    <div className={styles.linkWrapper} onClick={closeModal} style={{cursor: 'pointer'}}></div>
       <div className={styles.imgWrapper}>
         <img
           style={{objectFit:'cover', borderRadius:'20px'}}
@@ -48,15 +52,18 @@ export default function Carousel({params}) {
           src={images[curIndex]}
           alt={curIndex}
         />
-      </div>
-      <div className={styles.buttons}>
-        <div onClick={prevImage}>
-          <i className='fa-solid fa-chevron-left fa-2x' style={{ color: 'white', position:'fixed', left:'1.2em', top: '50%', cursor:'pointer'}}></i>
+
+        <div className={styles.buttons}>
+        <div className={styles.prevBtn} onClick={prevImage}>
+          <i className='fa-solid fa-chevron-left fa-2x' style={{color: 'grey', transform: 'scale(0.7)'}}></i>
         </div>
-        <div onClick={nextImage}>
-          <i className='fa-solid fa-chevron-right fa-2x' style={{ color: 'white', position:'fixed', right:'1.2em', top: '50%', cursor:'pointer'}}></i>
+        <div className={styles.nextBtn} onClick={nextImage}>
+          <i className='fa-solid fa-chevron-right fa-2x' style={{color: 'grey', transform: 'scale(0.7)'}}></i>
         </div>
       </div>
+
+      </div>
+  
     </div>
   )
 }

@@ -22,6 +22,10 @@ export default function Home() {
     }
   }, [id]);
 
+  const onClose = () => {
+    setShowModal(false);
+  }
+
   return (
     <>
      
@@ -37,7 +41,7 @@ export default function Home() {
     </div>
     <div className={styles.bento} id='bento'>
       <div className={styles.engineeringCard} data-type='look'>
-        <h1>Engineering&#8859;</h1>
+        <h1>Engineering<span className={styles.ornament}>&#8859;</span></h1>
       <Link href='/?id=art'> <Image 
           src='/images/engineerings.png'
           sizes='100%'
@@ -47,9 +51,9 @@ export default function Home() {
         /></Link>
       </div>
       <div className={styles.productDesignCard} data-type='look'>
-       <h1>Product Design&#8859;</h1>
+       <h1>Product Design<span className={styles.ornament}>&#8859;</span></h1>
         <Link href='?id=product-design'><Image 
-          src='/images/products.jpg'
+          src='/images/products.png'
           sizes='100%'
           fill
           style={{objectFit:'cover'}}
@@ -57,8 +61,15 @@ export default function Home() {
         /></Link>
       </div>
       <div className={styles.profileCard} data-type='star'>
-        <h1>Hello, <br />i'm <Scrambled />&#8859;</h1>
+        <h1>Hello, <br />i'm <Scrambled /><span className={styles.ornament}>&#8859;</span></h1>
         <p>hi, i'm a guy who are deeeeeeply<br />interested in design, engineering,<br /> aaand sometimes enjoy and/or do art.<br />welcome to my page&#x3063;&#x02d8;&#x06a1;&#x02d8;&#x03c2;</p>
+       <Image 
+          src='/images/4x5.png'
+          sizes='20em'
+          fill
+          style={{objectFit:'none'}}
+          alt='me'
+        />
       </div>
       <div className={styles.mbtiCard} data-type='read'>
         <h1>Logician</h1>
@@ -73,18 +84,18 @@ export default function Home() {
         <Link href='https://16personalities.com'><i>16personalities.com</i></Link>
       </div>
       <div className={styles.curriculumVitaeCard} data-type='look'>
-        <h1>Curriculum Vitae&#8859;</h1>
+        <h1>Curriculum Vitae<span className={styles.ornament}>&#8859;</span></h1>
       </div>
       <div className={styles.codingJourneyCard} data-type='read'>
         <h1>&gt;coding journey<span className={styles.blink}>_</span></h1>
       </div>
       <div className={styles.artCard} data-type='look'>
-        <h1>Art&#8859;</h1>
+        <h1>Art<span className={styles.ornament}>&#8859;</span></h1>
         <Image 
-          src='/images/study.jpg'
-          sizes='100%'
+          src='/images/ayam.jpg'
+          sizes='10em'
           fill
-          style={{objectFit:'cover'}}
+          style={{objectFit:'contain'}}
           alt='art works'
         />
       </div>
@@ -98,7 +109,7 @@ export default function Home() {
         <Link href='https://youtube.com/@klob0t' target='blank'><i className='fa-brands fa-youtube fa-2x' /></Link>
       </div>
       <div className={styles.twitter} id='footer'>
-        <Link href='https://x.com/klob0t' target='blank'><i className='fa-brands fa-x-twitter fa-2x' /></Link>
+        <Link href='mailto:klob0t@yahoo.com' target='blank' ><i className='fa-regular fa-envelope fa-2x' /></Link>
       </div>
       <div className={styles.footer} id='footer'>
         <Image 
@@ -110,7 +121,7 @@ export default function Home() {
       </div>
     </div>
     </main>
-    {showModal && <Carousel params={{ id }} />}
+    {showModal && <Carousel params={{ id }} onClose={onClose} />}
     </>
   );
 }
