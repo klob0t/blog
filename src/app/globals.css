@@ -9,16 +9,17 @@
   --sansText: "Inter", "Helvetica", "Arial", sans-serif;
   --darkBG: #131313;
   --shadow: 0px 0px 10px 10px rgba(14,13,13,0.08);
-  --bgCol1: #131212;
+  --bgCol1: #141414;
+  --cardBorder: #303030;
   --txtCol1: rgb(230, 230, 230);
   --txtCol2: rgb(68, 68, 68);
-  --col1: rgb(17, 15, 15);
+  --col1: rgb(20, 20, 20);
   --col2: rgb(12, 12, 189);
   --col2a:rgb(34, 86, 197);
-  --col3: rgb(170, 20, 95);
-  --col4: rgb(98, 3, 107);
-  --col5: rgb(9, 0, 128);
-  --col6: rgba(31, 31, 31, 0.993);
+  --col3: rgba(107, 10, 58, 0.623);
+  --col4: rgba(98, 3, 107, 0.5);
+  --col5: rgba(9, 0, 128, 0.5);
+  --col6: rgba(0, 0, 0, 0.993);
   --col7: rgba(255, 255, 255, 0.397);
   --col8: rgba(27, 27, 27, 0.178);
   --col9: rgba(179, 179, 179, 0.243);
@@ -35,18 +36,22 @@
   --linkCol: rgb(44, 60, 207);
   --postBG: rgb(22, 22, 22);
   --preCol: #282c34;
+  --mouse-X: 0px; --mouse-Y: 0px;
 }
 h1{
   font-family: var(--sansDisplay);
   font-weight: 600;
+  z-index: 3 !important; 
 }
 h2{
   font-family: var(--sansText);
   font-weight: 700;
+  z-index: 3 !important; 
 }
 p{
   font-family: var(--sansText);
   font-weight: 400;
+  z-index: 3 !important; 
 }
 i{
   font-style: normal;
@@ -59,7 +64,6 @@ a{
 body{
   display: flex;
   background-attachment: fixed;
-  cursor: crosshair;
   background: var(--darkBG);
   justify-content: center;
   align-items: center;
@@ -89,19 +93,7 @@ body{
 .fourOfour p{
   color: white
 }
-.noise{
-  content:"";
-  top:  0;
-  left: 0;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background: url('/images/noise.svg');
-  mix-blend-mode: normal;
-  pointer-events: none;
-  filter: brightness(1) contrast(1) saturate(0);
-  z-index: 3;
-}
+
 nextjs-portal{
   display: none;
 }

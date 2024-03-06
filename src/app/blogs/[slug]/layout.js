@@ -11,11 +11,17 @@ export const getPostContent = (slug) => {
   return matterResult
 }
 
+export async function generateMetadata(props){
+  const post =  getPostContent(props.params.slug)
+  return {
+    title: `klob0t blog — ${post.data.title}`
+  }
+}
+
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-         <div className={styles.noise}></div>
       {children}
       </body>
     </html>

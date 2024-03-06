@@ -5,9 +5,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {PreBlock, CodeBlock} from '../../utils/syntaxHighlight'
 import { getPostContent } from './layout'
+import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark'
 
 const markdownOptions = {
-  wrapper: 'article',
   overrides: {
       pre: PreBlock
   }
@@ -30,7 +30,13 @@ const postPage = (props) => {
       <Convert dateString={post.data.date} />
       </div>
       <hr></hr>
-        <Markdown options={markdownOptions}>{post.content}</Markdown>
+      <article>
+        <span style={{
+          fontFamily:'var(--sansText)',
+          fontWeight:'600',
+          textTransform:'uppercase',
+          fontSize:'0.8em'}}>{post.data.place} — </span><Markdown options={markdownOptions}>{post.content}</Markdown>
+      </article>     
       <hr></hr>
       <h5><Link href='https://klob0t.github.io'>klob0t.github.io</Link> &#8859; 2024</h5>
       </>

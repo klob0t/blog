@@ -1,5 +1,5 @@
 :root{
-  --articleCol: rgb(170, 168, 165);
+  --articleCol: rgb(255, 255, 255);
   --dateCol: rgb(82, 78, 78);
   --codeCol: rgb(240, 220, 220);
   --titleCol: rgb(232, 218, 218);
@@ -18,7 +18,7 @@ hr{
 article{
   max-width: 800px;
   padding-top: 1em;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
 }
 h1{
@@ -143,4 +143,8 @@ body{
 .header img{
   display: block;
   margin: 20em 10em 10em 10em;
+}
+#place{
+  font-family: var(--sansDisplay);
+  font-variant: small-caps;
 }

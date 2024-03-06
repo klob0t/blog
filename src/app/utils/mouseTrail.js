@@ -2,7 +2,7 @@ import {useRef, useEffect} from 'react'
 import '../utils/effects.css'
 
 const Cursor = () => {
-  const lagger = 8
+  const lagger = 4
   const dot = useRef(null), point = useRef(null), dotIcon = useRef(null), touching1 = useRef(null), touching2 = useRef(null)
   let reqRef = useRef(null)
   let curX = useRef(0), curY = useRef(0),
@@ -85,7 +85,7 @@ const Cursor = () => {
 
    const velo = Math.min(Math.sqrt(deltX.current**2 + deltY.current**2) * 4, 200)
    const scalingSpeed = (velo / 200) * 0.5
-   const scaling = `${touching1.current ? 2.5:0.5}`
+   const scaling = `${touching1.current ? 2.3:0.5}`
    curSkew.current += (scalingSpeed - curSkew.current) * 0.5
    curScale.current += (scaling - (curScale.current)) * 0.2
 
