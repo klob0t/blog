@@ -1,13 +1,13 @@
 'use client'
 import Image from 'next/image'
 import styles from './page.module.css'
-import Scrambled from '../utils/textScramble'
-import Cursor from '../utils/mouseTrail'
-import Tilt from '../utils/tilt'
+import Scrambled from '../../utils/textScramble'
+import Cursor from '../../utils/mouseTrail'
+import Tilt from '../../utils/tilt'
 import Link from 'next/link'
 import {useState, useEffect} from 'react'
 import { useSearchParams } from 'next/navigation'
-import Carousel from '../component/modal/page'
+import Carousel from '../modal/page'
 import { Suspense } from 'react'
 import Loading from './loading'
 
@@ -91,9 +91,8 @@ export default function Home() {
         <h1>&gt;coding journey<span className={styles.blink}>_</span></h1>
       </div>
       <div className={styles.artCard} data-type='look'>
-        <h1>Art<span className={styles.ornament}>&#8859;</span></h1>
         <Image 
-          src='/images/ayam.jpg'
+          src='/neko.png'
           sizes='90%'
           fill
           style={{objectFit:'cover'}}
@@ -101,16 +100,16 @@ export default function Home() {
         />
       </div>
       <div className={styles.instagram} id='footer'>
-        <Link href='https://instagram.com/airlanggga' target='blank'><i className='fa-brands fa-instagram fa-2x' /></Link>
+        <Link href='https://instagram.com/airlanggga' target='blank'><i className='fa-brands fa-instagram fa-2x' style={{color: '#202020'}} /></Link>
       </div>
       <div className={styles.linkedin} id='footer'>
-        <Link href='https://linkedin.com/in/airlanggakb' target='blank'><i className='fa-brands fa-linkedin-in fa-2x' /></Link>
+        <Link href='https://linkedin.com/in/airlanggakb' target='blank'><i className='fa-brands fa-linkedin-in fa-2x'style={{color: '#202020'}}  /></Link>
       </div>
       <div className={styles.youtube} id='footer'>
-        <Link href='https://youtube.com/@klob0t' target='blank'><i className='fa-brands fa-youtube fa-2x' /></Link>
+        <Link href='https://youtube.com/@klob0t' target='blank'><i className='fa-brands fa-youtube fa-2x' style={{color: '#202020'}} /></Link>
       </div>
       <div className={styles.twitter} id='footer'>
-        <Link href='mailto:klob0t@yahoo.com' target='blank' ><i className='fa-regular fa-envelope fa-2x' /></Link>
+        <Link href='mailto:klob0t@yahoo.com' target='blank' ><i className='fa-regular fa-envelope fa-2x' style={{color: '#202020'}} /></Link>
       </div>
       <div className={styles.footer} id='footer'>
         <Image 

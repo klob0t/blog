@@ -4,11 +4,13 @@
    position: fixed;
    top: 0;
    left: 0;
-   background: radial-gradient(var(--col6) 0%, var(--col1) 70%);
+   /* background: radial-gradient(var(--col6) 0%, var(--col1) 70%); */
    background-attachment: fixed;
    z-index: -1;
-}
-#gradient1{
+   background: var(--bgCol2);
+ }
+/* #gradient1{
+  opacity: 0.3;
    position: fixed;
    animation: one 10s linear infinite;
    border-radius: 50%;
@@ -25,6 +27,7 @@
    75%{top: 20%; left: 28%}
 }
 #gradient2{
+  opacity: 0.3;
    position: fixed;
    animation: two 10s linear infinite;
    border-radius: 50%;
@@ -41,7 +44,7 @@
   75%{top: 20%; left: 25%}
 }
 #gradient3{
-  opacity: 0.4;
+  opacity: 0.3;
   position: fixed;
   animation: three 10s linear infinite;
   border-radius: 50%;
@@ -56,7 +59,7 @@
   25%{top: 34%; left: 31%; opacity: 1}
   50%{top: 32%; left: 37%; opacity: 0.7}
   75%{top: 30%; left: 35%; opacity: 0.5}
-}
+}*/
 @keyframes loadIn {
   from{opacity: 0; transform: scale(1) translateY(20px)}
   to{opacity: 1; transform: scale(1) translateY(0px)}
@@ -96,12 +99,11 @@
 .bento > div{
   background: radial-gradient(
     500px circle at var(--mouse-X) var(--mouse-Y), 
-    rgba(255, 255, 255, calc(var(--opacity) * 3)), transparent 35%);
+    rgba(255, 255, 255, calc(var(--opacity) * 3)), transparent 25%);
   color: var(--txtCol1);
-  border-top: 1px solid rgba(102, 101, 101, 0.384);
   position: relative;
   border-radius: 20px;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   animation: loadIn 600ms ease-in-out backwards;
   display: flex;
   width: 100%;
@@ -115,21 +117,23 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-radius: inherit;
+  border-radius: 20px;
   background: radial-gradient(
     800px circle at var(--mouse-X) var(--mouse-Y), 
-    rgba(255, 255, 254, var(--opacity)),
-    transparent 20%
+    rgba(255, 255, 254, calc(var(--opacity) * 0.4)),
+    transparent 40%
   );
 }
 .bento > div::before{
-  border-radius: inherit;
+  border-radius: 18px;
   content: '';
   position: absolute;
   margin: 1px;
   top: 0; left: 0;
   width: calc(100% - 2px); height: calc(100% - 2px);
   background: var(--bgCol1);
+  box-sizing: border-box;
+  border: 1px solid rgb(29, 29, 29);
 }
 .engineeringCard{
   justify-content: center;
@@ -181,7 +185,6 @@
 .profileCard img{
   position: absolute;
   margin: 0em 0em 0em 8em;
-  filter: contrast(2);
 }
 .mbtiCard{
   grid-area: D;
@@ -257,7 +260,7 @@
   margin-left: 1em !important;
 }
 .instagram{
-  border-top: 0px solid transparent !important;
+  border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
   grid-area: H;
@@ -265,7 +268,7 @@
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
 .linkedin{
-  border-top: 0px solid transparent !important;
+  border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
   align-items: center;
@@ -275,7 +278,7 @@
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
 .youtube{
-  border-top: 0px solid transparent !important;
+  border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
   grid-area: J;
@@ -283,7 +286,7 @@
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
 .twitter{
-  border-top: 0px solid transparent !important;
+  border: 0px solid transparent !important;
   grid-area: K;
   align-items: center;
   justify-content: center;
@@ -291,7 +294,7 @@
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
 .footer{
-  border-top: 0px solid transparent !important;
+  border: 0px solid transparent !important;
   grid-area: X;
   align-items: center;
   justify-content: center;
@@ -299,7 +302,7 @@
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
 #foot{
-  border-top: 0px solid transparent !important;
+  border: 0px solid transparent !important;
 }
 .instagram::after,
 .linkedin::after,
@@ -322,18 +325,8 @@
 .fa-brands{
   height: 100%;
   width: 100%;
-  color: var(--grey);
+  background: rgb(29, 29, 29) !important;
   display: flex;  
-}
-.fa-instagram:hover{
-  color: transparent;
-  background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%) !important;
-  background-clip: text;
-}
-.fa-linkedin-in:hover{
-  color: transparent;
-  background: #0072b1 !important;
-  background-clip: text;
 }
 .blink {
   animation: blinker 0.8s infinite;
@@ -343,6 +336,7 @@
 @media screen and (min-width: 768px) {
   .bento{
     grid-template-areas:
+    ". . . . . X X . . . . ."
     "A A A A B B B B B B B B"
     "A A A A B B B B B B B B"
     "A A A A B B B B B B B B"
@@ -355,11 +349,11 @@
     "E E E E F F F F D D D D"
     "G G G G F F F F D D D D"
     "H I J K F F F F D D D D"
-    ". . . . . X X . . . . .";
+    ;
     grid-template-rows: repeat(13, minmax(1vh, 60px));
     grid-template-columns: repeat(12, minmax(1vw, 60px));
     max-width: 900px;
-    gap: 1em;
+    gap: 0.6em;
   }
   .engineeringCard{
     overflow: hidden;
@@ -402,12 +396,12 @@
   .profileCard p{
     margin: -0.1em 1.2em;
     color: var(--txtCol2);
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 130%;
   }
   .profileCard img{
     position: absolute;
-    margin: 1em 0em 0em 11em;
+    margin: 1em 0em 0em 10em;
   }
   .mbtiCard{
     grid-area: D;
@@ -422,12 +416,12 @@
     font-weight: 300;
     font-size: 4em;
     align-self: center;
-    margin: -0.2em 0em 0em 0em;
+    margin: -0.4em 0em 0em 0em;
   }
   .mbtiCard h2{
     font-weight: 700;
-    font-size:  2em;
-    align-self: center;
+    font-size: 1.6em;
+    margin: 0 auto;
   }
   .mbtiCard p{
     font-size: 1em;

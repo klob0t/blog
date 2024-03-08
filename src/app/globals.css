@@ -7,12 +7,13 @@
   --sansDisplay: "InterDisplay", "Helvetica", "Arial", sans-serif;
   --serifFont: 'Junicode', 'Times New Roman', serif;
   --sansText: "Inter", "Helvetica", "Arial", sans-serif;
-  --darkBG: #131313;
+  --darkBG: #090909;
   --shadow: 0px 0px 10px 10px rgba(14,13,13,0.08);
-  --bgCol1: #141414;
-  --cardBorder: #303030;
+  --bgCol1: #151415;
+  --bgCol2: #070607;
+  --cardBorder: #ca4747;
   --txtCol1: rgb(230, 230, 230);
-  --txtCol2: rgb(68, 68, 68);
+  --txtCol2: rgb(145, 145, 145);
   --col1: rgb(20, 20, 20);
   --col2: rgb(12, 12, 189);
   --col2a:rgb(34, 86, 197);
@@ -23,12 +24,12 @@
   --col7: rgba(255, 255, 255, 0.397);
   --col8: rgba(27, 27, 27, 0.178);
   --col9: rgba(179, 179, 179, 0.243);
-  --H1: 40%;
-  --H2: 50%;
-  --H3: 30%;
+  --H1: 70%;
+  --H2: 80%;
+  --H3: 10%;
   --transparent: rgba(0, 0, 0, 0);
   --stagger: 100ms;
-  --grey: #7c7474;
+  --grey: #2e2e2e;
   --articleCol: rgb(170, 168, 165);
   --dateCol: rgb(82, 78, 78);
   --codeCol: rgb(240, 220, 220);
@@ -57,9 +58,11 @@ i{
   font-style: normal;
   color: rgb(132, 132, 132);
   font-family: var(--sansText);
+  z-index: 3 !important;
 }
 a{
   text-decoration: none;
+  z-index: 3 !important;
 }
 body{
   display: flex;

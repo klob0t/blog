@@ -2,10 +2,10 @@ import {useRef, useEffect} from 'react'
 
 const Tilt = () =>{
    const perspective = 800
-   const scale = 1.01
+   const scale = 1.005
    const timing = 80
    const easing = 'ease-out'
-   const deg = 1
+   const deg = 0.7
    let box = useRef(0)
    let after = useRef(0)
 
@@ -59,8 +59,6 @@ const Tilt = () =>{
       box.current = e.target.closest('#bento > div')
       box.current.style.transform = `perspective(500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`
       box.current.style.setProperty('--opacity', '0')
-      box.current.style.setProperty('--mouse-X', '50%')
-      box.current.style.setProperty('--mouse-Y', '50%')
       setTransition(e)
    }
 }

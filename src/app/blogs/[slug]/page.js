@@ -31,11 +31,15 @@ const postPage = (props) => {
       </div>
       <hr></hr>
       <article>
-        <span style={{
+      <div>
+        {/* <span style={{
           fontFamily:'var(--sansText)',
+          color:'white',
           fontWeight:'600',
           textTransform:'uppercase',
-          fontSize:'0.8em'}}>{post.data.place} — </span><Markdown options={markdownOptions}>{post.content}</Markdown>
+          fontSize:'0.8em'}}>{post.data.place} — </span> */}
+          <Markdown options={markdownOptions}>{post.content}</Markdown>
+      </div>
       </article>     
       <hr></hr>
       <h5><Link href='https://klob0t.github.io'>klob0t.github.io</Link> &#8859; 2024</h5>

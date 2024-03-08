@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import Home from './home/page'
+import Home from './component/home/page'
 import { useEffect, useState } from 'react'
 
 const MainPage = () => {
