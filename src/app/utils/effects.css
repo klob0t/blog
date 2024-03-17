@@ -9,6 +9,7 @@
    z-index: 99;
    pointer-events: none;
    opacity: 1;
+   /* mix-blend-mode: exclusion; */
 }
 #dotIcon {
    height: 100%;

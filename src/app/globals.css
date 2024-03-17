@@ -9,11 +9,11 @@
   --sansText: "Inter", "Helvetica", "Arial", sans-serif;
   --darkBG: #090909;
   --shadow: 0px 0px 10px 10px rgba(14,13,13,0.08);
-  --bgCol1: #151415;
-  --bgCol2: #070607;
+  --bgCol1: #0f0f0f; /*this is the background color*/
+  --bgCol2: #151516; /*this is the grid color*/
   --cardBorder: #ca4747;
   --txtCol1: rgb(230, 230, 230);
-  --txtCol2: rgb(145, 145, 145);
+  --txtCol2: rgb(87, 87, 87); /*text color (p)*/
   --col1: rgb(20, 20, 20);
   --col2: rgb(12, 12, 189);
   --col2a:rgb(34, 86, 197);
@@ -38,15 +38,16 @@
   --postBG: rgb(22, 22, 22);
   --preCol: #282c34;
   --mouse-X: 0px; --mouse-Y: 0px;
+  --rad: 15px;
 }
 h1{
   font-family: var(--sansDisplay);
-  font-weight: 600;
+  font-weight: 400;
   z-index: 3 !important; 
 }
 h2{
   font-family: var(--sansText);
-  font-weight: 700;
+  font-weight: 400;
   z-index: 3 !important; 
 }
 p{
@@ -65,11 +66,13 @@ a{
   z-index: 3 !important;
 }
 body{
-  display: flex;
-  background-attachment: fixed;
-  background: var(--darkBG);
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* background-attachment: fixed; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* height: 100vh; */
+  overflow: scroll;
+  /* width: 100vw; */
 }
 .loader{
   content:"";
@@ -96,7 +99,6 @@ body{
 .fourOfour p{
   color: white
 }
-
 nextjs-portal{
   display: none;
 }

@@ -1,65 +1,21 @@
+.contentWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  /* margin-top: 2em; */
+  padding: 2em 0em 2em 0em;
+}
+
 .gradient{
    height: 100vh;
    width: 100vw;
    position: fixed;
    top: 0;
    left: 0;
-   /* background: radial-gradient(var(--col6) 0%, var(--col1) 70%); */
-   background-attachment: fixed;
+   background: var(--bgCol1);
    z-index: -1;
-   background: var(--bgCol2);
  }
-/* #gradient1{
-  opacity: 0.3;
-   position: fixed;
-   animation: one 10s linear infinite;
-   border-radius: 50%;
-   height: var(--H1);
-   width: var(--H1);
-   background: radial-gradient(var(--col3), var(--col4));
-   filter: blur(100px);
-}
-@keyframes one {
-   0%, 
-   100%{top: 25%; left: 35%}
-   25%{top: 45%; left: 28%}
-   50%{top: 25%; left: 25%}
-   75%{top: 20%; left: 28%}
-}
-#gradient2{
-  opacity: 0.3;
-   position: fixed;
-   animation: two 10s linear infinite;
-   border-radius: 50%;
-   height: var(--H2);
-   width: var(--H2);
-   background: radial-gradient(var(--col7), var(--col5), var(--col2));
-   filter: blur(100px);
-}
-@keyframes two {
-  0%,
-  100%{top: 20%; left: 10%}
-  25%{top: 27%; left: 18%}
-  50%{top: 35%; left: 40%}  
-  75%{top: 20%; left: 25%}
-}
-#gradient3{
-  opacity: 0.3;
-  position: fixed;
-  animation: three 10s linear infinite;
-  border-radius: 50%;
-  height: var(--H3);
-  width: var(--H3);
-  background: radial-gradient(var(--col7), var(--col8));
-  filter: blur(50px);
-}
-@keyframes three {
-  0%, 
-  100%{top: 30%; left: 30%; opacity: 0.1}
-  25%{top: 34%; left: 31%; opacity: 1}
-  50%{top: 32%; left: 37%; opacity: 0.7}
-  75%{top: 30%; left: 35%; opacity: 0.5}
-}*/
 @keyframes loadIn {
   from{opacity: 0; transform: scale(1) translateY(20px)}
   to{opacity: 1; transform: scale(1) translateY(0px)}
@@ -79,22 +35,21 @@
 .bento{
   display:grid;
   grid-template-areas: 
+  ". . X . ."
   "A A A A A"
   "A A A A A"
   "B B B B B"
   "B B B B B"
   "C C C C C"
   "C C C C C"
-  "D D D D D"
-  "D D D D D"
-  "E E E E E"
-  "G G G G G"
-  "F F F F F"
-  "F F F F F"
-  "H I J K X";
-  grid-template-columns: repeat(5, minmax(1vh, 80px));
-  grid-template-rows: repeat(14, minmax(1vh, 100px));
-  gap: 1em;
+  "D D E E E"
+  "D D G G G"
+  ". H I J K";
+  /* grid-template-columns: repeat(5, minmax(1vw, 80px));
+  grid-template-rows: repeat(9, minmax(1vh, 100px)); */
+  grid-template-rows: repeat(10, minmax(1vh, 100px));
+  grid-template-columns: repeat(5, minmax(1vw, 80px));
+  gap: 0.4em;
 }
 .bento > div{
   background: radial-gradient(
@@ -102,8 +57,8 @@
     rgba(255, 255, 255, calc(var(--opacity) * 3)), transparent 25%);
   color: var(--txtCol1);
   position: relative;
-  border-radius: 20px;
-  /* box-shadow: var(--shadow); */
+  border-radius: var(--rad) !important;
+  box-shadow: 0px 4px 15px 2px rgba(17, 17, 17, 0.356);
   animation: loadIn 600ms ease-in-out backwards;
   display: flex;
   width: 100%;
@@ -117,7 +72,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-radius: 20px;
+  border-radius: inherit;
   background: radial-gradient(
     800px circle at var(--mouse-X) var(--mouse-Y), 
     rgba(255, 255, 254, calc(var(--opacity) * 0.4)),
@@ -125,15 +80,15 @@
   );
 }
 .bento > div::before{
-  border-radius: 18px;
+  border-radius: inherit;
   content: '';
   position: absolute;
   margin: 1px;
   top: 0; left: 0;
   width: calc(100% - 2px); height: calc(100% - 2px);
-  background: var(--bgCol1);
+  background: var(--bgCol2);
   box-sizing: border-box;
-  border: 1px solid rgb(29, 29, 29);
+  border-top: 1px solid rgb(41, 41, 41);
 }
 .engineeringCard{
   justify-content: center;
@@ -176,15 +131,16 @@
 .profileCard h1{
   text-align: left;
   font-size: 3em;
-  margin: 0em 0em 0.2em 0.4em;
-  font-weight: 700;
+  margin: 0em 0em 0.4em 0.4em;
+  font-weight: 500;
+  line-height: 80%;
 }
 .profileCard p{
   font-size: 0px;
 }
 .profileCard img{
-  position: absolute;
-  margin: 0em 0em 0em 8em;
+  position: relative;
+  margin: 0em 0em 0em 7em;
 }
 .mbtiCard{
   grid-area: D;
@@ -197,7 +153,7 @@
   font-family: var(--serifFont);
   font-style: italic;
   font-weight: 300;
-  font-size: 4em;
+  font-size: 0em;
   align-self: self-start;
   margin: -0.4em 0em 0em 0.4em;
 }
@@ -205,7 +161,7 @@
   text-align: left;
   margin-left: 0.8em;
   margin-top: -0.3em;
-  font-size: 2em;
+  font-size: 0em;
 }
 .mbtiCard p{
   text-align: center;
@@ -213,9 +169,11 @@
 }
 .mbtiCard i{
   font-size: 0em;
+  color: var(--txtCol2)
 }
 .mbtiCard img{
-  margin: 0em 8em;
+  margin: 0em 0em;
+  /* filter: grayscale(100); */
 }
 .curriculumVitaeCard{
   grid-area: E;
@@ -226,25 +184,23 @@
 .curriculumVitaeCard h1{
   font-family: var(--serifFont);
   font-weight: 400;
-  font-size: 3em;
+  font-size: 2em;
   text-align: left;
   line-height: 90%;
+  margin-left: -2em;
 }
 .artCard{
   overflow: hidden;
+  display: flex;
   grid-area: F;
   justify-content: center;
   align-items: center;
   animation-delay: calc(7 * var(--stagger)) !important;
 }
-
-.artCard h1{
-  text-align: left;
-  font-family: var(--serifFont);
-  font-size: 5em;
-  font-weight: 100;
+.artCard img{
+  width: 10em !important;
+  margin: 0 auto;
 }
-
 .codingJourneyCard{
   grid-area: G;
   animation-delay: calc(6 * var(--stagger)) !important;
@@ -253,13 +209,14 @@
 .codingJourneyCard h1{
   font-family: var(--monoFont);
   font-weight: 700;
-  font-size: 2.5em;
-  text-align: left !important;
+  font-size: 1.5em;
+  text-align: left;
   line-height: 90%;
   color: var(--col2);
-  margin-left: 1em !important;
+  margin-left: 0.6em !important;
 }
 .instagram{
+  /* height: 100px !important; */
   border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
@@ -301,6 +258,7 @@
   background: var(--transparent) !important;
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
+
 #foot{
   border: 0px solid transparent !important;
 }
@@ -323,10 +281,8 @@
   color: var(--grey)
 }
 .fa-brands{
-  height: 100%;
-  width: 100%;
+  margin: 0 auto;
   background: rgb(29, 29, 29) !important;
-  display: flex;  
 }
 .blink {
   animation: blinker 0.8s infinite;
@@ -348,12 +304,11 @@
     "E E E E F F F F D D D D"
     "E E E E F F F F D D D D"
     "G G G G F F F F D D D D"
-    "H I J K F F F F D D D D"
-    ;
+    "H I J K F F F F D D D D";
     grid-template-rows: repeat(13, minmax(1vh, 60px));
     grid-template-columns: repeat(12, minmax(1vw, 60px));
     max-width: 900px;
-    gap: 0.6em;
+    gap: 0.5em;
   }
   .engineeringCard{
     overflow: hidden;
@@ -374,6 +329,9 @@
     font-size: 2.1rem;
     margin: 0.3em 0.6em;
   }
+  /* .engineeringCard img,
+  .productDesignCard img{
+  } */
   .profileCard{
     overflow: hidden;
     align-items: start;
@@ -391,7 +349,7 @@
     font-size: 3rem;
     margin: 1rem 0.4em;
     line-height: 98%;
-    font-weight: 600;
+    font-weight: 500;
   }
   .profileCard p{
     margin: -0.1em 1.2em;
@@ -414,35 +372,41 @@
     font-family: var(--serifFont);
     font-style: italic;
     font-weight: 300;
-    font-size: 4em;
+    font-size: 2.5em;
     align-self: center;
-    margin: -0.4em 0em 0em 0em;
+    margin: -0.1em 0em 0em 0em;
   }
   .mbtiCard h2{
-    font-weight: 700;
-    font-size: 1.6em;
+    font-weight: 400;
+    font-size: 1.2em;
     margin: 0 auto;
   }
   .mbtiCard p{
-    font-size: 1em;
-    margin: 18em 0em 0em 0em;
+    font-size: 0.9em;
+    margin: 21em 1.2em 0em 1.2em;
+    font-style: italic;
+    color: var(--txtCol2);
   }
   .mbtiCard i{
     font-size: 0.7em;
+    margin-top: 2em;
   }
   .mbtiCard img{
-  margin: 0em 0em;
+  margin: -1em 0em;
   }
   .curriculumVitaeCard{
+    display: flex;
     animation-delay: calc(6 * var(--stagger)) !important;
+    align-items: center;
+    justify-content: flex-start;
   }
   .curriculumVitaeCard h1{
     font-family: var(--serifFont);
     font-weight: 400;
-    font-size: 3em;
+    font-size: 2.4em;
     text-align: left;
     line-height: 90%;
-    margin: 0.45em 0.3em;
+    margin-left: 0.6em;
   }
   .codingJourneyCard{
     display: flex;
@@ -456,16 +420,11 @@
     margin: 0em 0.5em 0em 0em;
   }
   .artCard{
-    align-items: flex-end;
     justify-content: end;
     animation-delay: calc(4 * var(--stagger)) !important;
   }
-  .artCard h1{
-    margin: 0em 0.3em 0.1em 0em;
-    font-family: var(--serifFont);
-    font-size: 3em;
-    font-weight: 100;
-    mix-blend-mode: exclusion;
+  .artCard img{
+    width: 100% !important;
   }
   .instagram{
     animation-delay: calc(8 * var(--stagger)) !important;
