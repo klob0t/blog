@@ -2,7 +2,6 @@ import {useRef, useEffect} from 'react'
 import '../utils/effects.css'
 
 const Cursor = () => {
-  const lagger = 4
   const dot = useRef(null), point = useRef(null), dotIcon = useRef(null), touching1 = useRef(null), touching2 = useRef(null)
   let reqRef = useRef(null)
   let curX = useRef(0), curY = useRef(0),
@@ -24,7 +23,6 @@ const Cursor = () => {
     cancelAnimationFrame(reqRef.current)
   }
 }, [])
-
 
   const mouseMove = e => {
    curX.current = e.pageX
@@ -70,8 +68,8 @@ const Cursor = () => {
    }
 
   const animMove = () => {
-   pointX.current += (curX.current - pointX.current) / lagger
-   pointY.current += (curY.current - pointY.current) / lagger
+   pointX.current += (curX.current - pointX.current) * 0.1
+   pointY.current += (curY.current - pointY.current) * 0.1
    touching1.current = point.current !== null
    touching2.current = check.current !== null
    dot.current.dataset.type = touching1.current ? type : ''
@@ -110,7 +108,7 @@ const Cursor = () => {
   return(
     <>
       <div ref={dot} className='dot'>
-         <i ref={dotIcon} id='dotIcon' className='fa-regular fa-arrow-up-right'></i>
+         <i ref={dotIcon} id='dotIcon'></i>
       </div>
     </>
   )

@@ -8,7 +8,6 @@ import { dynamicBlurDataUrl } from '@/app/utils/dynamicBlurDataUrl';
 export default function Carousel({params, onClose}) {
   const id = params.id
   const [images, setImages] = useState([])
-  const [blurDataUrl, setBlurDataUrl] = useState([])
   const [curIndex, setcurIndex] = useState(0)
   const [imagesSet, setImagesSet] = useState([])
 
@@ -21,24 +20,23 @@ export default function Carousel({params, onClose}) {
       .catch(error => {});
   }, []);
 
-  // useEffect(() => {
-  //   const modifyData = async () => {
-  //     const dataWithBlurHash = await getResources(data)
-  //     setImagesSet(dataWithBlurHash)
-  //   }
-  //   modifyData()
-  // }, [data])
+  useEffect(() => {
+  const modifyData = async () => {
+    const dataWithBlurHash = await getResources(images)
+    setImagesSet(dataWithBlurHash)
+  }
+  modifyData()
+},[images])
 
-  // const getResources = async (data) => {
-  //   const resources = await Promise.all(
-  //     data.map(async (photo) => ({
-  //       imgUrl: photo.images,
-  //       blurHash: await dynamicBlurDataUrl(photo.imgUrl)
-  //     }))
-  //   )
-  //   return resources
-  // }
-
+const getResources = async (images) => {
+  const resources = await Promise.all(
+    images.map(async (imgs) => ({ // use images instead of data
+      imgs: imgs,
+      imgBlur: await dynamicBlurDataUrl(imgs)
+    }))
+  )
+  return resources
+}
 
   const nextImage = () => {
     setcurIndex((curIndex + 1) % images.length);
@@ -52,43 +50,32 @@ export default function Carousel({params, onClose}) {
     onClose();
   }
 
-  // dynamicBlurDataUrl(images[(curIndex + 1) % images.length]).then(blur =>{
-  //   setBlurDataUrl(blur)
-  // })
-
-  // const p = `data:image/svg+xml;base64,${blurDataUrl}`
-  // console.log(p)
-
-
-
   return (
     <div className={styles.container}>
       <div className={styles.imgWrapper}>
-        <Image
+        {imagesSet[curIndex] ? (<Image
           style={{objectFit:'cover'}}
           fill
           margin= 'auto'
           key={curIndex}
-          src={images[curIndex]}
+          src={imagesSet[curIndex].imgs}
           alt={curIndex}
           sizes='100%'
-          // placeholder='blur'
-          // blurDataURL={p}
-        />
+          placeholder='blur'
+          blurDataURL={imagesSet[curIndex].imgBlur}
+        />) : null }
         <div className={styles.buttons}>
           <div className={styles.prevBtn} onClick={prevImage}>
             <i className='fa-solid fa-chevron-left fa-2x' style={{color: 'grey', transform: 'scale(0.7)'}}></i>
           </div>
           <div className={styles.nextBtn} onClick={nextImage}>
             <i className='fa-solid fa-chevron-right fa-2x' style={{color: 'grey', transform: 'scale(0.7)'}}></i>
+            </div>
           </div>
         </div>
-      </div>
-
-
-     <Link href='/'>
-      <div className={styles.linkWrapper} onClick={closeModal} style={{cursor: 'pointer'}}></div></Link>
-    
+      <Link href='/'>
+        <div className={styles.linkWrapper} onClick={closeModal} style={{cursor: 'pointer'}}></div>
+      </Link>
     </div>
   )
 }

@@ -8,6 +8,17 @@
    position: fixed;
    top: 0; left: 0;
 }
+
+@keyframes slide-up {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(100%);
+  }
+}
+
 .linkWrapper{
    width: 100%;
    height: 100%;
@@ -16,6 +27,7 @@
    z-index: 0;
    background: rgba(8, 8, 8, 0.24) !important;
    backdrop-filter: blur(5px);
+   z-index: 0;
 }
 .imgWrapper{
    display: inline-flex;
@@ -31,6 +43,8 @@
    align-self: center;
    position: relative;
    overflow: hidden;
+   animation: slide-up 0.2s cubic-bezier(.78,0,.12,1) forwards;
+   z-index: 4;
 }
 .buttons{
    position: absolute;

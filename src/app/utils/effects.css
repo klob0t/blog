@@ -31,7 +31,7 @@
    font-family: var(--monoFont);
 }
 .text{
-   background: linear-gradient(60deg, rgb(244, 55, 215) 0%, rgb(18, 9, 179) 100%);
+   background: linear-gradient(60deg, var(--col3) 0%, var(--col2) 100%);
    background-clip: text;
    color: transparent
 }

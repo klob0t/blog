@@ -76,7 +76,7 @@ export default function Home() {
       </div>
       <div className={styles.profileCard} data-type='star'>
         <h1>Hello, <br />i'm <Scrambled /><span className={styles.ornament}>&#8859;</span></h1>
-        <p>hi, i'm a guy who are deeeeeeply<br />interested in design, engineering,<br /> aaand sometimes enjoy and do "art".<br />welcome to my page!</p>
+        <p>I'm all about design, engineering,<br/>and gets artsy when the mood strikes.<br /><br/>Welcome to my page!</p>
        <Image 
           src='/images/4x5.png'
           sizes='20em'

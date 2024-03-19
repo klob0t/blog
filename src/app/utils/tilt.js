@@ -4,7 +4,7 @@ const Tilt = () =>{
    const perspective = 800
    const scale = 1.005
    const timing = 100
-   const easing = 'ease-out'
+   const easing = 'cubic-bezier(.78,0,.26,1)'
    const deg = 0.7
    let box = useRef(0)
    let after = useRef(0)
