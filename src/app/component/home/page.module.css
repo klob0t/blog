@@ -11,15 +11,15 @@
    position: fixed;
    top: 0;
    left: 0;
-   /* background: var(--bgCol1); */
    opacity: 1;
    background: 
    
     radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--bgCol1) 60%),
+    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 0%, transparent 50%),
 
     conic-gradient(from 0deg at 50% -5%,
     var(--bgCol1) 0%,
-    var(--bgCol1) 25%,
+    var(--bgCol1) 35%,
     /* rgba(3, 28, 255, 0.781) 30%, */
     var(--col2) 40%,
     var(--col3a) 41%,
@@ -30,8 +30,7 @@
     var(--col2) 55%,
     var(--col3a) 58%,
     var(--col2) 60%,
-    var(--bgCol1) 75%,
-    var(--col3a) 80%,
+    var(--bgCol1) 65%,
     var(--bgCol1) 100%);
    z-index: -1;
  }

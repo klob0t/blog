@@ -8,7 +8,7 @@ import { dynamicBlurDataUrl } from '@/app/utils/dynamicBlurDataUrl';
 export default function Carousel({params, onClose}) {
   const id = params.id
   const [images, setImages] = useState([])
-  const [curIndex, setcurIndex] = useState(0)
+  const [curIndex, setCurIndex] = useState(0)
   const [imagesSet, setImagesSet] = useState([])
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Carousel({params, onClose}) {
 
 const getResources = async (images) => {
   const resources = await Promise.all(
-    images.map(async (imgs) => ({ // use images instead of data
+    images.map(async (imgs) => ({ 
       imgs: imgs,
       imgBlur: await dynamicBlurDataUrl(imgs)
     }))
@@ -39,31 +39,37 @@ const getResources = async (images) => {
 }
 
   const nextImage = () => {
-    setcurIndex((curIndex + 1) % images.length);
+    setCurIndex((curIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    setcurIndex((curIndex - 1 + images.length) % images.length);
+    setCurIndex((curIndex - 1 + images.length) % images.length);
   };
 
   const closeModal =() => {
     onClose();
   }
 
+  console.log(curIndex)
+
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.imgWrapper}>
-        {imagesSet[curIndex] ? (<Image
-          style={{objectFit:'cover'}}
-          fill
+      {imagesSet.map((image) => (
+        <img
+          style={{
+            objectFit:'cover',
+            transition: 'transform 0.3s cubic-bezier(1,0,.42,1)',
+            transform: `translateX(-${curIndex * 100}%)`,}}
+          width='100%'
           margin= 'auto'
-          key={curIndex}
-          src={imagesSet[curIndex].imgs}
-          alt={curIndex}
-          sizes='100%'
-          placeholder='blur'
-          blurDataURL={imagesSet[curIndex].imgBlur}
-        />) : null }
+          src={image.imgs}
+          alt='adsafa'
+          // placeholder='blur'
+          // blurDataURL={image.imgBlur}
+        />
+        ))}
         <div className={styles.buttons}>
           <div className={styles.prevBtn} onClick={prevImage}>
             <i className='fa-solid fa-chevron-left fa-2x' style={{color: 'grey', transform: 'scale(0.7)'}}></i>
@@ -77,5 +83,6 @@ const getResources = async (images) => {
         <div className={styles.linkWrapper} onClick={closeModal} style={{cursor: 'pointer'}}></div>
       </Link>
     </div>
+    </>
   )
 }

@@ -6,7 +6,7 @@ import Cursor from '../../utils/mouseTrail'
 import Tilt from '../../utils/tilt'
 import Link from 'next/link'
 import {useState, useEffect} from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import Carousel from '../modal/page'
 import Loader from '../loader'
 // import { Suspense } from 'react'
@@ -20,7 +20,10 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    document.addEventListener('load', () => {
+    window.onload = (() => {
+      setTimeout(function (){
+        setIsLoading(false)
+      },1000)
       setIsLoading(false)
     })
     const timeout = setTimeout(() => {
@@ -28,8 +31,6 @@ export default function Home() {
     }, 1000)
     return () => clearTimeout(timeout)
   }, [])
-
-  const router = useRouter()
 
   useEffect(() => {
     if (id) {

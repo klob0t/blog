@@ -30,8 +30,8 @@
    z-index: 0;
 }
 .imgWrapper{
-   display: inline-flex;
-   z-index: 5;
+   background: white;
+   display: flex;
    border-radius: 20px;
    width: 80%;
    max-width: 40em;
@@ -80,7 +80,17 @@
 .fa-solid{
    transform: scale(0.1);
 }
+.image-slide {
+  transition: transform 0.5s ease-in-out;
+}
 
+.left {
+  transform: translateX(-100%);
+}
+
+.right {
+  transform: translateX(100%);
+}
 
 /* img{
 

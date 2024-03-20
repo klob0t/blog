@@ -25,5 +25,8 @@ export async function dynamicBlurDataUrl(url) {
    //    ? Buffer.from(str).toString('base64')
    //    : window.btoa(str);
    Buffer.from(str).toString('base64')
-  return `data:image/svg+xml;base64,${toBase64(blurSvg)}`
+  return [
+    `data:image/svg+xml;base64,${toBase64(blurSvg)}`,
+    `${base64str}`
+  ]
 }
