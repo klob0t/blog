@@ -12,9 +12,12 @@ export async function dynamicBlurDataUrl(url) {
   );
 
   const blurSvg = `
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 5'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 8'>
       <filter id='b' color-interpolation-filters='sRGB'>
-        <feGaussianBlur stdDeviation='1' />
+        <feGaussianBlur stdDeviation='20' />
+         <feComponentTransfer>
+          <feFuncA type='discrete' tableValues='1 1' />
+         </feComponentTransfer>
       </filter>
       <image preserveAspectRatio='none' filter='url(#b)' x='0' y='0' height='100%' width='100%' 
       href='data:image/avif;base64,${base64str}' />
@@ -25,8 +28,6 @@ export async function dynamicBlurDataUrl(url) {
    //    ? Buffer.from(str).toString('base64')
    //    : window.btoa(str);
    Buffer.from(str).toString('base64')
-  return [
-    `data:image/svg+xml;base64,${toBase64(blurSvg)}`,
-    `${base64str}`
-  ]
+  return `data:image/svg+xml;base64,${toBase64(blurSvg)}`
+
 }

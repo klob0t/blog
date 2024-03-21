@@ -29,7 +29,7 @@
   --H2: 80%;
   --H3: 10%;
   --transparent: rgba(0, 0, 0, 0);
-  --stagger: 100ms;
+  --stagger: 1000ms;
   --grey: #2e2e2e;
   --articleCol: rgb(170, 168, 165);
   --dateCol: rgb(82, 78, 78);
@@ -44,27 +44,22 @@
 h1{
   font-family: var(--sansDisplay);
   font-weight: 400;
-  z-index: 1;
 }
 h2{
   font-family: var(--sansText);
   font-weight: 400;
-  z-index: 1;
 }
 p{
   font-family: var(--sansText);
-  font-weight: 400;
-  z-index: 1; 
+  font-weight: 400
 }
 i{
   font-style: normal;
   color: rgb(132, 132, 132);
   font-family: var(--sansText);
-  z-index: 1;
 }
 a{
   text-decoration: none;
-  z-index: 1;
   
 }
 body{

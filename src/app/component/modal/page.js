@@ -30,8 +30,9 @@ export default function Carousel({params, onClose}) {
 
 const getResources = async (images) => {
   const resources = await Promise.all(
-    images.map(async (imgs) => ({ 
+    images.map(async (imgs, index) => ({ 
       imgs: imgs,
+      index: index,
       imgBlur: await dynamicBlurDataUrl(imgs)
     }))
   )
@@ -50,26 +51,29 @@ const getResources = async (images) => {
     onClose();
   }
 
-  console.log(curIndex)
-
   return (
     <>
     <div className={styles.container}>
       <div className={styles.imgWrapper}>
       {imagesSet.map((image) => (
-        <img
+        <div className={styles.imgs} key={image.index}
           style={{
-            objectFit:'cover',
+            width: '100%',
             transition: 'transform 0.3s cubic-bezier(1,0,.42,1)',
-            transform: `translateX(-${curIndex * 100}%)`,}}
-          width='100%'
-          margin= 'auto'
+            flex: '0 0 auto',
+            transform: `translateX(-${curIndex * 100}%)`
+            }}>
+        <Image
+          style={{
+            objectFit:'cover'}}
+          fill
+          sizes='100%'
           src={image.imgs}
-          alt='adsafa'
-          // placeholder='blur'
-          // blurDataURL={image.imgBlur}
+          alt={image.index}
+          placeholder='blur'
+          blurDataURL={image.imgBlur}
         />
-        ))}
+       </div>))}
         <div className={styles.buttons}>
           <div className={styles.prevBtn} onClick={prevImage}>
             <i className='fa-solid fa-chevron-left fa-2x' style={{color: 'grey', transform: 'scale(0.7)'}}></i>

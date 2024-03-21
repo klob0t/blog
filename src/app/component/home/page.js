@@ -47,13 +47,14 @@ export default function Home() {
     {isLoading ? 
     <Loader /> 
   : <main>
-     <div className={styles.contentWrapper}>
-     <div className={styles.noise}></div>
-     <div className={styles.gradient}>
-      <div id={styles.gradient1}></div>
-      <div id={styles.gradient2}></div>
-      <div id={styles.gradient3}></div>
-    </div>
+      <div className={styles.contentWrapper}>
+      <div className={styles.noise}></div>
+      <div className={styles.gradient1}></div>
+      <div className={styles.gradient2}></div>
+      <div className={styles.gradient3}></div>
+      <div className={styles.gradient4}></div>
+      <div className={styles.gradient5}></div>
+  
     <div className={styles.bento} id='bento'>
       <div className={styles.engineeringCard} data-type='look'>
         <h1>Engineering<span className={styles.ornament}>&#8859;</span></h1>
