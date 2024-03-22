@@ -29,7 +29,7 @@
   --H2: 80%;
   --H3: 10%;
   --transparent: rgba(0, 0, 0, 0);
-  --stagger: 1000ms;
+  --stagger: 100ms;
   --grey: #2e2e2e;
   --articleCol: rgb(170, 168, 165);
   --dateCol: rgb(82, 78, 78);
@@ -41,27 +41,7 @@
   --mouse-X: 0px; --mouse-Y: 0px;
   --rad: 15px;
 }
-h1{
-  font-family: var(--sansDisplay);
-  font-weight: 400;
-}
-h2{
-  font-family: var(--sansText);
-  font-weight: 400;
-}
-p{
-  font-family: var(--sansText);
-  font-weight: 400
-}
-i{
-  font-style: normal;
-  color: rgb(132, 132, 132);
-  font-family: var(--sansText);
-}
-a{
-  text-decoration: none;
-  
-}
+
 body{
   /* display: flex; */
   /* background-attachment: fixed; */

@@ -58,8 +58,6 @@ const Tilt = () =>{
       box.current = e.target.closest('#bento > div')
       box.current.style.transform = `perspective(500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`
       box.current.style.setProperty('--opacity', '0')
-      // box.current.style.setProperty('--mouse-X', `50%`)
-      // box.current.style.setProperty('--mouse-Y', `50%`)
       setTransition(e)
    }
 }

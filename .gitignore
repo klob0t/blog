@@ -15,7 +15,9 @@
 /dist/
 
 # production
-/build
+/build/
+/public/
+/post/
 
 # misc
 .DS_Store

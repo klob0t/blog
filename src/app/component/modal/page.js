@@ -59,7 +59,7 @@ const getResources = async (images) => {
         <div className={styles.imgs} key={image.index}
           style={{
             width: '100%',
-            transition: 'transform 0.3s cubic-bezier(1,0,.42,1)',
+            transition: 'transform 0.5s cubic-bezier(1,0,.42,1)',
             flex: '0 0 auto',
             transform: `translateX(-${curIndex * 100}%)`
             }}>
