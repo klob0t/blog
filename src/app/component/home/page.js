@@ -18,21 +18,32 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const loaderRef = useRef(null);
 
-  useEffect(() => {
-    if (loaderRef.current) {
-      loaderRef.current.style.transition = 'transform 0.5s cubic-bezier(1,0,.42,1)';
-      loaderRef.current.style.transform = 'scale(1) translateY(0)';
-    }
-    const timeout = setTimeout(() => {
+useEffect(() => {
+    const onLoad = () => {
       if (loaderRef.current) {
-        loaderRef.current.style.transform = 'scale(1) translateY(-100%)';
+        loaderRef.current.style.transition = 'transform 0.5s cubic-bezier(1,0,.42,1)';
+        loaderRef.current.style.transform = 'scale(1) translateY(0)';
+      
+        const timeout = setTimeout(() => {
+          if (loaderRef.current) {
+            loaderRef.current.style.transform = 'scale(1) translateY(-100%)';
+          }
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500); // 500ms for exit animation
+        }, 1000);
+        
+        return () => clearTimeout(timeout);
       }
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500); // 500ms for exit animation
-    }, 1000);
-    return () => clearTimeout(timeout);
+    };
+
+    window.addEventListener('load', onLoad);
+    
+    return () => {
+      window.removeEventListener('load', onLoad);
+    };
   }, []);
+
 
   useEffect(() => {
     if (id) {
