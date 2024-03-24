@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import styles from './page.css'
 
 export const getPostContent = (slug) => {
-  const folder = 'posts/'
+  const folder = './posts/'
   const file = `${folder}${slug}.md`
   const content = fs.readFileSync(file, 'utf8')
   const matterResult = matter(content)
