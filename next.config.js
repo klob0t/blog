@@ -7,7 +7,6 @@ const nextConfig = {
    experimental:{
       missingSuspenseWithCSRBailout: false,
    },
-   distDir : 'dist'
 }
 
 module.exports = nextConfig
