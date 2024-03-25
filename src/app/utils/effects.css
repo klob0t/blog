@@ -5,11 +5,10 @@
    position: absolute;
    top: 0; left: 0;
    translate: -50% -50%;
-   background: white;
+   background: white ;
    z-index: 99;
    pointer-events: none;
    opacity: 1;
-   /* mix-blend-mode: exclusion; */
 }
 #dotIcon {
    height: 100%;
@@ -24,7 +23,7 @@
 }
 .dot:not([data-type='']) > #dotIcon{
    opacity: 1;
-   color: #000;
+   color: #000000;
 }
 .dud{
    color: var(--grey);
@@ -34,4 +33,13 @@
    background: linear-gradient(60deg, var(--col3) 0%, var(--col2) 100%);
    background-clip: text;
    color: transparent
+}
+.emoji-star{
+  background: url(https://em-content.zobj.net/source/apple/391/dizzy_1f4ab.png) 50% / 50% no-repeat;
+}
+.emoji-book{
+  background: url(https://em-content.zobj.net/source/apple/391/open-book_1f4d6.png) 50% / 50% no-repeat;
+}
+.emoji-eye{
+  background: url(https://em-content.zobj.net/source/apple/391/eyes_1f440.png) 50% / 50% no-repeat;
 }

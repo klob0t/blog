@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 @import url('https://rsms.me/inter/inter.css');
-@import url('https://fonts.cdnfonts.com/css/junicode');
-@import url('https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
 :root {
   --monoFont: 'JetBrains Mono', 'Courier New', Courier, monospace;
   --sansDisplay: "InterDisplay", "Helvetica", "Arial", sans-serif;
-  --serifFont: 'Junicode', 'Times New Roman', serif;
+  --serifFont: "EB Garamond", "Garamond", serif;
   --sansText: "Inter", "Helvetica", "Arial", sans-serif;
   --darkBG: #090909;
   --shadow: 0px 0px 10px 10px rgba(14,13,13,0.08);
@@ -15,7 +16,7 @@
   --txtCol1: rgb(230, 230, 230);
   --txtCol2: rgb(87, 87, 87); /*text color (p)*/
   --col1: rgb(20, 20, 20);
-  --col2: rgb(12, 12, 189);
+  --col2: rgb(12, 12, 190);
   --col2a:rgb(34, 86, 197);
   --col3: rgb(244, 55, 215);
   --col3a: rgb(93, 5, 255);
@@ -41,7 +42,6 @@
   --mouse-X: 0px; --mouse-Y: 0px;
   --rad: 15px;
 }
-
 body{
   /* display: flex; */
   /* background-attachment: fixed; */
@@ -77,6 +77,6 @@ body{
 .fourOfour p{
   color: white
 }
-/* nextjs-portal{
+nextjs-portal{
   display: none;
-} */
+}

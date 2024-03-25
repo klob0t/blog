@@ -1,7 +1,6 @@
 // import Head from 'next/head'
 import fs from "fs";
 import matter from "gray-matter";
-import styles from './page.css'
 import path from "path";
 
 export const getPostContent = (slug) => {

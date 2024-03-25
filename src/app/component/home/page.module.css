@@ -256,7 +256,7 @@
   justify-content: center;
   align-items: center;
   grid-area: B;
-  animation-delay: calc(1.1 * var(--stagger)) !important;
+  animation-delay: calc(2 * var(--stagger)) !important;
 }
 .productDesignCard::after{
   top: 0; left: 0;
@@ -281,7 +281,7 @@
   position: relative;
   grid-area: C;
   align-items: end;
-  animation-delay: calc(1.2 * var(--stagger)) !important;
+  animation-delay: calc(3 * var(--stagger)) !important;
 }
 .profileCard h1{
   text-align: left;
@@ -299,7 +299,7 @@
 }
 .mbtiCard{
   grid-area: D;
-  animation-delay: calc(1.3 * var(--stagger)) !important;
+  animation-delay: calc(4 * var(--stagger)) !important;
   overflow: hidden;
   flex-direction: column;
   flex-wrap: wrap;
@@ -334,7 +334,7 @@
   grid-area: E;
   justify-content: center;
   align-items: center;
-  animation-delay: calc(1.4 * var(--stagger)) !important;
+  animation-delay: calc(5 * var(--stagger)) !important;
 }
 .curriculumVitaeCard h1{
   font-family: var(--serifFont) !important;
@@ -351,14 +351,14 @@
   grid-area: F;
   justify-content: center;
   align-items: center;
-  animation-delay: calc(1.6 * var(--stagger)) !important;
+  animation-delay: calc(7 * var(--stagger)) !important;
 }
 .artCard img{
   margin: 0 auto;
 }
 .codingJourneyCard{
   grid-area: G;
-  animation-delay: calc(1.5 * var(--stagger)) !important;
+  animation-delay: calc(6 * var(--stagger)) !important;
   align-items: center;
 }
 .codingJourneyCard h1{
@@ -522,10 +522,10 @@
   .mbtiCard h1{
     font-family: var(--serifFont);
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 3em;
     align-self: center;
-    margin: -0.4em 0em 0em 0em;
+    margin: 0.3em 0em 0em 0em;
   }
   .mbtiCard h2{
     font-weight: 400;

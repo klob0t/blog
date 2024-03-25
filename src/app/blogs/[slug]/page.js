@@ -18,7 +18,7 @@ const postPage = (props) => {
   return (
       <>
         <div className={styles.header}>
-          <Link href='/'>
+          <Link href='https://klob0t.vercel.app'>
             <Image src='/images/logo-2024.png'
                 width={140}
                 height={140}
@@ -42,7 +42,7 @@ const postPage = (props) => {
       </div>
       </article>     
       <hr></hr>
-      <h5><Link href='https://klob0t.github.io'>klob0t.github.io</Link> &#8859; 2024</h5>
+      <h5><Link href='https://klob0t.vercel.app'>klob0t.vercel.app</Link> &#8859; 2024</h5>
       </>
   );
 }
