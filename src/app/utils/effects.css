@@ -32,7 +32,8 @@
 .text{
    background: linear-gradient(60deg, var(--col3) 0%, var(--col2) 100%);
    background-clip: text;
-   color: transparent
+   color: transparent;
+   font-weight: 600;
 }
 .emoji-star{
   background: url(https://em-content.zobj.net/source/apple/391/dizzy_1f4ab.png) 50% / 50% no-repeat;
