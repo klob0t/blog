@@ -73,6 +73,8 @@ const Cursor = () => {
         return "emoji-book";
       case "star":
         return "emoji-star";
+      case "dollar":
+        return "emoji-dollar";
       default:
         return "";
     }

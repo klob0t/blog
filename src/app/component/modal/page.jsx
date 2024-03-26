@@ -25,14 +25,6 @@ export default function Carousel({ params, onClose }) {
       .catch((error) => {});
   }, []);
 
-  useEffect(() => {
-    const modifyData = async () => {
-      const dataWithBlurHash = await getResources(images);
-      setImagesSet(dataWithBlurHash);
-    };
-    modifyData();
-  }, [images]);
-
   const getResources = async (images) => {
     const resources = await Promise.all(
       images.map(async (imgs, index) => ({
@@ -43,6 +35,15 @@ export default function Carousel({ params, onClose }) {
     );
     return resources;
   };
+
+  useEffect(() => {
+    const modifyData = async () => {
+      const dataWithBlurHash = await getResources(images);
+      setImagesSet(dataWithBlurHash);
+    };
+    modifyData();
+  }, [images]);
+
 
   const nextImage = () => {
     setCurIndex((curIndex + 1) % images.length);
@@ -66,7 +67,7 @@ export default function Carousel({ params, onClose }) {
               key={image.index}
               style={{
                 width: "100%",
-                transition: "transform 0.5s cubic-bezier(1,0,.42,1)",
+                transition: "transform 0.3s cubic-bezier(1,0,.42,1)",
                 flex: "0 0 auto",
                 transform: `translateX(-${curIndex * 100}%)`,
               }}

@@ -5,7 +5,7 @@ import Scrambled from "../../utils/textScramble";
 import Cursor from "../../utils/mouseTrail";
 import Tilt from "../../utils/tilt";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Carousel from "../modal/page";
 
@@ -75,7 +75,7 @@ export function Home() {
               and gets artsy when the mood strikes.
               <br />
               <br />
-              Take a look around.
+              Selamat datang!
             </p>
             <Image
               src="/images/4x5.png"
@@ -126,7 +126,7 @@ export function Home() {
               </h1>
             </Link>
           </div>
-          <div className={styles.artCard} data-type="look">
+          <div className={styles.artCard} data-type="dollar">
             <Image
               src="/neko.png"
               sizes="90%"

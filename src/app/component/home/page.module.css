@@ -353,10 +353,14 @@
 .mbtiCard p {
   text-align: center;
   font-size: 0;
+  font-style: italic;
+  color: var(--txtCol2);
+  font-feature-settings: "ss03";
 }
 .mbtiCard i {
   font-size: 0em;
   color: var(--txtCol2);
+  font-family: var(--serifFont);
 }
 .mbtiCard img {
   margin: 0em 0em;
@@ -365,7 +369,7 @@
 .curriculumVitaeCard {
   grid-area: E;
   justify-content: start;
-  align-items: center;
+  align-items: stretch;
   animation-delay: calc(5 * var(--stagger)) !important;
 }
 .curriculumVitaeCard h1 {
@@ -402,6 +406,7 @@
   line-height: 90%;
   color: var(--col2);
   margin-left: 0.6em !important;
+  font-feature-settings: "cv11", "cv04";
 }
 .instagram {
   border: 0px solid transparent !important;
@@ -559,9 +564,9 @@
     font-family: var(--serifFont);
     font-style: italic;
     font-weight: 400;
-    font-size: 3em;
+    font-size: 2.5em;
     align-self: center;
-    margin: 0.3em 0em 0em 0em;
+    margin: 0.9em 0em 0em 0em;
   }
   .mbtiCard h2 {
     font-weight: 400;
@@ -571,21 +576,18 @@
   .mbtiCard p {
     font-size: 0.9em;
     margin: 21em 1.2em 0em 1.2em;
-    font-style: italic;
-    color: var(--txtCol2);
   }
   .mbtiCard i {
     font-size: 0.7em;
     margin-top: 2em;
+    color: rgb(65, 65, 65) !important;
   }
   .mbtiCard img {
-    margin: -1em 0em;
+    margin: -0.4em 0em;
   }
   .curriculumVitaeCard {
     display: flex;
     animation-delay: calc(7 * var(--stagger)) !important;
-    align-items: center;
-    justify-content: flex-start;
   }
   .curriculumVitaeCard h1 {
     font-family: var(--serifFont);

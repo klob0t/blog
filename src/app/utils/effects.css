@@ -34,6 +34,7 @@
    background-clip: text;
    color: transparent;
    font-weight: 600;
+   font-feature-settings: "zero", "cv05";
 }
 .emoji-star{
   background: url(https://em-content.zobj.net/source/apple/391/dizzy_1f4ab.png) 50% / 50% no-repeat;
@@ -43,4 +44,7 @@
 }
 .emoji-eye{
   background: url(https://em-content.zobj.net/source/apple/391/eyes_1f440.png) 50% / 50% no-repeat;
+}
+.emoji-dollar{
+  background: url(https://em-content.zobj.net/source/apple/391/money-with-wings_1f4b8.png) 50% / 50% no-repeat;
 }
