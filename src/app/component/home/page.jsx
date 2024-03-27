@@ -128,7 +128,7 @@ export function Home() {
           </div>
           <div className={styles.artCard} data-type="dollar">
             <Image
-              src="/neko.png"
+              src="/images/neko.png"
               sizes="90%"
               fill
               style={{ objectFit: "cover" }}

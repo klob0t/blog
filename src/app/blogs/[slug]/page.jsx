@@ -64,7 +64,7 @@ export function postPage(props) {
         >
           <h6>
             {ordinalDate.dayOfWeek}, {ordinalDate.month} {ordinalDate.day}
-            {ordinalDate.ordinalIndicator} {ordinalDate.year} • {readTime} min
+            <sup>{ordinalDate.ordinalIndicator}</sup> {ordinalDate.year} • {readTime} min
             read{" "}
           </h6>
         </div>

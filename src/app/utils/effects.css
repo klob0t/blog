@@ -37,14 +37,14 @@
    font-feature-settings: "zero", "cv05";
 }
 .emoji-star{
-  background: url(https://em-content.zobj.net/source/apple/391/dizzy_1f4ab.png) 50% / 50% no-repeat;
+  background: url(/images/star.png) 50% / 50% no-repeat;
 }
 .emoji-book{
-  background: url(https://em-content.zobj.net/source/apple/391/open-book_1f4d6.png) 50% / 50% no-repeat;
+  background: url(/images/book.png) 50% / 50% no-repeat;
 }
 .emoji-eye{
-  background: url(https://em-content.zobj.net/source/apple/391/eyes_1f440.png) 50% / 50% no-repeat;
+  background: url(/images/eyes.png) 50% / 50% no-repeat;
 }
 .emoji-dollar{
-  background: url(https://em-content.zobj.net/source/apple/391/money-with-wings_1f4b8.png) 50% / 50% no-repeat;
+  background: url(/images/money.png) 50% / 50% no-repeat;
 }
