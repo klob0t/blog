@@ -111,7 +111,7 @@ a:hover{
 }
 pre{
   display: block;
-  background: var(--col6);
+  background: var(--preCol);
   border-radius: 1em;
   overflow: scroll;
   margin: 0em 2em 2em 2em;
