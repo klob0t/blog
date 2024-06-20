@@ -75,7 +75,7 @@ export function postPage(props) {
       </article>
       <hr></hr>
       <h5>
-        made by <Link href="https://klob0t.vercel.app">klob0t</Link> with
+        made by <Link href="https://klob0t.xyz">klob0t</Link> with
         &#128147;
       </h5>
     </>
