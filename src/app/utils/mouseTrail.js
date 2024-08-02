@@ -122,11 +122,14 @@ const Cursor = () => {
       dot.current.style.transform = `${translationT} ${rotationT} ${scalationT} scale(${curScale.current})`;
     } else if (touching1.current !== true && touching2.current !== true) {
       dot.current.style.transform = `${translationT} ${rotationT} ${scalationT} scale(${curScale.current})`;
-      dot.current.style.background = "white";
+      // dot.current.style.background = "white";
+      dot.current.style['backdrop-filter'] = 'invert(100%)';
     } else {
       dot.current.style.transform = `${translationT} ${rotationT} ${scalationT} scale(${curScale.current})`;
-      dot.current.style.background =
-        "radial-gradient(ellipse, var(--col3) 0%, var(--col2) 60%)";
+      dot.current.style.background = "transparent";
+      dot.current.style.border = "solid 0.1px rgba(255,255,255,0.1)";
+      dot.current.style['backdrop-filter'] = 'blur(7px) contrast(100%)';
+      // console.log(dot.current.style.backdropFilter);
     }
     reqRef.current = requestAnimationFrame(animMove);
   };

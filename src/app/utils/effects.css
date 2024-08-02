@@ -8,7 +8,6 @@
    background: white ;
    z-index: 99;
    pointer-events: none;
-   opacity: 1;
 }
 #dotIcon {
    height: 100%;
