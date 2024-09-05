@@ -82,7 +82,7 @@ export default function Carousel({ params, onClose }) {
                 alt={image.index}
                 placeholder="blur"
                 blurDataURL={image.imgBlur}
-                loading="lazy"
+                priority={true}
               />
             </div>
           ))}

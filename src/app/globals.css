@@ -11,10 +11,10 @@
   --sansText: "Inter", "Helvetica", "Arial", sans-serif;
   --darkBG: #090909;
   --shadow: 0px 0px 10px 10px rgba(14,13,13,0.08);
-  --bgCol1: #0f0f0f; /*this is the background color*/
-  --bgCol2: #141414; /*this is the grid color*/
+  --bgCol1: #100f0f; /*this is the background color*/
+  --bgCol2: #151515; /*this is the grid color*/
   --cardBorder: #ca4747;
-  --txtCol1: rgb(230, 230, 230);
+  --txtCol1: rgb(202, 201, 201);
   --txtCol2: rgb(87, 87, 87); /*text color (p)*/
   --col1: rgb(20, 20, 20);
   --col2: rgb(12, 12, 190);

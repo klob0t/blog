@@ -99,7 +99,7 @@ const Cursor = () => {
       200
     );
     const scalingSpeed = (velo / 200) * 0.5;
-    const scaling = `${touching1.current ? 2 : 0.5}`;
+    const scaling = `${touching1.current ? 3 : 0.3}`;
     curSkew.current += (scalingSpeed - curSkew.current) * 0.5;
     curScale.current += (scaling - curScale.current) * 0.2;
 
@@ -122,14 +122,13 @@ const Cursor = () => {
       dot.current.style.transform = `${translationT} ${rotationT} ${scalationT} scale(${curScale.current})`;
     } else if (touching1.current !== true && touching2.current !== true) {
       dot.current.style.transform = `${translationT} ${rotationT} ${scalationT} scale(${curScale.current})`;
-      // dot.current.style.background = "white";
       dot.current.style['backdrop-filter'] = 'invert(100%)';
     } else {
       dot.current.style.transform = `${translationT} ${rotationT} ${scalationT} scale(${curScale.current})`;
       dot.current.style.background = "transparent";
       dot.current.style.border = "solid 0.1px rgba(255,255,255,0.1)";
-      dot.current.style['backdrop-filter'] = 'blur(7px) contrast(100%)';
-      // console.log(dot.current.style.backdropFilter);
+      dot.current.style['backdrop-filter'] = 'blur(3px) contrast(100%)brightness(140%)';
+      dot.current.style['box-shadow'] = '0 0 15px 0 rgba(255,255,255,0.3)';
     }
     reqRef.current = requestAnimationFrame(animMove);
   };

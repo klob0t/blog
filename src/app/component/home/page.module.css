@@ -5,7 +5,7 @@
   padding: 2em 0em 2em 0em;
 }
 
-.gradient1 {
+/* .gradient1 {
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -22,10 +22,10 @@
       var(--bgCol1) 0%,
       var(--bgCol1) 35%,
       var(--col2) 40%,
-      /* var(--col3a) 41%, */ var(--col2) 45%,
-      /* var(--col3a) 46%, */ rgba(3, 28, 255, 0.781) 50%,
-      /* var(--col3a) 52%, */ var(--col2) 55%,
-      /* var(--col3a) 58%, */ var(--col2) 60%,
+       var(--col2) 45%,
+       rgba(3, 28, 255, 0.781) 50%,
+       var(--col2) 55%,
+       var(--col2) 60%,
       var(--bgCol1) 65%,
       var(--bgCol1) 100%
     );
@@ -50,9 +50,8 @@
       var(--transparent) 40%,
       var(--col3a) 41%,
       var(--transparent) 45%,
-      /* var(--col3a) 46%, */ /* rgba(3, 28, 255, 0.781) 50%, */
-        /* var(--col3a) 52%, */ var(--transparent) 55%,
-      /* var(--col3a) 58%, */ var(--transparent) 60%,
+         var(--transparent) 55%,
+     var(--transparent) 60%,
       var(--transparent) 65%,
       var(--transparent) 100%
     );
@@ -77,9 +76,9 @@
       var(--transparent) 0%,
       var(--transparent) 35%,
       var(--transparent) 40%,
-      /* var(--col3a) 41%, */ var(--transparent) 45%,
-      /* var(--col3a) 46%, */ rgba(3, 28, 255, 0.781) 50%,
-      /* var(--col3a) 52%, */ var(--transparent) 55%,
+       var(--transparent) 45%,
+       rgba(3, 28, 255, 0.781) 50%,
+       var(--transparent) 55%,
       var(--col3a) 58%,
       var(--transparent) 60%,
       var(--transparent) 65%,
@@ -107,11 +106,11 @@
       var(--transparent) 0%,
       var(--transparent) 35%,
       var(--transparent) 40%,
-      /* var(--col3a) 41%, */ var(--transparent) 45%,
-      /* var(--col3a) 46%, */ rgba(3, 28, 255, 0.781) 50%,
+       var(--transparent) 45%,
+       rgba(3, 28, 255, 0.781) 50%,
       var(--col3a) 52%,
       var(--transparent) 55%,
-      /* var(--col3a) 58%, */ var(--transparent) 60%,
+       var(--transparent) 60%,
       var(--transparent) 65%,
       var(--transparent) 100%
     );
@@ -136,11 +135,11 @@
       var(--transparent) 0%,
       var(--transparent) 35%,
       var(--transparent) 40%,
-      /* var(--col3a) 41%, */ var(--transparent) 45%,
+       var(--transparent) 45%,
       var(--col3a) 46%,
       rgba(3, 28, 255, 0.781) 50%,
-      /* var(--col3a) 52%, */ var(--transparent) 55%,
-      /* var(--col3a) 58%, */ var(--transparent) 60%,
+       var(--transparent) 55%,
+       var(--transparent) 60%,
       var(--transparent) 65%,
       var(--transparent) 100%
     );
@@ -177,7 +176,7 @@
     opacity: 1;
     transform: scale(1) translateY(0px);
   }
-}
+} */
 .noise {
   content: "";
   top: 0;
@@ -188,6 +187,7 @@
   background: center/20% url("/images/noise.svg") !important;
   mix-blend-mode: multiply;
   pointer-events: none;
+  opacity: 0.5;
   z-index: 6;
 }
 .bento {
@@ -202,8 +202,6 @@
     "D D E E E"
     "D D G G F"
     "X H I J K";
-  /* grid-template-columns: repeat(5, minmax(1vw, 80px));
-  grid-template-rows: repeat(9, minmax(1vh, 100px)); */
   grid-template-rows: repeat(9, minmax(1vh, 100px));
   grid-template-columns: repeat(5, minmax(1vw, 80px));
   gap: 0.4em;
@@ -274,7 +272,7 @@
   height: calc(100% - 2px);
   background: var(--bgCol2);
   box-sizing: border-box;
-  border-top: 1px solid rgb(41, 41, 41);
+  border-top: 2px solid rgb(41, 41, 41);
 }
 .engineeringCard {
   justify-content: center;
