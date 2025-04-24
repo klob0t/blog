@@ -29,11 +29,6 @@ export function Home() {
     <>
       <div className={styles.contentWrapper}>
         <div className={styles.noise}></div>
-        <div className={styles.gradient1}></div>
-        <div className={styles.gradient2}></div>
-        <div className={styles.gradient3}></div>
-        <div className={styles.gradient4}></div>
-        <div className={styles.gradient5}></div>
         <div className={styles.bento} id="bento">
           <div className={styles.engineeringCard} data-type="look">
             <h1>
@@ -170,8 +165,8 @@ export function Home() {
           <div className={styles.footer} id="footer">
             <Image
               src="/images/logo-fav.svg"
-              width={50}
-              height={50}
+              width={100}
+              height={100}
               alt="klob0t"
             />
           </div>

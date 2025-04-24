@@ -221,6 +221,8 @@
   width: 100%;
   height: 100%;
 }
+
+
 .bento > div h1,
 .bento > div h2,
 .bento > div p,
@@ -482,6 +484,7 @@
 @media screen and (min-width: 768px) {
   .bento {
     grid-template-areas:
+      ". . . . . X X . . . . ."
       ". . . . . X X . . . . ."
       "A A A A B B B B B B B B"
       "A A A A B B B B B B B B"

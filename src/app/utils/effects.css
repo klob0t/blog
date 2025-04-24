@@ -29,7 +29,7 @@
    font-family: var(--monoFont);
 }
 .text{
-   background: linear-gradient(60deg, var(--col3) 0%, var(--col2) 100%);
+   background: linear-gradient(60deg, var(--col2) 0%, rgb(54, 205, 255) 40%, var(--col2) 80%);
    background-clip: text;
    color: transparent;
    font-weight: 600;

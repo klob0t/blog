@@ -7,7 +7,6 @@ import { PreBlock, CodeBlock } from "../../utils/syntaxHighlight";
 import { getPostContent } from "./layout";
 import matter from "gray-matter";
 import formatDateWithOrdinal from "../../utils/dateConvert";
-import { useEffect } from "react";
 
 const markdownOptions = {
   overrides: {
@@ -44,9 +43,9 @@ export function postPage(props) {
   return (
     <>
       <div className={styles.header}>
-        <Link href="https://klob0t.vercel.app">
+        <Link href="https://klob0t.xyz">
           <Image
-            src="/images/logo-2024.png"
+            src="/images/logo-fav.svg"
             width={140}
             height={140}
             alt="logo"
