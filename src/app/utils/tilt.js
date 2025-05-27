@@ -28,7 +28,7 @@ const Tilt = () =>{
    
    function cardMove (e) {
       box.current = e.target.closest('#bento > div')
-      after.current = e.target.closest('#bento > div::after')
+      // after.current = e.target.closest('#bento > div::after')
       const rect = box.current.getBoundingClientRect()
       const midX = box.current.offsetWidth / 2
       const midY = box.current.offsetHeight / 2

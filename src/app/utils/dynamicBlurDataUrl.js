@@ -1,7 +1,7 @@
 const baseUrl =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/'
-    : process.env.NEXT_PUBLIC_DOMAIN;
+    ? 'http://localhost:3000'
+    : 'https://klob0t.vercel.app';
 
 export async function dynamicBlurDataUrl(url) {
 
@@ -24,9 +24,6 @@ export async function dynamicBlurDataUrl(url) {
     </svg>
   `
   const toBase64 = (str) =>
-   //  typeof window === 'undefined'
-   //    ? Buffer.from(str).toString('base64')
-   //    : window.btoa(str);
    Buffer.from(str).toString('base64')
   return `data:image/svg+xml;base64,${toBase64(blurSvg)}`
 

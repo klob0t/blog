@@ -1,190 +1,217 @@
-.contentWrapper{
+.contentWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2em 0em 2em 0em;
 }
 
- .gradient1{
-   height: 100vh;
-   width: 100vw;
-   position: fixed;
-   top: 0;
-   left: 0;
-   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--bgCol1) 60%),
+/* .gradient1 {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0) 0%,
+      var(--bgCol1) 60%
+    ),
     radial-gradient(ellipse at 50% 60%, var(--bgCol1) 30%, transparent 50%),
-    conic-gradient(from 0deg at 50% -5%,
-    var(--bgCol1) 0%,
-    var(--bgCol1) 35%,
-    var(--col2) 40%,
-    /* var(--col3a) 41%, */
-    var(--col2) 45%,
-    /* var(--col3a) 46%, */
-    rgba(3, 28, 255, 0.781) 50%,
-    /* var(--col3a) 52%, */
-    var(--col2) 55%,
-    /* var(--col3a) 58%, */
-    var(--col2) 60%,
-    var(--bgCol1) 65%,
-    var(--bgCol1) 100%);
-   z-index: -1;
- }
- .gradient2{
-   height: 100vh;
-   width: 100vw;
-   position: fixed;
-   top: 0;
-   left: 0;
-   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--bgCol1) 60%),
-    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
-    conic-gradient(from 0deg at 50% -5%,
-    var(--transparent) 0%,
-    var(--transparent) 35%,
-    var(--transparent) 40%,
-    var(--col3a) 41%,
-    var(--transparent) 45%,
-    /* var(--col3a) 46%, */
-    /* rgba(3, 28, 255, 0.781) 50%, */
-    /* var(--col3a) 52%, */
-    var(--transparent) 55%,
-    /* var(--col3a) 58%, */
-    var(--transparent) 60%,
-    var(--transparent) 65%,
-    var(--transparent) 100%);
-   z-index: -1;
-   mix-blend-mode: lighten ;
-   animation: flicker 3s infinite linear;
- }
- .gradient3{
-   height: 100vh;
-   width: 100vw;
-   position: fixed;
-   top: 0;
-   left: 0;
-   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--bgCol1) 60%),
-    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
-    conic-gradient(from 0deg at 50% -5%,
-    var(--transparent) 0%,
-    var(--transparent) 35%,
-    var(--transparent) 40%,
-    /* var(--col3a) 41%, */
-    var(--transparent) 45%,
-    /* var(--col3a) 46%, */
-    rgba(3, 28, 255, 0.781) 50%,
-    /* var(--col3a) 52%, */
-    var(--transparent) 55%,
-    var(--col3a) 58%,
-    var(--transparent) 60%,
-    var(--transparent) 65%,
-    var(--transparent) 100%);
-   z-index: -1;
-   mix-blend-mode: lighten ;
-   animation: flicker 3.3s infinite ease-in-out;
-   animation-delay: 0.2s;
- }
- .gradient4{
-   height: 100vh;
-   width: 100vw;
-   position: fixed;
-   top: 0;
-   left: 0;
-   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--bgCol1) 60%),
-    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
-    conic-gradient(from 0deg at 50% -5%,
-    var(--transparent) 0%,
-    var(--transparent) 35%,
-    var(--transparent) 40%,
-    /* var(--col3a) 41%, */
-    var(--transparent) 45%,
-    /* var(--col3a) 46%, */
-    rgba(3, 28, 255, 0.781) 50%,
-    var(--col3a) 52%,
-    var(--transparent) 55%,
-    /* var(--col3a) 58%, */
-    var(--transparent) 60%,
-    var(--transparent) 65%,
-    var(--transparent) 100%);
-   z-index: -1;
-   mix-blend-mode: lighten;
-   animation: flicker 2s infinite linear;
- }
-  .gradient5{
-   height: 100vh;
-   width: 100vw;
-   position: fixed;
-   top: 0;
-   left: 0;
-   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--bgCol1) 60%),
-    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
-    conic-gradient(from 0deg at 50% -5%,
-    var(--transparent) 0%,
-    var(--transparent) 35%,
-    var(--transparent) 40%,
-    /* var(--col3a) 41%, */
-    var(--transparent) 45%,
-    var(--col3a) 46%,
-    rgba(3, 28, 255, 0.781) 50%,
-    /* var(--col3a) 52%, */
-    var(--transparent) 55%,
-    /* var(--col3a) 58%, */
-    var(--transparent) 60%,
-    var(--transparent) 65%,
-    var(--transparent) 100%);
-   z-index: -1;
-   mix-blend-mode: lighten;
-   animation: flicker 1s infinite linear;
- }
-@keyframes flicker {
-	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-    opacity: .99;
-	}
-	20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
-		opacity: 0.4;
-	}
-} 
-@keyframes loadIn {
-  from{opacity: 0; transform: scale(1) translateY(20px)}
-  to{opacity: 1; transform: scale(1) translateY(0px)}
+    conic-gradient(
+      from 0deg at 50% -5%,
+      var(--bgCol1) 0%,
+      var(--bgCol1) 35%,
+      var(--col2) 40%,
+       var(--col2) 45%,
+       rgba(3, 28, 255, 0.781) 50%,
+       var(--col2) 55%,
+       var(--col2) 60%,
+      var(--bgCol1) 65%,
+      var(--bgCol1) 100%
+    );
+  z-index: -1;
 }
-.noise{
-  content:"";
-  top:  0;
+.gradient2 {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0) 0%,
+      var(--bgCol1) 60%
+    ),
+    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
+    conic-gradient(
+      from 0deg at 50% -5%,
+      var(--transparent) 0%,
+      var(--transparent) 35%,
+      var(--transparent) 40%,
+      var(--col3a) 41%,
+      var(--transparent) 45%,
+         var(--transparent) 55%,
+     var(--transparent) 60%,
+      var(--transparent) 65%,
+      var(--transparent) 100%
+    );
+  z-index: -1;
+  mix-blend-mode: lighten;
+  animation: flicker 3s infinite linear;
+}
+.gradient3 {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0) 0%,
+      var(--bgCol1) 60%
+    ),
+    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
+    conic-gradient(
+      from 0deg at 50% -5%,
+      var(--transparent) 0%,
+      var(--transparent) 35%,
+      var(--transparent) 40%,
+       var(--transparent) 45%,
+       rgba(3, 28, 255, 0.781) 50%,
+       var(--transparent) 55%,
+      var(--col3a) 58%,
+      var(--transparent) 60%,
+      var(--transparent) 65%,
+      var(--transparent) 100%
+    );
+  z-index: -1;
+  mix-blend-mode: lighten;
+  animation: flicker 3.3s infinite ease-in-out;
+  animation-delay: 0.2s;
+}
+.gradient4 {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0) 0%,
+      var(--bgCol1) 60%
+    ),
+    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
+    conic-gradient(
+      from 0deg at 50% -5%,
+      var(--transparent) 0%,
+      var(--transparent) 35%,
+      var(--transparent) 40%,
+       var(--transparent) 45%,
+       rgba(3, 28, 255, 0.781) 50%,
+      var(--col3a) 52%,
+      var(--transparent) 55%,
+       var(--transparent) 60%,
+      var(--transparent) 65%,
+      var(--transparent) 100%
+    );
+  z-index: -1;
+  mix-blend-mode: lighten;
+  animation: flicker 2s infinite linear;
+}
+.gradient5 {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 255, 255, 0) 0%,
+      var(--bgCol1) 60%
+    ),
+    radial-gradient(ellipse at 50% 90%, var(--bgCol1) 30%, transparent 50%),
+    conic-gradient(
+      from 0deg at 50% -5%,
+      var(--transparent) 0%,
+      var(--transparent) 35%,
+      var(--transparent) 40%,
+       var(--transparent) 45%,
+      var(--col3a) 46%,
+      rgba(3, 28, 255, 0.781) 50%,
+       var(--transparent) 55%,
+       var(--transparent) 60%,
+      var(--transparent) 65%,
+      var(--transparent) 100%
+    );
+  z-index: -1;
+  mix-blend-mode: lighten;
+  animation: flicker 1s infinite linear;
+}
+@keyframes flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 0.99;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.4;
+  }
+}
+@keyframes loadIn {
+  from {
+    opacity: 0;
+    transform: scale(1) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+} */
+.noise {
+  content: "";
+  top: 0;
   left: 0;
   position: fixed;
   height: 100%;
   width: 100%;
-  background: center/20% url('/images/noise.svg') !important;
+  background: center/20% url("/images/noise.svg") !important;
   mix-blend-mode: multiply;
   pointer-events: none;
+  opacity: 0.5;
   z-index: 6;
 }
-.bento{
-  display:grid;
-  grid-template-areas: 
-  "A A A A A"
-  "A A A A A"
-  "B B B B B"
-  "B B B B B"
-  "C C C C C"
-  "C C C C C"
-  "D D E E E"
-  "D D G G F"
-  "X H I J K";
-  /* grid-template-columns: repeat(5, minmax(1vw, 80px));
-  grid-template-rows: repeat(9, minmax(1vh, 100px)); */
+.bento {
+  display: grid;
+  grid-template-areas:
+    "A A A A A"
+    "A A A A A"
+    "B B B B B"
+    "B B B B B"
+    "C C C C C"
+    "C C C C C"
+    "D D E E E"
+    "D D G G F"
+    "X H I J K";
   grid-template-rows: repeat(9, minmax(1vh, 100px));
   grid-template-columns: repeat(5, minmax(1vw, 80px));
   gap: 0.4em;
 }
-.bento > div{
+.bento > div {
   background: radial-gradient(
-    400px circle at var(--mouse-X) var(--mouse-Y), 
-    rgba(255, 255, 255, calc(var(--opacity) * 5)), transparent 25%);
+    400px circle at var(--mouse-X) var(--mouse-Y),
+    rgba(255, 255, 255, calc(var(--opacity) * 5)),
+    transparent 25%
+  );
   color: var(--txtCol1);
   position: relative;
   border-radius: var(--rad) !important;
@@ -194,33 +221,35 @@
   width: 100%;
   height: 100%;
 }
+
+
 .bento > div h1,
 .bento > div h2,
 .bento > div p,
-.bento > div a{
+.bento > div a {
   z-index: 0;
   text-decoration: none;
 }
-.bento > div h1{
+.bento > div h1 {
   font-family: var(--sansDisplay);
 }
-.bento > div h2{
+.bento > div h2 {
   font-family: var(--sansText);
 }
-.bento > div p{
+.bento > div p {
   font-family: var(--sansText);
-  font-weight: 400
+  font-weight: 400;
 }
-.bento > div i{
+.bento > div i {
   font-style: normal;
   color: rgb(132, 132, 132);
 }
-.bento > div a{
+.bento > div a {
   text-decoration: none;
   font-family: var(--serifFont);
 }
-.bento > div::after{
-  content: '';
+.bento > div::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -229,82 +258,85 @@
   pointer-events: none;
   border-radius: inherit;
   background: radial-gradient(
-    25em circle at var(--mouse-X) var(--mouse-Y), 
+    25em circle at var(--mouse-X) var(--mouse-Y),
     rgba(255, 255, 254, calc(var(--opacity) * 1)),
     transparent 40%
   );
 }
-.bento > div::before{
+.bento > div::before {
   border-radius: inherit;
-  content: '';
+  content: "";
   position: absolute;
   margin: 1px;
-  top: 0; left: 0;
-  width: calc(100% - 2px); height: calc(100% - 2px);
+  top: 0;
+  left: 0;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
   background: var(--bgCol2);
   box-sizing: border-box;
-  border-top: 1px solid rgb(41, 41, 41);
+  border-top: 2px solid rgb(41, 41, 41);
 }
-.engineeringCard{
+.engineeringCard {
   justify-content: center;
   align-items: center;
   grid-area: A;
   animation-delay: calc(1 * var(--stagger)) !important;
 }
-.productDesignCard{
+.productDesignCard {
   overflow: hidden;
   justify-content: center;
   align-items: center;
   grid-area: B;
-  animation-delay: calc(1.1 * var(--stagger)) !important;
+  animation-delay: calc(2 * var(--stagger)) !important;
 }
-.productDesignCard::after{
-  top: 0; left: 0;
+.productDesignCard::after {
+  top: 0;
+  left: 0;
   pointer-events: none;
   height: 100%;
   width: 100%;
-  content: '';
+  content: "";
   position: absolute;
 }
-.ornament{
+.ornament {
   font-size: 0.6em;
   vertical-align: super;
 }
 .engineeringCard h1,
-.productDesignCard h1{
+.productDesignCard h1 {
   font-size: 3em;
   margin: -0.4em 0em 0em 0em;
   font-weight: 500 !important;
 }
-.profileCard{
+.profileCard {
   overflow: hidden;
   position: relative;
   grid-area: C;
   align-items: end;
-  animation-delay: calc(1.2 * var(--stagger)) !important;
+  animation-delay: calc(3 * var(--stagger)) !important;
 }
-.profileCard h1{
+.profileCard h1 {
   text-align: left;
   font-size: 3em;
   margin: 0em 0em 0.4em 0.4em;
   font-weight: 500 !important;
   line-height: 80%;
 }
-.profileCard p{
+.profileCard p {
   font-size: 0px;
 }
-.profileCard img{
+.profileCard img {
   position: relative;
   margin: 0em 0em 0em 7em;
 }
-.mbtiCard{
+.mbtiCard {
   grid-area: D;
-  animation-delay: calc(1.3 * var(--stagger)) !important;
+  animation-delay: calc(4 * var(--stagger)) !important;
   overflow: hidden;
   flex-direction: column;
   flex-wrap: wrap;
 }
-.mbtiCard h1{
+.mbtiCard h1 {
   font-family: var(--serifFont) !important;
   font-style: italic;
   font-weight: 300;
@@ -312,65 +344,71 @@
   align-self: self-start;
   margin: -0.4em 0em 0em 0.4em;
 }
-.mbtiCard h2{
+.mbtiCard h2 {
   text-align: left;
   margin-left: 0.8em;
   margin-top: -0.3em;
   font-size: 0em;
 }
-.mbtiCard p{
+.mbtiCard p {
   text-align: center;
   font-size: 0;
+  font-style: italic;
+  color: var(--txtCol2);
+  font-feature-settings: "ss03";
 }
-.mbtiCard i{
+.mbtiCard i {
   font-size: 0em;
-  color: var(--txtCol2)
+  color: var(--txtCol2);
+  font-family: var(--serifFont);
 }
-.mbtiCard img{
+.mbtiCard img {
   margin: 0em 0em;
   /* filter: grayscale(100); */
 }
-.curriculumVitaeCard{
+.curriculumVitaeCard {
   grid-area: E;
-  justify-content: center;
-  align-items: center;
-  animation-delay: calc(1.4 * var(--stagger)) !important;
+  justify-content: start;
+  align-items: stretch;
+  animation-delay: calc(5 * var(--stagger)) !important;
 }
-.curriculumVitaeCard h1{
+.curriculumVitaeCard h1 {
   font-family: var(--serifFont) !important;
   font-weight: 400;
-  font-size: 2em;
+  font-size: 200%;
   color: white;
   text-align: left;
   line-height: 90%;
-  margin-left: -2em;
+  margin-left: 0.8em;
 }
-.artCard{
+.artCard {
   overflow: hidden;
   display: flex;
   grid-area: F;
   justify-content: center;
   align-items: center;
-  animation-delay: calc(1.6 * var(--stagger)) !important;
+  animation-delay: calc(7 * var(--stagger)) !important;
 }
-.artCard img{
+.artCard img {
   margin: 0 auto;
 }
-.codingJourneyCard{
+.codingJourneyCard {
   grid-area: G;
-  animation-delay: calc(1.5 * var(--stagger)) !important;
+  animation-delay: calc(6 * var(--stagger)) !important;
+  justify-content: start;
   align-items: center;
 }
-.codingJourneyCard h1{
+.codingJourneyCard h1 {
   font-family: var(--monoFont) !important;
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 135%;
   text-align: left;
   line-height: 90%;
   color: var(--col2);
   margin-left: 0.6em !important;
+  font-feature-settings: "cv11", "cv04";
 }
-.instagram{
+.instagram {
   border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
@@ -378,7 +416,7 @@
   background: var(--transparent) !important;
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
-.linkedin{
+.linkedin {
   border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
@@ -388,7 +426,7 @@
   background: var(--transparent) !important;
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
-.youtube{
+.youtube {
   border: 0px solid transparent !important;
   align-items: center;
   justify-content: center;
@@ -396,7 +434,7 @@
   background: var(--transparent) !important;
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
-.twitter{
+.twitter {
   border: 0px solid transparent !important;
   grid-area: K;
   align-items: center;
@@ -404,7 +442,7 @@
   background: var(--transparent) !important;
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
 }
-.footer{
+.footer {
   overflow: visible !important;
   border: 0px solid transparent !important;
   grid-area: X;
@@ -414,8 +452,7 @@
   box-shadow: 0px 0px 0px 0px solid var(--transparent) !important;
   animation: none !important;
 }
-
-#foot{
+#foot {
   border: 0px solid transparent !important;
 }
 .instagram::after,
@@ -427,48 +464,53 @@
 .linkedin::before,
 .youtube::before,
 .twitter::before,
-.footer::before{
+.footer::before {
   pointer-events: none;
   opacity: 0 !important;
 }
-.fa-brands{
+.fa-brands {
   margin: 0 auto;
   background: rgb(29, 29, 29) !important;
 }
 .blink {
   animation: blinker 0.8s infinite;
-  animation-timing-function: steps(1,end);
+  animation-timing-function: steps(1, end);
 }
-@keyframes blinker {50% {opacity: 0}}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 @media screen and (min-width: 768px) {
-  .bento{
+  .bento {
     grid-template-areas:
-    ". . . . . X X . . . . ."
-    "A A A A B B B B B B B B"
-    "A A A A B B B B B B B B"
-    "A A A A B B B B B B B B"
-    "A A A A B B B B B B B B"
-    "C C C C C C C C D D D D"
-    "C C C C C C C C D D D D"
-    "C C C C C C C C D D D D"
-    "C C C C C C C C D D D D"
-    "E E E E F F F F D D D D"
-    "E E E E F F F F D D D D"
-    "G G G G F F F F D D D D"
-    "H I J K F F F F D D D D";
+      ". . . . . X X . . . . ."
+      ". . . . . X X . . . . ."
+      "A A A A B B B B B B B B"
+      "A A A A B B B B B B B B"
+      "A A A A B B B B B B B B"
+      "A A A A B B B B B B B B"
+      "C C C C C C C C D D D D"
+      "C C C C C C C C D D D D"
+      "C C C C C C C C D D D D"
+      "C C C C C C C C D D D D"
+      "E E E E F F F F D D D D"
+      "E E E E F F F F D D D D"
+      "G G G G F F F F D D D D"
+      "H I J K F F F F D D D D";
     grid-template-rows: repeat(13, minmax(1vh, 60px));
     grid-template-columns: repeat(12, minmax(1vw, 60px));
     max-width: 900px;
     gap: 0.5em;
   }
-  .engineeringCard{
+  .engineeringCard {
     overflow: hidden;
     justify-content: start;
     align-items: start;
     grid-area: A;
     animation-delay: calc(1 * var(--stagger)) !important;
   }
-  .productDesignCard{
+  .productDesignCard {
     position: relative;
     justify-content: start;
     align-items: start;
@@ -476,82 +518,79 @@
     animation-delay: calc(2 * var(--stagger)) !important;
   }
   .engineeringCard h1,
-  .productDesignCard h1{
+  .productDesignCard h1 {
     font-size: 2.1rem;
     margin: 0.3em 0.6em;
   }
   /* .engineeringCard img,
   .productDesignCard img{
   } */
-  .profileCard{
+  .profileCard {
     overflow: hidden;
     align-items: start;
     flex-direction: column;
     animation-delay: calc(8 * var(--stagger)) !important;
   }
-  .profileCard::after{
+  .profileCard::after {
     position: absolute;
     width: 100%;
     height: 100%;
-    content: '';
+    content: "";
     pointer-events: none;
   }
-  .profileCard h1{
+  .profileCard h1 {
     font-size: 3rem;
     margin: 1.2rem 0.4em;
     line-height: 80%;
     font-weight: 500;
   }
-  .profileCard p{
+  .profileCard p {
     margin: -0.1em 1.2em;
     color: var(--txtCol2);
     font-size: 1em;
     line-height: 130%;
   }
-  .profileCard img{
+  .profileCard img {
     position: absolute;
     margin: 1em 0em 0em 10em;
   }
-  .mbtiCard{
+  .mbtiCard {
     grid-area: D;
     animation-delay: calc(3 * var(--stagger)) !important;
     justify-content: start;
     align-items: center;
     flex-wrap: nowrap;
   }
-  .mbtiCard h1{
+  .mbtiCard h1 {
     font-family: var(--serifFont);
     font-style: italic;
-    font-weight: 300;
-    font-size: 3em;
+    font-weight: 400;
+    font-size: 2.5em;
     align-self: center;
-    margin: -0.4em 0em 0em 0em;
+    margin: 0.9em 0em 0em 0em;
   }
-  .mbtiCard h2{
+  .mbtiCard h2 {
     font-weight: 400;
     font-size: 1.2em;
     margin: 0 auto;
   }
-  .mbtiCard p{
+  .mbtiCard p {
     font-size: 0.9em;
     margin: 21em 1.2em 0em 1.2em;
-    font-style: italic;
-    color: var(--txtCol2);
   }
-  .mbtiCard i{
+  .mbtiCard i {
     font-size: 0.7em;
     margin-top: 2em;
+    color: rgb(65, 65, 65) !important;
   }
-  .mbtiCard img{
-  margin: -1em 0em;
+  .mbtiCard img {
+    margin: -0.4em 0em;
   }
-  .curriculumVitaeCard{
+  .curriculumVitaeCard {
     display: flex;
     animation-delay: calc(7 * var(--stagger)) !important;
-    align-items: center;
-    justify-content: flex-start;
   }
-  .curriculumVitaeCard h1{
+  .curriculumVitaeCard h1 {
     font-family: var(--serifFont);
     font-weight: 400;
     font-size: 2.4em;
@@ -559,34 +598,34 @@
     line-height: 90%;
     margin-left: 0.6em;
   }
-  .codingJourneyCard{
+  .codingJourneyCard {
     display: flex;
     animation-delay: calc(6 * var(--stagger)) !important;
   }
-  .codingJourneyCard h1{
+  .codingJourneyCard h1 {
     font-family: var(--monoFont);
     text-align: left !important;
     font-size: 1.2em;
     color: var(--col2);
     margin: 0em 0.5em 0em 0em;
   }
-  .artCard{
+  .artCard {
     justify-content: end;
     animation-delay: calc(5 * var(--stagger)) !important;
   }
-  .artCard img{
+  .artCard img {
     width: 100% !important;
   }
-  .instagram{
+  .instagram {
     animation-delay: calc(9 * var(--stagger)) !important;
   }
-  .linkedin{
+  .linkedin {
     animation-delay: calc(10 * var(--stagger)) !important;
   }
-  .youtube{
+  .youtube {
     animation-delay: calc(11 * var(--stagger)) !important;
   }
-  .twitter{
+  .twitter {
     animation-delay: calc(12 * var(--stagger)) !important;
   }
 }
