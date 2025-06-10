@@ -6,20 +6,17 @@ export default async function BlogPostsList() {
    const posts = getAllPosts()
 
    return (
-      <div className={styles.container}>
-         <ul className={styles.list}>
+         <div className={styles.list}>
             {posts.map((post) => {
                return (
-                  <li key={post.slug}>
                      <Link
+                     key={post.slug}
                         href={`/blogs/${post.slug}`}
                         className={styles.link}>
-                        <h5>{post.title}</h5>
+                        <p>{post.title}</p>
                      </Link>
-                  </li>
                )
             })}
-         </ul>
-      </div>
+         </div>
    )
 }
