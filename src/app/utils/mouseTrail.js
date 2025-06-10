@@ -4,7 +4,7 @@ import "../utils/effects.css";
 const Cursor = () => {
   const dot = useRef(null),
     point = useRef(null),
-   dotIcon = useRef(null),
+    dotIcon = useRef(null),
     touching1 = useRef(null),
     touching2 = useRef(null);
   let reqRef = useRef(null);
@@ -83,9 +83,6 @@ const Cursor = () => {
   const animMove = () => {
     pointX.current += (curX.current - pointX.current) * 0.1;
     pointY.current += (curY.current - pointY.current) * 0.1;
-    touching1.current = point.current !== null;
-    touching2.current = check.current !== null;
-    dot.current.dataset.type = touching1.current ? type : "";
     const translationT = `translate3d(${pointX.current}px, ${pointY.current}px, 0)`;
     deltX.current = pointX.current - preMouseX.current;
     deltY.current = pointY.current - preMouseY.current;
@@ -94,21 +91,16 @@ const Cursor = () => {
 
     dotIcon.current.className = dotIconClass(type);
 
-    const velo = Math.min(
-      Math.sqrt(deltX.current ** 2 + deltY.current ** 2) * 4,
-      200
-    );
+    const velo = Math.min(Math.sqrt(deltX.current ** 2 + deltY.current ** 2) * 4,200);
     const scalingSpeed = (velo / 200) * 0.5;
     const scaling = `${touching1.current ? 3 : 0.3}`;
     curSkew.current += (scalingSpeed - curSkew.current) * 0.5;
     curScale.current += (scaling - curScale.current) * 0.2;
 
-    const scalationT = `scale3d(${1 + curSkew.current}, ${
-      1 - curSkew.current
-    }, 1)`;
-    const scalationT2 = `scale3d(${1 - curSkew.current}, ${
-      1 + curSkew.current
-    }, 1)`;
+    const scalationT = `scale3d(${1 + curSkew.current}, ${1 - curSkew.current
+      }, 1)`;
+    const scalationT2 = `scale3d(${1 - curSkew.current}, ${1 + curSkew.current
+      }, 1)`;
 
     const angle = (Math.atan2(deltY.current, deltX.current) * 180) / Math.PI;
 
