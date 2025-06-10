@@ -61,7 +61,7 @@ export default function MouseTrail({ coordinate }: TrailProps) {
          const targetSkew = velocity * 0.5
          skew.current += (targetSkew - skew.current) * 0.2
 
-         const targetScale = isHover.current ? 1 : 0.3
+         const targetScale = isHover.current ? 1 : 0
          scale.current += (targetScale - scale.current) * 0.7
 
          const baseScale = scale.current

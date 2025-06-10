@@ -25,14 +25,17 @@ const socials = [
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLDivElement>(null)
-  const linkRef = useRef<HTMLHeadingElement>(null)
-  const linkRef1 = useRef<HTMLParagraphElement>(null)
+  const linkRef1 = useRef<HTMLHeadingElement>(null)
   const linkRef2 = useRef<HTMLParagraphElement>(null)
+  const linkRef3 = useRef<HTMLHeadingElement>(null)
+  const linkRef4 = useRef<HTMLHeadingElement>(null)
+  const magnet = useRef<HTMLAnchorElement>(null)
   useMousePositionToVar(ref)
   const coordinate = useMousePosition(pageRef)
-  useSplitTextAnimation(linkRef)
   useSplitTextAnimation(linkRef1)
   useSplitTextAnimation(linkRef2)
+  useSplitTextAnimation(linkRef3)
+  useSplitTextAnimation(linkRef4)
 
   return (
     <div className={styles.page} ref={pageRef}>
@@ -40,15 +43,17 @@ export default function Home() {
       <div className={styles.logo}>
         <Logo />
       </div>
-      <div className={styles.main} ref={ref} data-trail-target='true'>
+      <div className={styles.main} ref={ref} >
         <div className={styles.title}><TextScramble />
           <div>
-            <Link href='https://chloethinks.vercel.app'>
-              <p ref={linkRef1}>Chloe/Your digital bestfriend.</p></Link>
+            <Link href='https://chloethinks.vercel.app' target='_blank' >
+              <p ref={linkRef1}>Chloe</p></Link> &nbsp;&nbsp;&nbsp;&nbsp;
+            <Link href='https://unangifier.vercel.app' target='_blank'>
+              <p ref={linkRef2}>Unangifier</p></Link>
           </div>
         </div>
         <div className={styles.greeting}>
-          <div><span><TextScrambleHover/> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div>
+          <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div>
         </div>
         <div className={styles.photo}>
           <Image
@@ -58,18 +63,18 @@ export default function Home() {
           />
         </div>
         <div className={styles.description}>desc</div>
-        <div className={styles.cv}><p ref={linkRef2}>Curriculum Vitae</p></div>
-        <div className={styles.blogs}>blogs</div>
-        <div className={styles.contact}>
-          <div><p>Got a clear vision or still figuring it out? I’d love to help.</p></div>
+        <div className={styles.cv}><h3 ref={linkRef3}>Curriculum Vitae</h3></div>
+        <div className={styles.blogs}>Blog Posts</div>
+        <div className={styles.contact} data-trail-target='true'>
           <div>
             <Link href='mailto:klob0t@yahoo.com'>
-              <h3 ref={linkRef}>Get in touch ↗</h3></Link>
-          </div>
+              <h3 ref={linkRef4}>Get in touch ↗</h3>
+            </Link></div>
+          <div><p>Got a clear vision or still figuring it out? I’d love to help.</p></div>
         </div>
-        <div data-link-target='true' className={styles.links}>
+        <div className={styles.links}>
           {socials.map(link => (
-            <Link key={link.href} href={link.href} aria-label={`Follow me on ${link.icon}`} target='_blank'>
+            <Link ref={magnet} key={link.href} href={link.href} aria-label={`Follow me on ${link.icon}`} target='_blank' >
               <FontAwesomeIcon icon={['fab', link.icon] as IconProp} />
             </Link>
           ))}

@@ -20,12 +20,17 @@ body {
   font-feature-settings: 'ss06' on, 'ss05' on, 'ss08' on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.1em;
 }
 
 html {
   height: 100%;
   padding: 0;
   margin: 0;
+}
+
+p {
+  letter-spacing: -0.02em;
 }
 
 * {

@@ -16,19 +16,23 @@ export const useSplitTextAnimation = (ref: RefObject<HTMLElement | null>) => {
          return;
       }
 
+      const sizerText = document.createElement('span');
+      sizerText.textContent = originalText;
+      gsap.set(sizerText, { visibility: 'hidden', position: 'relative' })
+
       const topText = document.createElement('span')
       topText.textContent = originalText
 
       const bottomText = document.createElement('span')
       bottomText.textContent = originalText
 
+      element.appendChild(sizerText)
       element.appendChild(topText)
       element.appendChild(bottomText)
 
       const topSplit = new SplitText(topText, { type: 'chars' })
       const bottomSplit = new SplitText(bottomText, { type: 'chars' })
 
-      gsap.set(element, { position: 'relative', overflow: 'hidden' });
       gsap.set([topText, bottomText], { position: 'absolute', top: 0, left: 0 });
 
       gsap.set(bottomSplit.chars, { y: '100%' })
@@ -37,13 +41,19 @@ export const useSplitTextAnimation = (ref: RefObject<HTMLElement | null>) => {
 
       tl.to(topSplit.chars, {
          y: '-100%',
-         stagger: originalText.length * 0.0005,
-         duration: originalText.length * 0.02,
+         stagger: {
+            amount: originalText.length * 0.006,
+            ease: 'linear'
+         },
+         duration: 0.5,
          ease: 'power2.inOut'
       }).to(bottomSplit.chars, {
          y: '0%',
-         stagger: originalText.length * 0.0005,
-         duration: originalText.length * 0.02,
+         stagger: {
+            amount: originalText.length * 0.006,
+            ease: 'linear'
+         },
+         duration: 0.5,
          ease: 'power2.inOut'
       }, '<')
 
