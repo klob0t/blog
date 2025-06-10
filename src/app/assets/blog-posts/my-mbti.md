@@ -1,6 +1,6 @@
 ---
 title: Living as An INTP-T
-date: 2024-02-14
+date: 2024-02-3
 ---
 ![sir isaac newton is an intp](https://historyinterpreted.com/wp-content/uploads/2024/03/isaac-newton.jpg)
 
