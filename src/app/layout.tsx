@@ -5,7 +5,7 @@ import { Instrument_Serif } from 'next/font/google'
 import "./globals.css";
 
 
-export const InstrumentSerif = Instrument_Serif({
+const InstrumentSerif = Instrument_Serif({
   subsets: ['latin-ext'],
   weight: '400',
   variable: '--font-serif',
@@ -25,5 +25,5 @@ export default function RootLayout({ children
         {children}
       </body>
     </html>
-  );
+  )
 }
