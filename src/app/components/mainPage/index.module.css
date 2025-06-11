@@ -265,7 +265,7 @@
       padding: 0.1em 2.5em 0em 1.3em !important;
    }
 
-   .blogs h4 {
+   .blogs h3{
       font-weight: 400;
       font-size: 1.6em;
       margin: 0.5em 0em 1em 0em;
@@ -279,8 +279,6 @@
       padding: 0em 0em 1em 0em !important;
       border-bottom: 1px solid var(--gray);
    }
-
-
 
    .contact>div:nth-of-type(1) {
       display: flex;
@@ -316,6 +314,10 @@
       font-weight: 400;
       height: 1.4em;
       margin: 0;
+   }
+
+   .title>div:nth-of-type(1) p:hover {
+      color: white;
    }
 
    .cv>h3 {

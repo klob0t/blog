@@ -1,5 +1,5 @@
 ---
-title: 'A Comprehensive Test Post for Styling'
+title: 'A Comprehensive Code Styling Post'
 date: '2025-06-10'
 author: 'klob0t'
 ---

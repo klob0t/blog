@@ -12,6 +12,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faInstagram, faTwitter, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 import BackgroundPixel from "@/app/components/backgroundPixels";
 import { useSplitTextAnimation } from "@/app/lib/useSplitTextAnimation";
+import BlogPostsList from "@/app/components/postsList/page"
 
 library.add(faInstagram, faTwitter, faLinkedin, faGithub)
 
@@ -22,7 +23,7 @@ const socials = [
   { href: 'https://linkedin/in/airlanggakb', icon: 'linkedin' as const }
 ]
 
-export default function MainPage({ blogListComponent }: { blogListComponent: React.ReactNode }) {
+export default function MainPage() {
   const ref = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLDivElement>(null)
   const linkRef1 = useRef<HTMLHeadingElement>(null)
@@ -62,7 +63,7 @@ export default function MainPage({ blogListComponent }: { blogListComponent: Rea
         </div>
         <div className={styles.description}>desc</div>
         <div className={styles.cv}><h3 ref={linkRef3}>Curriculum Vitae</h3></div>
-        <div className={styles.blogs}><h4>Blog Posts</h4>{blogListComponent}</div>
+        <div className={styles.blogs}><h3>Blog Posts</h3><BlogPostsList/></div>
         <div className={styles.contact} data-trail-target='true'>
           <div>
             <Link href='mailto:klob0t@yahoo.com'>
