@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { Instrument_Serif } from 'next/font/google'
 import "./globals.css";
+import { LoadingProvider } from "@/app/lib/LoadingContext";
 
 
 const InstrumentSerif = Instrument_Serif({
@@ -22,7 +23,9 @@ export default function RootLayout({ children
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${InstrumentSerif.variable} ${GeistMono.variable}`}>
-        {children}
+        <LoadingProvider>
+          {children}
+        </LoadingProvider>
       </body>
     </html>
   )

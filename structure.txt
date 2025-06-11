@@ -1,0 +1,67 @@
+.
+|-- README.md
+|-- eslint.config.mjs
+|-- next-env.d.ts
+|-- next.config.ts
+|-- package-lock.json
+|-- package.json
+|-- public
+|   `-- images
+|       `-- profilePict.jpg
+|-- src
+|   `-- app
+|       |-- api
+|       |   `-- posts
+|       |       |-- [slug]
+|       |       |   `-- route.ts
+|       |       `-- route.ts
+|       |-- assets
+|       |   `-- blog-posts
+|       |       |-- codes.md
+|       |       |-- coding-journey.md
+|       |       |-- hello.md
+|       |       |-- my-mbti.md
+|       |       `-- nextjs.md
+|       |-- blogs
+|       |   `-- [slug]
+|       |       |-- page.module.css
+|       |       `-- page.tsx
+|       |-- components
+|       |   |-- Background
+|       |   |   |-- index.module.css
+|       |   |   `-- index.tsx
+|       |   |-- CodeBlock
+|       |   |   |-- index.module.css
+|       |   |   `-- index.tsx
+|       |   |-- LoadingPage
+|       |   |   |-- index.module.css
+|       |   |   `-- page.tsx
+|       |   |-- Main
+|       |   |   |-- index.module.css
+|       |   |   `-- index.tsx
+|       |   |-- PostsList
+|       |   |   `-- index.tsx
+|       |   |-- TextScramble
+|       |   |   `-- index.tsx
+|       |   `-- logo.tsx
+|       |-- contexts
+|       |   `-- Loading.tsx
+|       |-- favicon.ico
+|       |-- globals.css
+|       |-- layout.tsx
+|       |-- lib
+|       |   |-- LoadingContext
+|       |   |   `-- index.tsx
+|       |   |-- ResourceLoadedExecutor
+|       |   |   `-- index.ts
+|       |   |-- TrackedImage
+|       |   |   `-- index.tsx
+|       |   |-- formatDate.ts
+|       |   |-- useMousePosition.ts
+|       |   `-- useSplitTextAnimation.ts
+|       |-- page.module.css
+|       `-- page.tsx
+|-- structure.txt
+`-- tsconfig.json
+
+23 directories, 41 files

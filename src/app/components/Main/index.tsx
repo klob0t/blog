@@ -2,8 +2,8 @@
 import styles from "./index.module.css";
 import { TextScramble, TextScrambleHover } from "@/app/components/TextScramble";
 import Link from 'next/link'
-import Logo from "@/app/components/logo";
-import Image from 'next/image'
+import Logo from "@/app/components/logo"
+import { TrackedImage } from '@/app/lib/TrackedImage'
 import { useMousePosition } from "@/app/lib/useMousePosition";
 import { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -55,7 +55,7 @@ export default function MainPage() {
           <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div>
         </div>
         <div className={styles.photo}>
-          <Image
+          <TrackedImage
             src='/images/ProfilePict.jpg'
             alt='profile picture'
             fill

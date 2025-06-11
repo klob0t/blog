@@ -5,6 +5,7 @@ import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
 import Logo from '@/app/components/logo'
 import { PreBlock } from '@/app/components/CodeBlock'
+import { useLoading } from '@/app/lib/LoadingContext'
 
 interface PostData {
    title: string
@@ -20,15 +21,15 @@ const markdownOptions = {
 
 export default function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
    const [post, setPost] = useState<PostData | null>(null)
-   const [isLoading, setIsLoading] = useState(true)
    const [error, setError] = useState<string | null>(null)
+   const { startLoading, finishLoading } = useLoading()
 
    const { slug } = use(params)
 
    useEffect(() => {
       const fetchPost = async () => {
          try {
-            setIsLoading(true)
+            startLoading()
             setError(null)
             const response = await fetch(`/api/posts/${slug}`)
 
@@ -47,18 +48,15 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
             }
             console.error('Failed to fetch post:', err)
          } finally {
-            setIsLoading(false)
+            finishLoading()
          }
       }
 
       if (slug) {
          fetchPost()
       }
-   }, [slug])
+   }, [slug, startLoading, finishLoading])
 
-   if (isLoading) {
-      return <h1>Loading...</h1>
-   }
 
    if (error || !post) {
       return (

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import { useLoading } from '@/app/lib/LoadingContext'
 
 gsap.registerPlugin(SplitText)
 
@@ -15,27 +16,26 @@ interface PostMetadata {
 
 export default function PostsList() {
    const [posts, setPosts] = useState<PostMetadata[]>([])
-   const [isLoading, setIsLoading] = useState(true)
+   const { startLoading, finishLoading } = useLoading()
 
    useEffect(() => {
       const fetchPosts = async () => {
          try {
-            setIsLoading(true)
+            startLoading()
             const response = await fetch('/api/posts')
             const data: PostMetadata[] = await response.json()
             setPosts(data)
          } catch (error) {
             console.error('Failed to fetch blog posts', error)
          } finally {
-            setIsLoading(false)
+            finishLoading()
          }
       }
-
       fetchPosts()
-   }, [])
+   }, [startLoading, finishLoading])
 
    useGSAP(() => {
-      if (!isLoading && posts.length > 0) {
+      if (posts.length > 0) {
          const titles = gsap.utils.toArray('.post-title')
          const tl = gsap.timeline()
 
@@ -49,7 +49,7 @@ export default function PostsList() {
             }, "<0.1");
          });
       }
-   }, { dependencies: [isLoading, posts] })
+   }, { dependencies: [posts, finishLoading] })
 
 
    return (
