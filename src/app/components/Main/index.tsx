@@ -1,6 +1,6 @@
 'use client'
 import styles from "./index.module.css";
-import { TextScramble, TextScrambleHover } from "@/app/components/textScramble/scramble";
+import { TextScramble, TextScrambleHover } from "@/app/components/TextScramble/scramble";
 import Link from 'next/link'
 import Logo from "@/app/components/logo";
 import Image from 'next/image'
@@ -10,9 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faInstagram, faTwitter, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
-import BackgroundPixel from "@/app/components/backgroundPixels";
+import BackgroundPixel from "@/app/components/Background";
 import { useSplitTextAnimation } from "@/app/lib/useSplitTextAnimation";
-import BlogPostsList from "@/app/components/postsList/page"
+import BlogPostsList from "@/app/components/PostsList/page"
 
 library.add(faInstagram, faTwitter, faLinkedin, faGithub)
 

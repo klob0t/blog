@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
 import Logo from '@/app/components/logo'
-import { PreBlock } from '@/app/components/code'
+import { PreBlock } from '@/app/components/CodeBlock'
 
 interface PostData {
    title: string
@@ -79,7 +79,7 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
             <header>
                <h1>{post.title}</h1>
                <div className={styles.meta}>
-                  <span>{`${date.month} ${date.dayOfMonth}`}<span>{date.ordinal}, </span>{date.year}</span>
+                  <span>{`${date.dayOfWeek}, ${date.month} ${date.dayOfMonth}`}<span>{date.ordinal}, </span>{date.year}</span>
                   <span> &bull; </span>
                   <span>{readTime} min read</span>
                </div>

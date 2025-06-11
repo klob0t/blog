@@ -278,6 +278,9 @@
       margin: 0em 0em 1em 0em !important;
       padding: 0em 0em 1em 0em !important;
       border-bottom: 1px solid var(--gray);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
    }
 
    .contact>div:nth-of-type(1) {
