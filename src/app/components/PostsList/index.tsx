@@ -1,10 +1,11 @@
 'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useLoading } from '@/app/lib/LoadingContext'
+import { useSplitTextAnimation } from '@/app/lib/useSplitTextAnimation'
 
 gsap.registerPlugin(SplitText)
 
@@ -13,10 +14,11 @@ interface PostMetadata {
    date: string
    slug: string
 }
-
-export default function PostsList() {
+function PostsListComponent() {
    const [posts, setPosts] = useState<PostMetadata[]>([])
    const { startLoading, finishLoading } = useLoading()
+   const ref = useRef<HTMLParagraphElement>(null)
+   useSplitTextAnimation(ref)
 
    useEffect(() => {
       const fetchPosts = async () => {
@@ -46,25 +48,28 @@ export default function PostsList() {
                y: 20,
                stagger: 0.01,
                ease: 'power2.out',
-            }, "<0.1");
+               delay: 0.3,
+            }, "<0.000001");
          });
       }
    }, { dependencies: [posts, finishLoading] })
 
 
    return (
-      <div>
          <div>
             {posts.map((post) => {
                return (
                   <Link
+                     
                      key={post.slug}
                      href={`/blogs/${post.slug}`}>
-                     <p className='post-title'>{post.title}</p>
+                     <p ref={ref} className='post-title'>{post.title}</p>
                   </Link>
                )
             })}
          </div>
-      </div>
    )
 }
+
+const PostsList = memo(PostsListComponent)
+export default PostsList

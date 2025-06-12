@@ -20,6 +20,8 @@
 # production
 /build
 
+/src/app/test/
+
 /temp
 
 # misc

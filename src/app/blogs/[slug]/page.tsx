@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, use } from 'react'
 import styles from './page.module.css'
+import Link from 'next/link'
 import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
 import Logo from '@/app/components/logo'
@@ -73,11 +74,14 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
    return (
       <div className={styles.container}>
          <article className={styles.article}>
+         <Link
+            href='/'>
             <Logo />
+         </Link>
             <header>
                <h1>{post.title}</h1>
                <div className={styles.meta}>
-                  <span>{`${date.dayOfWeek}, ${date.month} ${date.dayOfMonth}`}<span>{date.ordinal}, </span>{date.year}</span>
+                  <span>{`${date.dayOfWeek}, ${date.month} ${date.dayOfMonth}`}<span>{date.ordinal}</span>, {date.year}</span>
                   <span> &bull; </span>
                   <span>{readTime} min read</span>
                </div>
@@ -88,7 +92,10 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
                   {post.content}
                </Markdown>
             </div>
+            <hr />
          </article>
+         
+         <div>klob0t <span>@</span> 2025</div>
       </div>
    )
 }

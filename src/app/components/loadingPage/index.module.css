@@ -4,39 +4,29 @@
    justify-content: center;
    align-items: center;
    height: 100vh;
-   background-color: white;
+   background-color: rgb(0, 0, 0);
 }
 
-.spinner {
-   position: relative;
-   width: max-content;
-   height: max-content;
-   /* border: 1px solid red; */
+.loadingContainer svg {
+   width: 70px;
+   height: 70px;
+   color: rgb(255, 255, 255);
+   animation: rotation 1000ms ease-in-out infinite;
 }
 
-.tickWrapper {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   translate: -50% -50%;
-   width: 100%;
-   height: 100%;
-}
-
-.tick {
-   margin: 0 auto;
-   width: 12%;
-   height: 32%;
-   background-color: black;
-   border-radius: 100px;
-   animation: fade 1s linear infinite;
-}
-
-@keyframes fade {
+@keyframes rotation {
    0% {
-      opacity: 1
+      rotate: 0deg;
+      fill: rgb(0, 0, 0);
+   }
+   20% {
+      fill: rgb(255, 255, 255);
+   }
+   80% {
+      fill: rgb(255, 255, 255);
    }
    100% {
-      opacity: 0.15
+      rotate: 360deg;
+      fill: rgb(0, 0, 0)
    }
 }

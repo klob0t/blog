@@ -1,7 +1,7 @@
 'use client'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import React, { useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import styles from './index.module.css'
 
 interface CodeBlockProps {
@@ -34,14 +34,20 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
    const customTheme = {
       ...atomOneDarkReasonable,
       'hljs': {backgroundColor: 'black',
-      fontFeatureSettings: `'ss06' on, 'ss05' on, 'ss08' on`
       },
       'hljs-comment': { fontStyle: 'italic' },
-      'hljs-title': { color: '#4893f5' },
    }
 
    const lineNumStyles = {
       color: 'var(--gray)'
+   }
+
+   const preTagStyles: CSSProperties = {
+      backgroundColor: 'transparent',
+      padding: '0 0em 1em 1em',
+      marginLeft: 0,
+      marginBottom: 0,
+      overflowX: 'auto',
    }
 
    return (
@@ -52,8 +58,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
             showLineNumbers={true}
             lineNumberStyle={lineNumStyles}
             language={lang}
+            customStyle={preTagStyles}
             style={customTheme}
-            PreTag='div'>
+            PreTag='pre'>
             {String(children).replace(/\n$/, '')}
          </SyntaxHighlighter>
       </div>

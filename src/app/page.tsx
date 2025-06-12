@@ -1,3 +1,5 @@
+//src/app/page.tsx
+
 import MainPage from "@/app/components/Main"
 
 

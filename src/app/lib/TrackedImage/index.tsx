@@ -1,9 +1,9 @@
 'use client'
 import Image, { ImageProps } from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { useLoading } from '@/app/lib/LoadingContext'
 
-export const TrackedImage = (props: ImageProps) => {
+const TrackedImageComponent = ({ alt = '', ...props }: ImageProps) => {
    const { startLoading, finishLoading } = useLoading()
    const [isLoading, setIsLoading] = useState(true)
 
@@ -24,5 +24,7 @@ export const TrackedImage = (props: ImageProps) => {
       finishLoading()
    }
 
-   return <Image {...props} onLoadingComplete={handleLoadingComplete} />
+   return <Image alt={alt} {...props} onLoadingComplete={handleLoadingComplete} />
 }
+
+export const TrackedImage = memo(TrackedImageComponent)

@@ -45,3 +45,35 @@ a {
 a:hover{
   color: white;
 }
+
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+
+  /* Animation styles */
+  transform: translateY(0%);
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.loader-container.hidden {
+  /* This class will make it slide up and out of view */
+  transform: translateY(-100%);
+}
+
+.content-container {
+  /* Animation styles */
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out 0.4s; /* Delay the fade-in slightly */
+}
+
+.content-container.hidden {
+  /* This class will make the content invisible */
+  opacity: 0;
+}

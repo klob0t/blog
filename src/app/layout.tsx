@@ -1,9 +1,11 @@
+//src/app/layout.tsx
 import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { Instrument_Serif } from 'next/font/google'
 import "./globals.css";
 import { LoadingProvider } from "@/app/lib/LoadingContext";
+import AppWrapper from "@/app/components/AppWrapper";
 
 
 const InstrumentSerif = Instrument_Serif({
@@ -24,7 +26,9 @@ export default function RootLayout({ children
     <html lang="en">
       <body className={`${GeistSans.variable} ${InstrumentSerif.variable} ${GeistMono.variable}`}>
         <LoadingProvider>
-          {children}
+          <AppWrapper>
+            {children}
+          </AppWrapper>
         </LoadingProvider>
       </body>
     </html>

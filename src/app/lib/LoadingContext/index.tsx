@@ -1,6 +1,6 @@
+//app/src/app/lib/LoadingContext/index.tsx
 'use client'
-
-import React, { createContext, useState, useContext, ReactNode, useMemo } from 'react'
+import React, { createContext, useState, useContext, ReactNode, useMemo, useCallback, useEffect } from 'react'
 
 interface LoadingContextType {
    isAppLoading: boolean
@@ -11,25 +11,37 @@ interface LoadingContextType {
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined)
 
 export const LoadingProvider = ({ children }: { children: ReactNode }) => {
-   const [activeLoaders, setActiveLoaders] = useState<number>(0)
+   const [activeLoaders, setActiveLoaders] = useState<number>(1)
+
+   const startLoading = useCallback(() => {
+     setActiveLoaders(count => count + 1)
+   }, [])
+
+   const finishLoading = useCallback(() => {
+     setActiveLoaders(count => Math.max(0, count - 1))
+   }, [])
+
+    useEffect(() => {
+     finishLoading();
+   },[finishLoading])
 
    const contextValue = useMemo(() => ({
-      isAppLoading: activeLoaders > 0,
-      startLoading: () => setActiveLoaders(count => count + 1),
-      finishLoading: () => setActiveLoaders(count => Math.max(0, count - 1))
-   }), [activeLoaders])
+     isAppLoading: activeLoaders > 0,
+     startLoading,
+     finishLoading
+   }), [activeLoaders, startLoading, finishLoading])
 
    return (
-      <LoadingContext.Provider value={contextValue}>
-         {children}
-      </LoadingContext.Provider>
+     <LoadingContext.Provider value={contextValue}>
+       {children}
+     </LoadingContext.Provider>
    )
 }
 
 export const useLoading = () => {
    const context = useContext(LoadingContext)
    if (context === undefined) {
-      throw new Error('useLoading must be used within a LoadingProvider')
+     throw new Error('useLoading must be used within a LoadingProvider')
    }
    return context
 }

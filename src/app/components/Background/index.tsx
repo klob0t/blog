@@ -1,63 +1,138 @@
-'use client'
+import React, { useRef, useEffect } from 'react';
 import styles from './index.module.css'
-import { useState, useEffect, useRef } from 'react'
 
-interface BackgroundPixel {
-  mousePosition: { x: number, y: number } | null
+
+interface ActivePixel {
+  x: number
+  y: number
+  timestamp: number
 }
 
-const BLOCK_SIZE = 30 
+interface MousePosition {
+  x: number
+  y: number
+}
 
-export default function PixelTrail({ mousePosition }: BackgroundPixel) {
 
-const [grid, setGrid] = useState({ columns: 0, rows: 0 })
-  const gridRef = useRef<HTMLDivElement>(null) 
-  const lastActivatedPixel = useRef<HTMLElement | null>(null)
+const BLOCK_SIZE = 30;
+
+const FADE_DURATION = 500;
+
+const GRID_COLOR = 'rgb(0, 0, 0)';
+
+
+export const BackgroundPixel = () => {
+  
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  const mousePositionRef = useRef<MousePosition>({ x: -1, y: -1 });
+  
+  const activePixelsRef = useRef<ActivePixel[]>([]);
 
   useEffect(() => {
-    const calculateGrid = () => {
-      const columns = Math.ceil(window.innerWidth / BLOCK_SIZE)
-      const rows = Math.ceil(window.innerHeight / BLOCK_SIZE)
-      setGrid({ columns, rows })
-    }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    calculateGrid()
-    window.addEventListener('resize', calculateGrid)
-    return () => window.removeEventListener('resize', calculateGrid)
-  }, [])
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return
+    let animationFrameId: number;
 
-  useEffect(() => {
-    if (!mousePosition || !gridRef.current) return
 
-    const { x, y } = mousePosition
-    const colIndex = Math.floor(x / BLOCK_SIZE)
-    const rowIndex = Math.floor(y / BLOCK_SIZE)
+    const handleMouseMove = (event: MouseEvent) => {
+      mousePositionRef.current = { x: event.clientX, y: event.clientY };
+    };
+
+    const handleResize = () => {
+      
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    const draw = () => {
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      
+      const now = Date.now();
+      const { x: mouseX, y: mouseY } = mousePositionRef.current;
+      
+      
+      const colIndex = Math.floor(mouseX / BLOCK_SIZE);
+      const rowIndex = Math.floor(mouseY / BLOCK_SIZE);
+
+      
+      const lastPixel = activePixelsRef.current[activePixelsRef.current.length - 1];
+      if (!lastPixel || lastPixel.x !== colIndex || lastPixel.y !== rowIndex) {
+         if(mouseX !== -1) { 
+            activePixelsRef.current.push({ x: colIndex, y: rowIndex, timestamp: now });
+         }
+      }
+
+      
+      activePixelsRef.current = activePixelsRef.current.filter(
+        (pixel) => now - pixel.timestamp < FADE_DURATION
+      );
+      
+      
+      const columns = Math.ceil(canvas.width / BLOCK_SIZE);
+      const rows = Math.ceil(canvas.height / BLOCK_SIZE);
+      
+      ctx.strokeStyle = GRID_COLOR;
+      for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            ctx.strokeRect(i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+      }
+
+      
+      activePixelsRef.current.forEach((pixel) => {
+        const elapsedTime = now - pixel.timestamp;
+        const opacity = 1 - (elapsedTime / FADE_DURATION);
+        
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fillRect(
+          pixel.x * BLOCK_SIZE,
+          pixel.y * BLOCK_SIZE,
+          BLOCK_SIZE,
+          BLOCK_SIZE
+        );
+      });
+
+      
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
     
-    const columnElement = gridRef.current.children[colIndex] as HTMLElement
-    const targetPixel = columnElement?.children[rowIndex] as HTMLElement
+    handleResize(); 
+    draw(); 
 
-    if (targetPixel && targetPixel !== lastActivatedPixel.current) {
-      targetPixel.classList.add(styles.active)
-      lastActivatedPixel.current = targetPixel
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
 
-      setTimeout(() => {
-        targetPixel.classList.remove(styles.active)
-      }, 500) 
-    }
-
-  }, [mousePosition]) 
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []); 
 
   return (
     <div className={styles.container}>
-      <div className={styles.grid} ref={gridRef}>
-        {[...Array(grid.columns)].map((_, colIndex) => (
-          <div key={colIndex} className={styles.column}>
-            {[...Array(grid.rows)].map((_, rowIndex) => (
-              <div key={rowIndex} className={styles.pixel}></div>
-            ))}
-          </div>
-        ))}
-      </div>
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1, 
+        backgroundColor: '#000'
+      }}
+    />
     </div>
-  )
-}
+  );
+};
+

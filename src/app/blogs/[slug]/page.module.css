@@ -6,6 +6,7 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
+
 }
 
 .article {
@@ -14,14 +15,18 @@
    padding: 2em 3em 2em 3em;
    height: 100%;
    background-color: rgb(0, 0, 0);
-   letter-spacing: unset; 
+   letter-spacing: unset;
    color: rgb(209, 204, 204);
+}
+
+.article em {
+   font-style: italic;
 }
 
 .article img {
    width: 100%;
    border: 1px solid var(--gray);
-   border-radius: 12px;
+   border-radius: 8px;
 }
 
 .meta {
@@ -29,7 +34,7 @@
    font-weight: 400;
 }
 
-.meta > span:nth-of-type(1) span {
+.meta>span:nth-of-type(1) span {
    vertical-align: super;
    font-size: x-small;
 }
@@ -46,20 +51,35 @@
    text-decoration: underline;
 }
 
-.article code {
+.article pre code {
    letter-spacing: 0em;
    font-size: 1em;
+   background-color: var(--card-bg);
    font-weight: 400;
    line-height: 1.4em;
    font-family: var(--font-geist-mono), monospace;
    font-feature-settings: 'ss03' on, 'ss04' on, 'ss06' on, 'ss08' on !important;
+   padding: unset !important;
+   border: none !important;
+}
+
+.article code {
+   font-feature-settings: 'ss03' on, 'ss04' on, 'ss06' on, 'ss08' on !important;
+   font-family: var(--font-geist-mono), monospace;
+   font-size: 1em;
+   padding: 0.1em 0.4em;
+   border-radius: 7px;
+   border: 1px solid rgba(255, 255, 255, 0.234);
 }
 
 .article svg {
    width: 80px;
+   margin-bottom: -2em;
+   color: rgb(255, 255, 255);
+   fill: rgb(0, 0, 0);
 }
 
-.article hr {
+.container hr {
    width: 100%;
    margin: 1.4em 0em 0em 0em;
    color: transparent;
@@ -74,8 +94,8 @@
    padding: 0;
 }
 
-.article h2, 
-.article h3{
+.article h2,
+.article h3 {
    margin: 1em 0em 0.5em 0em;
    font-weight: 600;
    padding: 0;
@@ -83,11 +103,26 @@
 }
 
 .article ol,
-.article li{
+.article li {
    letter-spacing: 0em;
 }
 
 .article blockquote {
    padding: 0.05em 0em 0.05em 1em;
    border-left: 2px solid white;
+}
+
+.container>div:last-child {
+   vertical-align: middle;
+   font-feature-settings: 'ss03' on, 'ss04' on, 'ss06' on, 'ss08' on !important;
+   color: var(--gray);
+   font-family: var(--font-geist-mono), monospace;
+   letter-spacing: -0.01em;
+   font-size: 1em;
+   margin: -1em 0em 2em 0em;
+}
+
+.container>div:last-child span {
+   font-family: var(--font-serif), serif;
+   font-size: 1.5em;
 }
