@@ -77,3 +77,16 @@ a:hover{
   /* This class will make the content invisible */
   opacity: 0;
 }
+
+body::-webkit-scrollbar {
+   width: 8px;
+   height: 3px;
+}
+
+body::-webkit-scrollbar-track {
+   background: black;
+}
+
+body::-webkit-scrollbar-thumb {
+   background-color: var(--gray);
+}

@@ -6,8 +6,23 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-
+   scrollbar-gutter: stable;
 }
+
+.container::-webkit-scrollbar {
+   width: 8px;
+   height: 3px;
+}
+
+.container::-webkit-scrollbar-track {
+   background: black;
+}
+
+.container::-webkit-scrollbar-thumb {
+   background-color: var(--gray);
+}
+
+
 
 .article {
    width: 100%;

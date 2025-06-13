@@ -1,5 +1,5 @@
 ---
-title: 'This Blog Is Now In TypeScript!'
+title: 'This Website Is Now in TypeScript!'
 date: '2025-06-15'
 author: 'klob0t'
 ---

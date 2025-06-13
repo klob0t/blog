@@ -14,7 +14,7 @@ interface MousePosition {
 }
 
 
-const BLOCK_SIZE = 30;
+const BLOCK_SIZE = 20;
 
 const FADE_DURATION = 500;
 
@@ -43,7 +43,6 @@ export const BackgroundPixel = () => {
     };
 
     const handleResize = () => {
-      
       
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;

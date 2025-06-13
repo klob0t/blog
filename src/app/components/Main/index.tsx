@@ -15,6 +15,7 @@ import {BackgroundPixel} from "@/app/components/Background";
 import { useSplitTextAnimation } from "@/app/lib/useSplitTextAnimation";
 import BlogPostsList from "@/app/components/PostsList"
 import { useGridReveal } from '@/app/lib/useGridReveal'
+import ImageSlideshow from "../ImageSlideshow";
 // import GridItem from '@/app/components/GridItem'
 
 library.add(faInstagram, faTwitter, faLinkedin, faGithub)
@@ -64,7 +65,7 @@ export default function MainPage() {
         <div className={`${styles.photo} grid-item`}>
           <div className={styles.content}>
           <TrackedImage
-            src='/images/avatar.png'
+            src='/images/profPict.jpg'
             alt='profile picture'
             fill
             quality={75}
@@ -72,7 +73,7 @@ export default function MainPage() {
         </div>
         <div className={`${styles.works} grid-item`}>
           <div className={styles.content}>
-            Past Works
+            <ImageSlideshow />
           </div>
         </div>
         <div className={`${styles.cv} grid-item`}>

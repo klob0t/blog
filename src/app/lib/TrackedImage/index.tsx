@@ -24,7 +24,7 @@ const TrackedImageComponent = ({ alt = '', ...props }: ImageProps) => {
       finishLoading()
    }
 
-   return <Image alt={alt} {...props} onLoadingComplete={handleLoadingComplete} />
+   return <Image alt={alt} {...props} onLoad={handleLoadingComplete} />
 }
 
 export const TrackedImage = memo(TrackedImageComponent)

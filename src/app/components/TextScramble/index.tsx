@@ -104,7 +104,6 @@ export function TextScramble() {
 
 
 
-
 export function TextScrambleHover() {
   
   const [displayedText, setDisplayedText] = useState(initialPhrase.split(''));

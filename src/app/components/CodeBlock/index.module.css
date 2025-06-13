@@ -2,4 +2,19 @@
    border: 1px solid var(--gray);
    padding: 0em 1em 1em 2em;
    border-radius: 7px;
+   scrollbar-width: 8px;
+   scrollbar-color: var(--gray) black;
+}
+
+.wrapper::-webkit-scrollbar {
+   width: 8px;
+   height: 3px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+   background: black;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+   background-color: var(--gray);
 }
