@@ -6,6 +6,14 @@ import { useLoading } from "@/app/lib/LoadingContext"
 import styles from './index.module.css'
 import { useGSAP } from "@gsap/react"
 
+function usePrevious<T>(value: T): T | undefined {
+    const ref = useRef<T>();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;
+}
+
 
 interface LoopConfig {
    repeat?: number
@@ -27,7 +35,8 @@ interface ExtendedTimeline extends gsap.core.Timeline {
 
 function SlideShow() {
    const [images, setImages] = useState<string[]>([])
-   const { startLoading, finishLoading } = useLoading()
+   const { startLoading, finishLoading, isAppLoading } = useLoading()
+   const prevIsAppLoading = usePrevious(isAppLoading)
 
    const marqueeContainerRef = useRef<HTMLDivElement>(null)
    const marqueeContentRef = useRef<HTMLDivElement>(null)
@@ -57,22 +66,23 @@ function SlideShow() {
 
    useGSAP(() => {
       if (!marqueeContentRef.current) return
+      if (prevIsAppLoading === true && !isAppLoading && images.length > 0) {
+         const boxes = Array.from(marqueeContentRef.current.children)
+         gsap.fromTo(boxes, {
+            scaleY: 0,
+            opacity: 0
+         }, {
+            scaleY: 1,
+            opacity: 1,
+            // We can reduce the delay now since we're already waiting for the load
+            delay: 0.85,
+            stagger: 0.05,
+            ease: 'power3.out'
+         })
+      }
 
-      const boxes = Array.from(marqueeContentRef.current.children)
-
-      console.log(marqueeContentRef.current.children)
-      // const gridItems = gsap.utils.toArray('.grid-item', scope.current)
-      
-      gsap.fromTo(boxes, {
-         scaleY: 0,
-      }, {
-         scaleY: 1,
-         delay: 1,
-         stagger: 0.05,
-         ease: 'power3.out'
-      })
-
-   }, {dependencies: [images]})
+      // FIXED: The animation is now dependent on the loading state and images array.
+   }, { dependencies: [isAppLoading, images] })
 
    useEffect(() => {
       if (images.length === 0 || !marqueeContentRef.current) return;
@@ -190,7 +200,7 @@ function SlideShow() {
                   key={index}
                   className={styles.imageCard}>
                   <div className={styles.imageWrapper}>
-                  <div></div>
+                     <div></div>
                      <TrackedImage
                         src={src}
                         fill

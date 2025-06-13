@@ -6,113 +6,123 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/navigation'
 
-function usePrevious(value: boolean) {
-   const ref = useRef<boolean>(true);
-   useEffect(() => {
-      ref.current = value;
-   });
-   return ref.current;
+// CORRECTED: This hook now correctly reports 'undefined' on the first render.
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
 }
 
 export default function AppWrapper({ children }: { children: ReactNode }) {
-   const { isAppLoading } = useLoading()
-   const loaderRef = useRef<HTMLDivElement>(null)
-   const contentRef = useRef<HTMLDivElement>(null)
-   const prevIsAppLoading = usePrevious(isAppLoading);
-   const router = useRouter();
+  const { isAppLoading } = useLoading()
+  const loaderRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const prevIsAppLoading = usePrevious(isAppLoading);
+  const router = useRouter();
 
-   useEffect(() => {
-      const handleClick = (event: MouseEvent) => {
-         const targetElement = event.target as HTMLElement
-         const anchor = targetElement.closest('a')
-         if (!anchor || anchor.target === '_blank' || event.ctrlKey || event.metaKey || anchor.href === window.location.href) {
-            return
-         }
-
-         const content = contentRef.current
-         event.preventDefault()
-         const href = anchor.href
-         const loader = loaderRef.current
-         if (!loader) return
-
-         gsap.to(loader, {
-            y: '0%',
-            display: 'block',
-            duration: 0.4,
-            ease: 'power3.inOut',
-            borderRadius: '0%',
-            onComplete: () => {
-               router.push(href)
-            }
-         })
-         gsap.to(content, {
-            filter: 'blur(1em)',
-            delay: 0.3,
-            ease: 'power3.inOut',
-         })
+  // This link-hijacking logic is okay. No changes needed here.
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      const targetElement = event.target as HTMLElement
+      const anchor = targetElement.closest('a')
+      if (!anchor || anchor.target === '_blank' || event.ctrlKey || event.metaKey || anchor.href === window.location.href) {
+        return
       }
-      document.addEventListener('click', handleClick)
-      return () => {
-         document.removeEventListener('click', handleClick)
-      }
-   }, [router])
 
-   useGSAP(() => {
-      const loader = loaderRef.current
       const content = contentRef.current
+      event.preventDefault()
+      const href = anchor.href
+      const loader = loaderRef.current
       if (!loader) return
 
-      if (prevIsAppLoading && !isAppLoading) {
+      gsap.to(loader, {
+        y: '0%',
+        display: 'block',
+        duration: 0.4,
+        ease: 'power3.inOut',
+        borderRadius: '0%',
+        onComplete: () => {
+          router.push(href)
+        }
+      })
+      gsap.to(content, {
+        filter: 'blur(1em)',
+        delay: 0.3,
+        ease: 'power3.inOut',
+      })
+    }
+    document.addEventListener('click', handleClick)
+    return () => {
+      document.removeEventListener('click', handleClick)
+    }
+  }, [router])
 
-         gsap.to(loader, {
-            y: '-110%',
-            duration: 0.8,
-            borderBottomLeftRadius: '100%',
-            borderBottomRightRadius: '100%',
-            ease: 'power3.inOut',
-            delay: 0.2,
-            onComplete: () => {
-               gsap.set(loader, {
-                  display: 'none',
-                  borderBottomLeftRadius: '100%',
-                  borderBottomRightRadius: '100%',
-               })
-            }
-         })
-         gsap.to(content, {
-            filter: 'blur(0em)',
-            delay: 0.3,
-            ease: 'power3.inOut',
-         })
-      }
-   }, { dependencies: [isAppLoading, prevIsAppLoading] })
+  useGSAP(() => {
+    const loader = loaderRef.current
+    const content = contentRef.current
+    if (!loader || !content) return
 
-   return (
-      <>
-         <div
-            ref={loaderRef}
-            style={{
-               position: 'fixed',
-               top: 0,
-               left: '-50%',
-               width: '200%',
-               height: '100%',
-               zIndex: 9999,
-               overflow: 'hidden',
-               display: 'block',
-               transform: 'translateY(0%)'
-            }}>
-            <Loading />
-         </div>
+    // This condition is now safe. It will only be true when the state
+    // explicitly transitions from 'true' to 'false'.
+    if (prevIsAppLoading === true && !isAppLoading) {
+      gsap.to(loader, {
+        y: '-110%',
+        duration: 0.8,
+        borderBottomLeftRadius: '100%',
+        borderBottomRightRadius: '100%',
+        ease: 'power3.inOut',
+        delay: 0.2,
+        onComplete: () => {
+          gsap.set(loader, {
+            display: 'none',
+          })
+        }
+      })
+      gsap.to(content, {
+        filter: 'blur(0em)',
+        delay: 0.3,
+        ease: 'power3.inOut',
+      })
+    }
+    // Set the initial blur state with GSAP to avoid flickers
+    else if (prevIsAppLoading === undefined && isAppLoading) {
+        gsap.set(content, { filter: 'blur(1em)' });
+    }
 
-         <div
-            ref={contentRef}
-            style={{
-               opacity: 1,
-               filter: 'blur(1em)'
-            }}>
-            {children}
-         </div>
-      </>
-   )
+  // CORRECTED: The effect should only depend on the actual state value.
+  }, { dependencies: [isAppLoading] })
+
+  return (
+    <>
+      <div
+        ref={loaderRef}
+        // ... loader styles are okay
+        style={{
+            position: 'fixed',
+            top: 0,
+            left: '-50%',
+            width: '200%',
+            height: '100%',
+            zIndex: 9999,
+            overflow: 'hidden',
+            display: 'block',
+            transform: 'translateY(0%)'
+        }}
+      >
+        <Loading />
+      </div>
+
+      <div
+        ref={contentRef}
+        // We can remove the blur from here, GSAP will handle it.
+        style={{
+          opacity: 1,
+        }}
+      >
+        {children}
+      </div>
+    </>
+  )
 }
