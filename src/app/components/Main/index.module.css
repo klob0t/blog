@@ -317,7 +317,7 @@
 /** ---- LINKS END ---- */
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
    /** TABLET */
 
    .page {
@@ -622,8 +622,8 @@
          " B B B B B C C C E E E E "
          " B B B B B C C C E E E E "
          " B B B B B C C C E E E E "
-         " B B B B B C C C E E E E "
          " D D D D H H H H E E E E "
+         " D D D D F F F F E E E E "
          " D D D D F F F F E E E E "
          " D D D D F F F F E E E E "
          " D D D D F F F F G G G G ";

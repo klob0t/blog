@@ -4,7 +4,7 @@ date: 2024-01-05
 ---
 _As of 21/03/2024, this project is still ongoing, hence the 'journey'_
 
-Whenever I saw some programmers online doing livestreams while making an app or some working-from-home-coding-bros that seemed like they had their lives sorted out: wake up => coffee => work-out => code. (It was always in that order).
+Whenever I saw some programmers online doing livestreams while making an app or some working-from-home-coding-bros that seemed like they had their lives sorted out: `wake up => coffee => work-out => code`. (It was always in that order).
 
 I wanted to live like THAT.
 
@@ -49,7 +49,5 @@ But I persevered #anjay. With my limited knowledge, I kept going, looking at the
 ## Waveform Viewer
 
 The first meter I want to make is a waveform viewer. (Is it a meter?). Fortunately, it is already available from the JUCE framework itself. I just need to dial in some settings to get it showing perfectly. BUT in the current state, it doesn't have the ability to catch the lowest frequency. That's why it appears jumpy. By being able to catch the lowest frequency, it can adapt the wavelength shown on the window so the number of waves shown can be consistent. Hmmmm how to do that.
-
-![](/images/peek1.png)
 
 To be honest, I still don't have any idea on how to do that. Sooooo until next time. Bye bye.

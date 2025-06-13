@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
 import Logo from '@/app/components/logo'
-import { PreBlock } from '@/app/components/CodeBlock'
+import { PreBlock, MarkdownImage } from '@/app/components/MarkdownOverrides'
 import { useLoading } from '@/app/lib/LoadingContext'
 
 interface PostData {
@@ -16,7 +16,8 @@ interface PostData {
 
 const markdownOptions = {
    overrides: {
-      pre: PreBlock
+      pre: PreBlock,
+      img: MarkdownImage
    }
 }
 

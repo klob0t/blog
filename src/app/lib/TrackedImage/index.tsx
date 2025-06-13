@@ -1,30 +1,56 @@
 'use client'
 import Image, { ImageProps } from 'next/image'
-import { useEffect, useState, memo } from 'react'
+import { useEffect, useCallback, SyntheticEvent } from 'react'
 import { useLoading } from '@/app/lib/LoadingContext'
 
-const TrackedImageComponent = ({ alt = '', ...props }: ImageProps) => {
-   const { startLoading, finishLoading } = useLoading()
-   const [isLoading, setIsLoading] = useState(true)
+type OnLoadingComplete = (img: HTMLImageElement) => void
 
-   useEffect(() => {
-      if (isLoading) {
-         startLoading()
-      }
-
-      return () => {
-         if (isLoading) {
-            finishLoading()
-         }
-      }
-   }, [isLoading, startLoading, finishLoading])
-
-   const handleLoadingComplete = () => {
-      setIsLoading(false)
-      finishLoading()
-   }
-
-   return <Image alt={alt} {...props} onLoad={handleLoadingComplete} />
+interface TrackedImageProps extends ImageProps {
+   onLoadingComplete?: OnLoadingComplete
+   onError?: (event: SyntheticEvent<HTMLImageElement, Event>) => void
 }
 
-export const TrackedImage = memo(TrackedImageComponent)
+export const TrackedImage = (props: TrackedImageProps) => {
+   const { startLoading, finishLoading } = useLoading()
+
+   const { onLoadingComplete, onError, alt = '', ...rest } = props
+
+
+   const handleFinish = useCallback(() => {
+      finishLoading()
+   }, [finishLoading])
+
+   useEffect(() => {
+      startLoading()
+
+      return () => handleFinish()
+   }, [startLoading, handleFinish])
+
+
+   const handleLoadingComplete: OnLoadingComplete = (img) => {
+      handleFinish()
+
+      if (onLoadingComplete) {
+         onLoadingComplete(img)
+      }
+   }
+
+
+   const handleError = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+      handleFinish()
+
+      if (onError) {
+         onError(event)
+      }
+   }
+
+   return (
+      <Image
+         {...rest}
+         alt={alt}
+         onLoadingComplete={handleLoadingComplete}
+         onError={handleError}
+      />
+   )
+}
+

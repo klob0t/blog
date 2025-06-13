@@ -1,6 +1,7 @@
 'use client'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { TrackedImage } from '@/app/lib/TrackedImage'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import styles from './index.module.css'
 
@@ -33,7 +34,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
 
    const customTheme = {
       ...atomOneDarkReasonable,
-      'hljs': {backgroundColor: 'black',
+      'hljs': {
+         backgroundColor: 'black',
       },
       'hljs-comment': { fontStyle: 'italic' },
    }
@@ -72,4 +74,34 @@ export const PreBlock = ({ children }: { children: React.ReactNode }) => {
       return <CodeBlock {...children.props as CodeBlockProps} />
    }
    return <pre>{children}</pre>
+}
+
+interface MarkdownImageProps {
+   src?: string;
+   alt?: string;
+}
+
+export const MarkdownImage = ({ src, alt = '' }: MarkdownImageProps) => {
+   const [hasError, setHasError] = useState(false)
+   
+   if (!src) {
+      return null
+   }
+
+   const imageSrc = hasError ? '/images/error.png' : src
+
+   return (
+      <TrackedImage
+         src={imageSrc}
+         width={0}
+         height={0}
+         alt={alt}
+         sizes='100vw'
+         style={{ width: '100%', height: 'auto' }}
+         quality={100}
+         onError={() => {
+            setHasError(true)
+         }}
+      />
+   )
 }

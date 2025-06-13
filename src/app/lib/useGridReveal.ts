@@ -24,7 +24,7 @@ export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
          translateY: 0,
          ease: 'power4.out',
          stagger: 0.1,
-         delay: 0.45,
+         delay: 1,
          onComplete: () => {
             gsap.set(gridItems, {
                transform: 'unset',

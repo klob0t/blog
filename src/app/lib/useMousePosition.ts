@@ -49,7 +49,7 @@ export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
                mouseY >= rect.top &&
                mouseY <= rect.bottom
             ) {
-               const spreadVal = 300
+               const spreadVal = 120
                const w_half = rect.width / 2
                const h_half = rect.height / 2
                const centerX = rect.left + w_half

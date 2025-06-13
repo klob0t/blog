@@ -4,6 +4,7 @@ import { useEffect, useState, memo, useRef } from 'react'
 import { gsap } from 'gsap'
 import { useLoading } from "@/app/lib/LoadingContext"
 import styles from './index.module.css'
+import { useGSAP } from "@gsap/react"
 
 
 interface LoopConfig {
@@ -53,6 +54,25 @@ function SlideShow() {
       }
       fetchImages()
    }, [startLoading, finishLoading])
+
+   useGSAP(() => {
+      if (!marqueeContentRef.current) return
+
+      const boxes = Array.from(marqueeContentRef.current.children)
+
+      console.log(marqueeContentRef.current.children)
+      // const gridItems = gsap.utils.toArray('.grid-item', scope.current)
+      
+      gsap.fromTo(boxes, {
+         scaleY: 0,
+      }, {
+         scaleY: 1,
+         delay: 1,
+         stagger: 0.05,
+         ease: 'power3.out'
+      })
+
+   }, {dependencies: [images]})
 
    useEffect(() => {
       if (images.length === 0 || !marqueeContentRef.current) return;
@@ -148,9 +168,7 @@ function SlideShow() {
          return tl;
       }
 
-
       const boxes = gsap.utils.toArray(marqueeContentRef.current.children) as HTMLElement[];
-
 
       const loop = horizontalLoop(boxes, {
          repeat: -1,
@@ -158,11 +176,9 @@ function SlideShow() {
          paused: true
       });
 
-
       return () => {
          loop?.kill();
       }
-
    }, [images])
 
 
@@ -174,12 +190,11 @@ function SlideShow() {
                   key={index}
                   className={styles.imageCard}>
                   <div className={styles.imageWrapper}>
+                  <div></div>
                      <TrackedImage
                         src={src}
                         fill
                         alt={`Image ${index + 1}`}
-                        onError={(e) => e.currentTarget.src = `/images/error.png`}
-                        quality={75}
                      />
                   </div>
                </div>
