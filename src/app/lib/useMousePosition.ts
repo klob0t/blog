@@ -1,11 +1,14 @@
 'use client'
-import { useState, useEffect, RefObject } from 'react'
+import { useState, useEffect, RefObject, useRef } from 'react'
 
 // const ease = (t: number): number => 1 - Math.pow(1 - t, 3)
 
 export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
 
    const [childRects, setChildRects] = useState<DOMRect[]>([])
+
+   const curAngle = useRef(0)
+
 
    useEffect(() => {
       const element = ref.current
@@ -31,9 +34,11 @@ export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
       const element = ref.current
       if (!element || childRects.length === 0) return
 
+
       const handleMouseMove = (e: MouseEvent) => {
          const mouseX = e.clientX
          const mouseY = e.clientY
+
 
          let isInsideChild = false
 
@@ -44,18 +49,28 @@ export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
                mouseY >= rect.top &&
                mouseY <= rect.bottom
             ) {
-               const spreadVal = 100
-               const centerX = rect.left + rect.width / 2
-               const centerY = rect.top + rect.height / 2
-               const perimeter = 2 * (rect.width + rect.width)
+               const spreadVal = 300
+               const w_half = rect.width / 2
+               const h_half = rect.height / 2
+               const centerX = rect.left + w_half
+               const centerY = rect.top + h_half
 
-               const rawAngle = ((Math.atan2(mouseY - centerY, mouseX - centerX) * 180 / Math.PI))
+               const angleRad = Math.atan2(mouseY - centerY, mouseX - centerX)
 
-               const spread = perimeter > 0 ? (spreadVal / perimeter) * 360 : 25
+               const rawAngle = angleRad * 180 / Math.PI
 
-               const angle = (rawAngle + 90) - (spread / 2)
+               const radiusToEdge = Math.min(
+                  Math.abs(w_half / Math.cos(angleRad)),
+                  Math.abs(h_half / Math.sin(angleRad))
+               )
 
-               element.style.setProperty('--start', angle.toString())
+               const spread = (spreadVal / radiusToEdge) * (180/Math.PI)
+
+               const targetAngle = (rawAngle + 90) - (spread / 2)
+
+               curAngle.current += ((targetAngle - curAngle.current + 180) % 360 - 180) * 0.06
+
+               element.style.setProperty('--start', curAngle.current.toString())
 
                element.style.setProperty('--spread', spread.toString())
 
@@ -70,7 +85,12 @@ export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
          }
       }
 
+      const handleMouseLeave = () => {
+         element.style.setProperty('--start', '0')
+      }
+
       element.addEventListener('mousemove', handleMouseMove)
+      element.addEventListener('mouseleave', handleMouseLeave)
 
       return () => {
          element.removeEventListener('mousemove', handleMouseMove)

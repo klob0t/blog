@@ -17,7 +17,6 @@ function usePrevious(value: boolean) {
 export default function AppWrapper({ children }: { children: ReactNode }) {
    const { isAppLoading } = useLoading()
    const loaderRef = useRef<HTMLDivElement>(null)
-
    const contentRef = useRef<HTMLDivElement>(null)
    const prevIsAppLoading = usePrevious(isAppLoading);
    const router = useRouter();
@@ -62,8 +61,6 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
       const loader = loaderRef.current
       const content = contentRef.current
       if (!loader) return
-
-
 
       if (prevIsAppLoading && !isAppLoading) {
 

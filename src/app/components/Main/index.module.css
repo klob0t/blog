@@ -43,10 +43,7 @@
    overflow: hidden;
 }
 
-
-
 .main {
-   /* visibility: hidden; */
    padding: 0.8em;
    border-radius: 16px;
    aspect-ratio: 12/38;
@@ -105,219 +102,219 @@
    position: relative
 }
 
-   .main>div {
-      border: 1px solid rgba(255, 255, 255, 0.119);
-      position: relative !important;
-      border-radius: 7px;
-      z-index: 4 !important;
-      padding: 1em 0em 1em 1em !important;
-      color: #fff;
-      background: rgb(0, 0, 0);
-      transition: background 500ms linear;
-   }
+.main>div {
+   border: 1px solid rgba(255, 255, 255, 0.119);
+   position: relative !important;
+   border-radius: 7px;
+   z-index: 4 !important;
+   padding: 1em 0em 1em 1em !important;
+   color: #fff;
+   background: rgb(0, 0, 0);
+   transition: background 500ms linear;
+}
 
-   .content {
-      background-color: var(--card-bg);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      display: flex;
-      z-index: 2;
-   }
+.content {
+   background-color: var(--card-bg);
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border-radius: 7px;
+   display: flex;
+   z-index: 2;
+}
 
-   .logo {
-      display: flex;
-      max-width: fit-content;
-      width: 80%;
-      padding: 0em 0em 0em 0.5em;
-      z-index: 2;
-   }
+.logo {
+   display: flex;
+   max-width: fit-content;
+   width: 80%;
+   padding: 0em 0em 0em 0.5em;
+   z-index: 2;
+}
 
-   .logo>div {
-      align-self: flex-start;
-      height: 60px;
-   }
+.logo>div {
+   align-self: flex-start;
+   height: 60px;
+}
 
-   .logo>div:hover svg {
-      color: white;
-   }
+.logo>div:hover svg {
+   color: white;
+}
 
-   .logo svg {
-      color: var(--gray);
-      transition: color 200ms linear;
-   }
+.logo svg {
+   color: var(--gray);
+   transition: color 200ms linear;
+}
 
-   /** ---- TITLE START ---- */
+/** ---- TITLE START ---- */
 
-   .title .content>div:nth-of-type(1) {
-      display: flex;
-      justify-content: flex-end;
-      margin-right: 1em;
-   }
+.title .content>div:nth-of-type(1) {
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 1em;
+}
 
-   .title .content>div:nth-of-type(1) p {
-      padding: 0 0.2em;
-      position: relative;
-      overflow: hidden;
-      color: var(--gray);
-      font-weight: 400;
-      height: 1.4em;
-      margin: 0;
-   }
+.title .content>div:nth-of-type(1) p {
+   padding: 0 0.2em;
+   position: relative;
+   overflow: hidden;
+   color: var(--gray);
+   font-weight: 400;
+   height: 1.4em;
+   margin: 0;
+}
 
-   .title .content>div:nth-of-type(1) p:hover {
-      color: white;
-   }
+.title .content>div:nth-of-type(1) p:hover {
+   color: white;
+}
 
-   .title .content p {
-      width: 100%;
-   }
+.title .content p {
+   width: 100%;
+}
 
-   .title .content {
-      align-items: center;
-      padding: 0em 0em 0em 1em !important;
-      align-items: center;
-   }
+.title .content {
+   align-items: center;
+   padding: 0em 0em 0em 1em !important;
+   align-items: center;
+}
 
-   /** ---- TITLE END ---- */
+/** ---- TITLE END ---- */
 
-   /** ---- GREETING START ---- */
+/** ---- GREETING START ---- */
 
-   .greeting .content {
-      height: 100%;
-      font-size: 1.8em;
-      padding: 0.5em 0em 0.5em 0.5em !important;
-   }
+.greeting .content {
+   height: 100%;
+   font-size: 1.8em;
+   padding: 0.5em 0em 0.5em 0.5em !important;
+}
 
-   .greeting .content p {
-      font-family: var(--font-geist-mono), monospace;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 0em 0.2em 0em 0.2em;
-      border: 1px solid #ffffff39;
-      margin: 0em;
-   }
+.greeting .content p {
+   font-family: var(--font-geist-mono), monospace;
+   background-color: rgba(255, 255, 255, 0.1);
+   padding: 0em 0.2em 0em 0.2em;
+   border: 1px solid #ffffff39;
+   margin: 0em;
+}
 
-   .greeting .content>div>div:last-child span:nth-of-type(2) {
-      font-family: var(--font-serif), serif !important;
-      font-style: italic;
-   }
+.greeting .content>div>div:last-child span:nth-of-type(2) {
+   font-family: var(--font-serif), serif !important;
+   font-style: italic;
+}
 
-   /** ---- GREETING END ---- */
+/** ---- GREETING END ---- */
 
-   /** ---- PHOTO START ---- */
+/** ---- PHOTO START ---- */
 
-   .photo img {
-      object-fit: cover;
-      object-position: 50% 40%;
-      border-radius: 7px;
-   }
+.photo img {
+   object-fit: cover;
+   object-position: 50% 40%;
+   border-radius: 7px;
+}
 
-   /** ---- PHOTO END ---- */
+/** ---- PHOTO END ---- */
 
-   /** ---- BLOGS START ---- */
+/** ---- BLOGS START ---- */
 
-   .blogs .content {
-      display: flex;
-      flex-direction: column;
-      padding: 0.1em 2.5em 0em 1.3em !important;
-   }
+.blogs .content {
+   display: flex;
+   flex-direction: column;
+   padding: 0.1em 2.5em 0em 1.3em !important;
+}
 
-   .blogs .content h3 {
-      font-weight: 400;
-      font-size: 1.6em;
-      margin: 0.5em 0em 1em 0em;
-   }
+.blogs .content h3 {
+   font-weight: 400;
+   font-size: 1.6em;
+   margin: 0.5em 0em 1em 0em;
+}
 
-   .blogs .content p {
-      font-weight: 400;
-      margin: 0;
-      font-size: 1.1em;
-      margin: 0em 0em 1em 0em !important;
-      padding: 0em 0em 1em 0em !important;
-      border-bottom: 1px solid var(--gray);
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-   }
+.blogs .content p {
+   font-weight: 400;
+   margin: 0;
+   font-size: 1.1em;
+   margin: 0em 0em 1em 0em !important;
+   padding: 0em 0em 1em 0em !important;
+   border-bottom: 1px solid var(--gray);
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}
 
-   /** ---- BLOGS END ---- */
+/** ---- BLOGS END ---- */
 
-   /** ---- CV START ---- */
+/** ---- CV START ---- */
 
-   .cv .content {
-      font-family: var(--font-serif), serif;
-      font-size: 2em;
-      align-items: center;
-      padding: 0em 0em 0em 0.5em !important;
-   }
+.cv .content {
+   font-family: var(--font-serif), serif;
+   font-size: 2em;
+   align-items: center;
+   padding: 0em 0em 0em 0.5em !important;
+}
 
-   .cv .content>h3 {
-      text-decoration: none;
-      font-size: 1em;
-      color: white;
-      font-weight: 400;
-      width: 100%;
-      height: 1.2em;
-      margin: 0em;
-      text-align: left;
-      position: relative;
-      overflow: hidden;
-   }
+.cv .content>h3 {
+   text-decoration: none;
+   font-size: 1em;
+   color: white;
+   font-weight: 400;
+   width: 100%;
+   height: 1.2em;
+   margin: 0em;
+   text-align: left;
+   position: relative;
+   overflow: hidden;
+}
 
-   /** ---- CV END ---- */
+/** ---- CV END ---- */
 
-   /** ---- CONTACT START ---- */
+/** ---- CONTACT START ---- */
 
-   .contact .content {
-      align-items: flex-end;
-      flex-direction: column;
-      padding-bottom: 100%;
-      padding: 1em 1em 0em 1em !important;
-      cursor: pointer;
-   }
+.contact .content {
+   align-items: flex-end;
+   flex-direction: column;
+   padding-bottom: 100%;
+   padding: 1em 1em 0em 1em !important;
+   cursor: pointer;
+}
 
-   .contact .content>div:nth-of-type(2) {
-      font-size: small;
-      width: 100%;
-      color: var(--gray);
-      order: 2;
-   }
+.contact .content>div:nth-of-type(2) {
+   font-size: small;
+   width: 100%;
+   color: var(--gray);
+   order: 2;
+}
 
-   .contact .content>div:nth-of-type(1) {
-      display: flex;
-      justify-content: flex-end;
-      margin-right: 1em;
-      height: 100%;
-      margin-right: 0em;
-      order: 1;
-   }
+.contact .content>div:nth-of-type(1) {
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 1em;
+   height: 100%;
+   margin-right: 0em;
+   order: 1;
+}
 
-   .contact .content>div:nth-of-type(1) h3 {
-      padding: 0 0.2em;
-      position: relative;
-      overflow: hidden;
-      color: white;
-      font-size: 2em;
-      font-weight: 400;
-      height: 1.4em;
-      margin: 0;
-   }
+.contact .content>div:nth-of-type(1) h3 {
+   padding: 0 0.2em;
+   position: relative;
+   overflow: hidden;
+   color: white;
+   font-size: 2em;
+   font-weight: 400;
+   height: 1.4em;
+   margin: 0;
+}
 
-   /** ---- CONTACT START ---- */
+/** ---- CONTACT START ---- */
 
-   /** ---- LINKS START ---- */
+/** ---- LINKS START ---- */
 
-   .links .content {
-      align-items: center;
-      width: 100%;
-      justify-content: center;
-      padding: 1em 0em 1em 0em !important;
-   }
+.links .content {
+   align-items: center;
+   width: 100%;
+   justify-content: center;
+   padding: 1em 0em 1em 0em !important;
+}
 
-   /** ---- LINKS END ---- */
+/** ---- LINKS END ---- */
 
 
 @media screen and (min-width: 600px) {
@@ -654,22 +651,15 @@
       0% {
          --angle: 0deg;
       }
+
       100% {
          --angle: 360deg;
       }
    }
 
-   .main>div:hover:after,
-   .main>div:hover:before {
+   .main>div:after {
       background: conic-gradient(from var(--angle) at 50% 50%,
-            rgb(251, 55, 60),
-         rgba(252, 114, 28, 1),
-         rgba(255, 220, 0, 1),
-         rgba(27, 206, 255, 1),
-         rgba(42, 107, 255, 1),
-         rgba(217, 41, 255, 1),
-         rgba(255, 10, 92, 1),
-         rgb(251, 55, 60));
+            transparent,transparent,transparent,transparent,transparent,transparent,transparent,transparent);
       position: absolute;
       top: -3px;
       left: -3px;
@@ -677,12 +667,27 @@
       height: calc(100% + 6px);
       border-radius: 7px;
       content: '';
+      opacity: 0
+   }
+
+   .main>div:hover:after,
+   .main>div:hover:before {
+      background: conic-gradient(from var(--angle) at 50% 50%,
+            rgb(251, 55, 60),
+            rgba(252, 114, 28, 1),
+            rgba(255, 220, 0, 1),
+            rgba(27, 206, 255, 1),
+            rgba(42, 107, 255, 1),
+            rgba(217, 41, 255, 1),
+            rgba(255, 10, 92, 1),
+            rgb(251, 55, 60));
       animation: rotate 1s linear infinite;
-      filter: blur(2em);
-      mask-image: conic-gradient(from calc(var(--start, 0) * 1deg),
+      opacity: 0.5;
+      transition: opacity 100ms linear;
+      mask-image: conic-gradient(from calc(var(--start) * 1deg),
             transparent 0deg,
             white,
-            transparent calc(var(--spread, 40) * 1deg))
+            transparent calc(var(--spread) * 1deg))
    }
 
    .content {

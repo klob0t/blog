@@ -1,12 +1,28 @@
-//src/app/components/ImageSlideshow/index.tsx
-//TrackedImage is used to track image loading on global context manager
 'use client'
 import { TrackedImage } from "@/app/lib/TrackedImage"
 import { useEffect, useState, memo, useRef } from 'react'
-// import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useLoading } from "@/app/lib/LoadingContext"
 import styles from './index.module.css'
+
+
+interface LoopConfig {
+   repeat?: number
+   paused?: boolean
+   speed?: number
+   snap?: boolean | number
+   paddingRight?: number
+   reversed?: boolean
+}
+
+interface ExtendedTimeline extends gsap.core.Timeline {
+   next: (vars?: gsap.TweenVars) => gsap.core.Tween
+   previous: (vars?: gsap.TweenVars) => gsap.core.Tween
+   current: () => number
+   toIndex: (index: number, vars?: gsap.TweenVars) => gsap.core.Tween
+   times: number[]
+}
+
 
 function SlideShow() {
    const [images, setImages] = useState<string[]>([])
@@ -39,97 +55,115 @@ function SlideShow() {
    }, [startLoading, finishLoading])
 
    useEffect(() => {
-        // Wait until the images are loaded and the refs are connected
-        if (images.length === 0 || !marqueeContentRef.current) return;
+      if (images.length === 0 || !marqueeContentRef.current) return;
 
-        // Make the helper function available in this scope
-        function horizontalLoop(items, config) {
-            items = gsap.utils.toArray(items);
-            config = config || {};
-            let tl = gsap.timeline({
-                repeat: config.repeat,
-                paused: false,
-                defaults: { ease: "none" },
-                onReverseComplete: () => tl.totalTime(tl.rawTime() + tl.duration() * 100)
-            });
-            let length = items.length,
-                startX = items[0].offsetLeft,
-                times = [],
-                widths = [],
-                xPercents = [],
-                curIndex = 0,
-                pixelsPerSecond = (config.speed || 1) * 100,
-                snap = config.snap === false ? v => v : gsap.utils.snap(config.snap || 1),
-                totalWidth, curX, distanceToStart, distanceToLoop, item, i;
-            gsap.set(items, {
-                xPercent: (i, el) => {
-                    let w = widths[i] = parseFloat(gsap.getProperty(el, "width", "px"));
-                    xPercents[i] = snap(parseFloat(gsap.getProperty(el, "x", "px")) / w * 100 + gsap.getProperty(el, "xPercent"));
-                    return xPercents[i];
-                }
-            });
-            gsap.set(items, { x: 0 });
-            totalWidth = items[length - 1].offsetLeft + xPercents[length - 1] / 100 * widths[length - 1] - startX + items[length - 1].offsetWidth * gsap.getProperty(items[length - 1], "scaleX") + (parseFloat(config.paddingRight) || 0);
-            for (i = 0; i < length; i++) {
-                item = items[i];
-                curX = xPercents[i] / 100 * widths[i];
-                distanceToStart = item.offsetLeft + curX - startX;
-                distanceToLoop = distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
-                tl.to(item, { xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond }, 0)
-                    .fromTo(item, { xPercent: snap((curX - distanceToLoop + totalWidth) / widths[i] * 100) }, { xPercent: xPercents[i], duration: (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond, immediateRender: false }, distanceToLoop / pixelsPerSecond)
-                    .add("label" + i, distanceToStart / pixelsPerSecond);
-                times[i] = distanceToStart / pixelsPerSecond;
+      function horizontalLoop(items: HTMLElement[], config: LoopConfig = {}) {
+         const elements = gsap.utils.toArray(items) as HTMLElement[]
+         const cfg = config;
+         const tl = gsap.timeline({
+            repeat: cfg.repeat,
+            paused: false,
+            defaults: { ease: "none" },
+            onReverseComplete() { if (tl) { tl.totalTime(tl.rawTime() + tl.duration() * 100); } }
+         });
+         const length = elements.length
+         const startX = elements[0].offsetLeft
+         const times: number[] = []
+         const widths: number[] = []
+         const xPercents: number[] = []
+         let curIndex: number = 0
+         const pixelsPerSecond = (cfg.speed || 1) * 100
+         const snap = cfg.snap === false
+            ? (v: number) => v
+            : gsap.utils.snap(typeof cfg.snap === 'number' ? cfg.snap : 1)
+         let curX: number, distanceToStart: number, distanceToLoop: number, item: HTMLElement, i: number
+         gsap.set(elements, {
+            xPercent: (i, el: HTMLElement) => {
+               const w = widths[i] = parseFloat(gsap.getProperty(el, "width", "px") as string)
+               const x = parseFloat(gsap.getProperty(el, 'x', 'px') as string)
+               const xp = parseFloat(gsap.getProperty(el, "xPercent") as string)
+               xPercents[i] = snap((x / w) * 100 + xp)
+               return xPercents[i];
             }
-            function toIndex(index, vars) {
-                vars = vars || {};
-                (Math.abs(index - curIndex) > length / 2) && (index += index > curIndex ? -length : length);
-                let newIndex = gsap.utils.wrap(0, length, index),
-                    time = times[newIndex];
-                if (time > tl.time() !== index > curIndex) {
-                    vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
-                    time += tl.duration() * (index > curIndex ? 1 : -1);
-                }
-                curIndex = newIndex;
-                vars.overwrite = true;
-                return tl.tweenTo(time, vars);
+         });
+         gsap.set(elements, { x: 0 });
+         const last = elements[length - 1]
+         const totalWidth = last.offsetLeft
+            + (xPercents[length - 1] / 100) * widths[length - 1]
+            - startX
+            + last.offsetWidth * (gsap.getProperty(last, "scaleX") as number)
+            + (cfg.paddingRight ?? 0)
+         for (i = 0; i < length; i++) {
+            item = elements[i];
+            curX = (xPercents[i] / 100) * widths[i];
+            distanceToStart = item.offsetLeft + curX - startX;
+            distanceToLoop = distanceToStart + widths[i] * (gsap.getProperty(item, "scaleX") as number);
+            tl.to(item, {
+               xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100), duration: distanceToLoop / pixelsPerSecond
+            }, 0).fromTo(item, {
+               xPercent: snap(((curX - distanceToLoop + totalWidth) / widths[i]) * 100)
+            },
+               {
+                  xPercent: xPercents[i],
+                  duration: (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond,
+                  immediateRender: false
+               },
+               distanceToLoop / pixelsPerSecond)
+               .add("label" + i, distanceToStart / pixelsPerSecond);
+            times[i] = distanceToStart / pixelsPerSecond;
+         }
+         function toIndex(index: number, vars: gsap.TweenVars = {}) {
+            if (Math.abs(index - curIndex) > length / 2) {
+               (index += index > curIndex ? -length : length)
+            };
+            const newIndex = gsap.utils.wrap(0, length, index)
+            let time = times[newIndex];
+            if (time > tl.time() !== index > curIndex) {
+               vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
+               time += tl.duration() * (index > curIndex ? 1 : -1);
             }
-            tl.next = vars => toIndex(curIndex + 1, vars);
-            tl.previous = vars => toIndex(curIndex - 1, vars);
-            tl.current = () => curIndex;
-            tl.toIndex = (index, vars) => toIndex(index, vars);
-            tl.times = times;
-            tl.progress(1, true).progress(0, true);
-            if (config.reversed) {
-                tl.vars.onReverseComplete();
-                tl.reverse();
-            }
-            // Pause on hover
-            if (config.paused) {
-                 let mainContainer = marqueeContainerRef.current;
-                 if (mainContainer) {
-                    mainContainer.addEventListener("mouseenter", () => tl.pause());
-                    mainContainer.addEventListener("mouseleave", () => tl.play());
-                 }
-            }
-            return tl;
-        }
+            curIndex = newIndex;
+            vars.overwrite = true;
+            return tl.tweenTo(time, vars);
+         }
+         (tl as ExtendedTimeline).next = (vars?: gsap.TweenVars) => toIndex(curIndex + 1, vars);
+         (tl as ExtendedTimeline).previous = (vars?: gsap.TweenVars) => toIndex(curIndex - 1, vars);
+         (tl as ExtendedTimeline).current = () => curIndex;
+         (tl as ExtendedTimeline).toIndex = (index: number, vars?: gsap.TweenVars) => toIndex(index, vars);
+         (tl as ExtendedTimeline).times = times;
+         void tl.progress(1, true)
+         void tl.progress(0, true);
+         if (cfg.reversed) {
+            (tl.vars.onReverseComplete as () => void)?.();
+            tl.reverse();
+         }
 
-        // Select all the image cards to be animated
-        const boxes = gsap.utils.toArray(marqueeContentRef.current.children);
-        
-        // Initialize the loop
-        const loop = horizontalLoop(boxes, {
-          repeat: -1,
-          speed: 0.5, // Adjust speed as needed
-          paused: true // Start paused and let the hover events control it
-        });
-        
-        // This is a cleanup function that runs when the component unmounts
-        return () => {
-          loop.kill(); // Kill the timeline to prevent memory leaks
-        }
+         if (cfg.paused) {
+            const mainContainer = marqueeContainerRef.current;
+            if (mainContainer) {
+               mainContainer.addEventListener("mouseenter", () => tl.pause());
+               mainContainer.addEventListener("mouseleave", () => tl.play());
+            }
+         }
+         return tl;
+      }
 
-    }, [images])
+
+      const boxes = gsap.utils.toArray(marqueeContentRef.current.children) as HTMLElement[];
+
+
+      const loop = horizontalLoop(boxes, {
+         repeat: -1,
+         speed: 0.5,
+         paused: true
+      });
+
+
+      return () => {
+         loop?.kill();
+      }
+
+   }, [images])
 
 
    return (
