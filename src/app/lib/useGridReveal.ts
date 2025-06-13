@@ -1,20 +1,14 @@
 'use client'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
-import { RefObject, useRef, useEffect } from 'react'
-import { useLoading } from './LoadingContext'
+import { RefObject } from 'react'
+import { useLoading } from '@/app/lib/LoadingContext'
+import { usePrevious } from "@/app/components/AppWrapper"
 
-function usePrevious<T>(value: T): T | undefined {
-   const ref = useRef<T>();
-   useEffect(() => {
-      ref.current = value;
-   });
-   return ref.current;
-}
 
 export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
 
-   const { startLoading, finishLoading, isAppLoading } = useLoading()
+   const { isAppLoading } = useLoading()
    const prevIsAppLoading = usePrevious(isAppLoading)
 
    useGSAP(() => {
@@ -24,30 +18,28 @@ export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
 
       if (prevIsAppLoading === true && !isAppLoading) {
          gsap.set(gridItems, {
-         opacity: 0,
-         scale: 1,
-         translateY: 20,
-         filter: 'blur(1em)'
-      })
+            opacity: 0,
+            scale: 1,
+            translateY: 20,
+            filter: 'blur(1em)'
+         })
 
-      gsap.to(gridItems, {
-         opacity: 1,
-         scale: 1,
-         filter: 'blur(0em)',
-         duration: 1,
-         translateY: 0,
-         ease: 'power4.out',
-         stagger: 0.1,
-         delay: 0.7,
-         onComplete: () => {
-            gsap.set(gridItems, {
-               transform: 'unset',
-               zIndex: 2,
-            })
-         }
-      })}
-   }, {
-      scope,
-      dependencies: [isAppLoading]
-   })
+         gsap.to(gridItems, {
+            opacity: 1,
+            scale: 1,
+            filter: 'blur(0em)',
+            duration: 1,
+            translateY: 0,
+            ease: 'power4.out',
+            stagger: 0.1,
+            delay: 0.7,
+            onComplete: () => {
+               gsap.set(gridItems, {
+                  transform: 'unset',
+                  zIndex: 2,
+               })
+            }
+         })
+      }
+   }, { scope, dependencies: [isAppLoading] })
 }

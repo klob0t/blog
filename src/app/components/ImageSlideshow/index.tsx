@@ -5,15 +5,7 @@ import { gsap } from 'gsap'
 import { useLoading } from "@/app/lib/LoadingContext"
 import styles from './index.module.css'
 import { useGSAP } from "@gsap/react"
-
-function usePrevious<T>(value: T): T | undefined {
-    const ref = useRef<T>();
-    useEffect(() => {
-        ref.current = value;
-    });
-    return ref.current;
-}
-
+import { usePrevious } from "@/app/components/AppWrapper"
 
 interface LoopConfig {
    repeat?: number

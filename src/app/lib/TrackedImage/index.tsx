@@ -1,62 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 'use client'
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useRef, useCallback, SyntheticEvent } from 'react'
@@ -64,9 +5,12 @@ import { useLoading } from '@/app/lib/LoadingContext'
 
 type OnLoadingComplete = (img: HTMLImageElement) => void
 
-interface TrackedImageProps extends ImageProps {
+type NextImageOnLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => void;
+type NextImageOnError = (event: SyntheticEvent<HTMLImageElement, Event>) => void;
+
+interface TrackedImageProps extends Omit<ImageProps, 'onLoad' | 'onError'> {
   onLoad?: OnLoadingComplete
-  onError?: (event: SyntheticEvent<HTMLImageElement, Event>) => void
+  onError?: NextImageOnError
 }
 
 export const TrackedImage = (props: TrackedImageProps) => {
@@ -99,15 +43,15 @@ export const TrackedImage = (props: TrackedImageProps) => {
     
   }, [src, startLoading, handleFinish, loaderId])
 
-  const handleLoadingComplete: OnLoadingComplete = (img) => {
+  const handleLoadingComplete: NextImageOnLoad = (event) => {
     handleFinish()
     
     if (onLoad) {
-      onLoad(img)
+      onLoad(event.currentTarget)
     }
   }
 
-  const handleError = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleError: NextImageOnError = (event) => {
     handleFinish()
     
     if (onError) {

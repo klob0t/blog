@@ -6,9 +6,8 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/navigation'
 
-// CORRECTED: This hook now correctly reports 'undefined' on the first render.
-function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
+export function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T | undefined>(undefined);
   useEffect(() => {
     ref.current = value;
   });

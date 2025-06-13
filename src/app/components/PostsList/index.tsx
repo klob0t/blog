@@ -6,16 +6,10 @@ import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useLoading } from '@/app/lib/LoadingContext'
 import { useSplitTextAnimation } from '@/app/lib/useSplitTextAnimation'
+import { usePrevious } from "@/app/components/AppWrapper"
 
 gsap.registerPlugin(SplitText)
 
-function usePrevious<T>(value: T): T | undefined {
-   const ref = useRef<T>();
-   useEffect(() => {
-      ref.current = value;
-   });
-   return ref.current;
-}
 
 interface PostMetadata {
    title: string
