@@ -34,6 +34,15 @@
     transition: transform 0.3s ease-in-out;
 }
 
+.cover {
+    position:absolute;
+    top: 0; left: -1px;
+    width: calc(100% + 2px);
+    border: 1px solid black;
+    content: '';
+    z-index: 2;
+}
+
 
 @media (min-width: 768px) {
     .imageWrapper {

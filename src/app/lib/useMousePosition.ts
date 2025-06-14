@@ -1,8 +1,6 @@
 'use client'
 import { useState, useEffect, RefObject, useRef } from 'react'
 
-// const ease = (t: number): number => 1 - Math.pow(1 - t, 3)
-
 export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
 
    const [childRects, setChildRects] = useState<DOMRect[]>([])
@@ -49,7 +47,7 @@ export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
                mouseY >= rect.top &&
                mouseY <= rect.bottom
             ) {
-               const spreadVal = 120
+               const spreadVal = 250
                const w_half = rect.width / 2
                const h_half = rect.height / 2
                const centerX = rect.left + w_half
@@ -99,33 +97,3 @@ export function useMousePositionToVar(ref: RefObject<HTMLElement | null>) {
 
    return
 }
-
-// export function useMousePosition(ref: RefObject<HTMLElement | null>): Coordinates | null {
-//    const [coordinates, setCoordinates] = useState<Coordinates | null>(null)
-
-
-//    useEffect(() => {
-//       const element = ref.current
-//       if (!element) return
-
-
-//       const handleMouseMove = (e: MouseEvent) => {
-//          const x = Math.round(e.clientX)
-//          const y = Math.round(e.clientY)
-//          setCoordinates({ x, y })
-//          document.documentElement.style.setProperty('--x', x.toString())
-//          document.documentElement.style.setProperty('--y', y.toString())
-//       }
-
-//       const handleMouseLeave = () => {
-//          setCoordinates(null)
-//          document.documentElement.style.setProperty('--x', '0')
-//          document.documentElement.style.setProperty('--y', '0')
-//       }
-//       element.addEventListener('mousemove', handleMouseMove)
-//       element.addEventListener('mouseleave', handleMouseLeave)
-
-//    }, [ref])
-
-//    return coordinates
-// }

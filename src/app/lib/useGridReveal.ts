@@ -2,13 +2,13 @@
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { RefObject } from 'react'
-import { useLoading } from '@/app/lib/LoadingContext'
-import { usePrevious } from "@/app/components/AppWrapper"
+import { useLoadingStore } from '@/app/lib/store/loadingStore'
+import { usePrevious } from "@/app/lib/usePrevious"
 
 
 export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
 
-   const { isAppLoading } = useLoading()
+   const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
    const prevIsAppLoading = usePrevious(isAppLoading)
 
    useGSAP(() => {
@@ -19,27 +19,20 @@ export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
       if (prevIsAppLoading === true && !isAppLoading) {
          gsap.set(gridItems, {
             opacity: 0,
-            scale: 1,
             translateY: 20,
-            filter: 'blur(1em)'
          })
 
 
          gsap.to(gridItems, {
             opacity: 1,
-            scale: 1,
-            filter: 'blur(0em)',
             duration: 1,
             translateY: 0,
             ease: 'power4.out',
-            stagger: 0.1,
-            delay: 0.7,
-            onComplete: () => {
-               gsap.set(gridItems, {
-                  transform: 'unset',
-                  zIndex: 2,
-               })
-            }
+            stagger: {
+               each: 0.1,
+               from: 'start',
+            },
+            delay: 1.1
          })
       }
    }, { scope, dependencies: [isAppLoading] })

@@ -1,7 +1,7 @@
 'use client'
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useRef, useCallback, SyntheticEvent } from 'react'
-import { useLoading } from '@/app/lib/LoadingContext'
+import { useLoadingStore } from '@/app/lib/store/loadingStore'
 
 type OnLoadingComplete = (img: HTMLImageElement) => void
 
@@ -14,7 +14,7 @@ interface TrackedImageProps extends Omit<ImageProps, 'onLoad' | 'onError'> {
 }
 
 export const TrackedImage = (props: TrackedImageProps) => {
-  const { startLoading, finishLoading } = useLoading()
+  const { startLoading, finishLoading } = useLoadingStore()
   
   const { onLoad, onError, alt = '', src, ...rest } = props
   

@@ -2,10 +2,10 @@
 import { TrackedImage } from "@/app/lib/TrackedImage"
 import { useEffect, useState, memo, useRef } from 'react'
 import { gsap } from 'gsap'
-import { useLoading } from "@/app/lib/LoadingContext"
+import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import styles from './index.module.css'
 import { useGSAP } from "@gsap/react"
-import { usePrevious } from "@/app/components/AppWrapper"
+import { usePrevious } from "@/app/lib/usePrevious"
 
 interface LoopConfig {
    repeat?: number
@@ -27,7 +27,8 @@ interface ExtendedTimeline extends gsap.core.Timeline {
 
 function SlideShow() {
    const [images, setImages] = useState<string[]>([])
-   const { startLoading, finishLoading, isAppLoading } = useLoading()
+   const { startLoading, finishLoading } = useLoadingStore()
+   const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
    const prevIsAppLoading = usePrevious(isAppLoading)
 
    const marqueeContainerRef = useRef<HTMLDivElement>(null)
@@ -59,21 +60,19 @@ function SlideShow() {
    useGSAP(() => {
       if (!marqueeContentRef.current) return
       if (prevIsAppLoading === true && !isAppLoading && images.length > 0) {
-         const boxes = Array.from(marqueeContentRef.current.children)
+         const boxes = gsap.utils.toArray('.cover-item', marqueeContentRef.current)
+         console.log(boxes)
          gsap.fromTo(boxes, {
-            scaleY: 0,
-            opacity: 0
+            height: '100%',
+            backgroundColor: 'black'
          }, {
-            scaleY: 1,
-            opacity: 1,
-            // We can reduce the delay now since we're already waiting for the load
-            delay: 0.85,
+            height: '0%',
+            delay: 1.3,
             stagger: 0.05,
-            ease: 'power3.out'
+            ease: 'power2.inOut',
          })
       }
 
-      // FIXED: The animation is now dependent on the loading state and images array.
    }, { dependencies: [isAppLoading, images] })
 
    useEffect(() => {
@@ -192,7 +191,7 @@ function SlideShow() {
                   key={index}
                   className={styles.imageCard}>
                   <div className={styles.imageWrapper}>
-                     <div></div>
+                     <div className={`${styles.cover} cover-item`}></div>
                      <TrackedImage
                         src={src}
                         fill

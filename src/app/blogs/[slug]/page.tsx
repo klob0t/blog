@@ -6,7 +6,7 @@ import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
 import Logo from '@/app/components/logo'
 import { PreBlock, MarkdownImage } from '@/app/components/MarkdownOverrides'
-import { useLoading } from '@/app/lib/LoadingContext'
+import { useLoadingStore } from '@/app/lib/store/loadingStore'
 
 interface PostData {
    title: string
@@ -24,7 +24,7 @@ const markdownOptions = {
 export default function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
    const [post, setPost] = useState<PostData | null>(null)
    const [error, setError] = useState<string | null>(null)
-   const { startLoading, finishLoading } = useLoading()
+   const { startLoading, finishLoading } = useLoadingStore()
 
    const { slug } = use(params)
 

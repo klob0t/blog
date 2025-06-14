@@ -4,9 +4,9 @@ import { useState, useEffect, memo, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
-import { useLoading } from '@/app/lib/LoadingContext'
 import { useSplitTextAnimation } from '@/app/lib/useSplitTextAnimation'
-import { usePrevious } from "@/app/components/AppWrapper"
+import { useLoadingStore } from '@/app/lib/store/loadingStore'
+import { usePrevious } from "@/app/lib/usePrevious"
 
 gsap.registerPlugin(SplitText)
 
@@ -18,7 +18,8 @@ interface PostMetadata {
 }
 function PostsListComponent() {
    const [posts, setPosts] = useState<PostMetadata[]>([])
-   const { startLoading, finishLoading, isAppLoading } = useLoading()
+   const { startLoading, finishLoading } = useLoadingStore()
+   const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
    const prevIsAppLoading = usePrevious(isAppLoading);
    const ref = useRef<HTMLParagraphElement>(null)
    useSplitTextAnimation(ref)
@@ -57,7 +58,7 @@ function PostsListComponent() {
                   ease: 'power2.out',
                }, "<0.000001");
             });
-         }, 1000)
+         }, 1300)
       }
 
       return () => {

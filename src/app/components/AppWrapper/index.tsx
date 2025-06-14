@@ -1,26 +1,23 @@
 'use client'
-import { useLoading } from '@/app/lib/LoadingContext'
+import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import Loading from '@/app/components/LoadingPage'
 import { ReactNode, useRef, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/navigation'
-
-export function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T | undefined>(undefined);
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
+import { usePrevious } from '@/app/lib/usePrevious'
 
 
 export default function AppWrapper({ children }: { children: ReactNode }) {
-  const { isAppLoading } = useLoading()
+  const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
   const loaderRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const prevIsAppLoading = usePrevious(isAppLoading);
-  const router = useRouter();
+  const prevIsAppLoading = usePrevious(isAppLoading)
+  const router = useRouter()
+
+  useEffect(() => {
+    useLoadingStore.getState().finishLoading('initial-page-load')
+  })
 
   
   useEffect(() => {
@@ -42,14 +39,13 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
         display: 'block',
         duration: 0.4,
         ease: 'power3.inOut',
-        borderRadius: '0%',
         onComplete: () => {
           router.push(href)
         }
       })
       gsap.to(content, {
         filter: 'blur(1em)',
-        delay: 0.3,
+        delay: 0,
         ease: 'power3.inOut',
       })
     }
@@ -65,15 +61,12 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
     if (!loader || !content) return
 
     
-    
     if (prevIsAppLoading === true && !isAppLoading) {
       gsap.to(loader, {
         y: '-110%',
         duration: 0.8,
-        borderBottomLeftRadius: '100%',
-        borderBottomRightRadius: '100%',
         ease: 'power3.inOut',
-        delay: 0.2,
+        delay: 1,
         onComplete: () => {
           gsap.set(loader, {
             display: 'none',
@@ -82,7 +75,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
       })
       gsap.to(content, {
         filter: 'blur(0em)',
-        delay: 0.3,
+        delay: 1.1,
         ease: 'power3.inOut',
       })
     }
