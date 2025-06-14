@@ -14,6 +14,7 @@ export function usePrevious<T>(value: T): T | undefined {
   return ref.current;
 }
 
+
 export default function AppWrapper({ children }: { children: ReactNode }) {
   const { isAppLoading } = useLoading()
   const loaderRef = useRef<HTMLDivElement>(null)
@@ -21,7 +22,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
   const prevIsAppLoading = usePrevious(isAppLoading);
   const router = useRouter();
 
-  // This link-hijacking logic is okay. No changes needed here.
+  
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
       const targetElement = event.target as HTMLElement
@@ -63,8 +64,8 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
     const content = contentRef.current
     if (!loader || !content) return
 
-    // This condition is now safe. It will only be true when the state
-    // explicitly transitions from 'true' to 'false'.
+    
+    
     if (prevIsAppLoading === true && !isAppLoading) {
       gsap.to(loader, {
         y: '-110%',
@@ -85,19 +86,19 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
         ease: 'power3.inOut',
       })
     }
-    // Set the initial blur state with GSAP to avoid flickers
+    
     else if (prevIsAppLoading === undefined && isAppLoading) {
         gsap.set(content, { filter: 'blur(1em)' });
     }
 
-  // CORRECTED: The effect should only depend on the actual state value.
+  
   }, { dependencies: [isAppLoading] })
 
   return (
     <>
       <div
         ref={loaderRef}
-        // ... loader styles are okay
+        
         style={{
             position: 'fixed',
             top: 0,
@@ -115,7 +116,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
 
       <div
         ref={contentRef}
-        // We can remove the blur from here, GSAP will handle it.
+        
         style={{
           opacity: 1,
         }}

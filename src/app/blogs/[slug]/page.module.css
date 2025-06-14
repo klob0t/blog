@@ -42,6 +42,8 @@
    width: 70% !important;
    border: 1px solid var(--gray);
    border-radius: 7px;
+   margin: 0 auto;
+   display: block;
 }
 
 .meta {

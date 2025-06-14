@@ -24,6 +24,7 @@ export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
             filter: 'blur(1em)'
          })
 
+
          gsap.to(gridItems, {
             opacity: 1,
             scale: 1,
