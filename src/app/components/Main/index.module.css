@@ -53,21 +53,21 @@
    gap: 0.5em;
    grid-template-areas:
       " A A A A A A A A A A A A "
-      
-
-      " B B B B B B B C C C C C "
-      " B B B B B B B C C C C C "
-      " B B B B B B B C C C C C "
-      " B B B B B B B C C C C C "
 
 
+      " B B B B B B B C C C C C "
+      " B B B B B B B C C C C C "
+      " B B B B B B B C C C C C "
+      " B B B B B B B C C C C C "
+
+
       " D D D D D D D C C C C C "
       " D D D D D D D C C C C C "
       " D D D D D D D C C C C C "
-      
+
       " D D D D D D D C C C C C "
       " D D D D D D D C C C C C "
-   
+
 
 
       " H H H H H H H H H H H H "
@@ -200,6 +200,11 @@
    object-fit: cover;
    object-position: 50% 40%;
    border-radius: 7px;
+}
+
+.photo .content {
+
+   overflow: hidden
 }
 
 /** ---- PHOTO END ---- */
@@ -649,7 +654,7 @@
 
    .main>div:after {
       background: conic-gradient(from var(--angle) at 50% 50%,
-            transparent,transparent,transparent,transparent,transparent,transparent,transparent,transparent);
+            transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent);
       position: absolute;
       top: -3px;
       left: -3px;
@@ -755,6 +760,13 @@
       object-fit: cover;
       object-position: 50% 50%;
       border-radius: 7px;
+   }
+
+   .photo .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
    }
 
    /** ---- PHOTO END ---- */

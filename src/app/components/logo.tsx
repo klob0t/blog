@@ -1,6 +1,12 @@
-export default function Logo() {
+import { forwardRef } from "react"
+
+type LogoProps = {
+  children?: React.ReactNode;
+};
+
+export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
    return (
-      <div>
+      <div ref={ref}>
          <svg width="100%" height="100%" viewBox="0 0 4166.67 4166.67" version="1.1" xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve"
             style={{
@@ -44,4 +50,5 @@ export default function Logo() {
          </svg>
       </div>
    )
-}
+})
+Logo.displayName = 'logo'

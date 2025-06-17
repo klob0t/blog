@@ -1,10 +1,34 @@
 ---
-title: 'This Website Is Now in TypeScript!'
+title: 'Pimping My Portfolio Page'
 date: '2025-06-15'
 author: 'klob0t'
 ---
 
+It's been a year since I build my website. At that time I was looking for a way to showcase my personal projects and freelance works in product design and engineering. I didn't want to just make a static portfolio file to send to potential clients. I want to have a somewhat professional looking landing page that have all my information of my past works. 
+
+Having myself taught HTML and CSS back in my junior high school (I used to have tumblr blog which has 0 original content). I began building my own page.
+
+It has all I needed; photos of my product design and engineering works, a blog posts, a link to my curriculum vitae. All things client would need to collaborate with me.
+
+It was my magnum opus of web design. I put every interactions and effects there; mouse trail, tilting cards, moving SVG, text scramble. Maybe it's just how someone that is just recently know something do (wanting to show everything he created).
+
+But as the year went by, I look at my current blog not as good as it used to be. Opening it on mobile device is not pleasant, some of the elements are broken, too many visual noise that distracts the visitor from the content. 
+
+Now that I have matured (by 1 year) I want just simple things. So does with how my blog appearance.
+
+---
+
+## Thoughtful
+
+I don't want to put any effects just because it is cool. I want all of the visual candies on my blog has its purpose; to guide your eyes toward, not to distract.
+
+Some of distracting elements are also pulled back, making the visitor get as much info at a glance.
+
+
+
+
 > ### _Because (type) safety can be fun!_
+
 
 That's a slogan from a renowned condom brand. Their condom even has some flavor for some apparent reason...
 

@@ -75,3 +75,10 @@ def get_data():
 if __name__ == '__main__':
     app.run(debug=True)
 ```
+
+Diff
+
+```diff
+- import Link from 'next/link'
++ import TrackedImage from '@/app/components/TrackedImage'
+```

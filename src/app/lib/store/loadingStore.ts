@@ -18,5 +18,7 @@ export const useLoadingStore = create<LoadingState>((set) => ({
    finishLoading: (id = 'unidentified') => {
       console.log(`%c <- finishLoading called from: [${id}]`, 'color: lightgreen')
       set((state) => ({ activeLoaders: Math.max(0, state.activeLoaders - 1) }))
+   
    }
+
 }))

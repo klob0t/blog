@@ -162,7 +162,7 @@ function SlideShow() {
          if (cfg.paused) {
             const mainContainer = marqueeContainerRef.current;
             if (mainContainer) {
-               mainContainer.addEventListener("mouseenter", () => tl.pause());
+
                mainContainer.addEventListener("mouseleave", () => tl.play());
             }
          }
@@ -195,6 +195,7 @@ function SlideShow() {
                      <TrackedImage
                         src={src}
                         fill
+                        sizes='500px'
                         alt={`Image ${index + 1}`}
                      />
                   </div>

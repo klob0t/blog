@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
-import Logo from '@/app/components/logo'
+import {Logo} from '@/app/components/logo'
 import { PreBlock, MarkdownImage } from '@/app/components/MarkdownOverrides'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 

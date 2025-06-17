@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import { usePrevious } from '@/app/lib/usePrevious'
-import Logo from '@/app/components/logo'
+import{ Logo } from '@/app/components/logo'
 
 export default function Loading() {
    const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)

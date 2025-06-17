@@ -2,8 +2,8 @@
 import styles from "./index.module.css";
 import { TextScramble, TextScrambleHover } from "@/app/components/TextScramble";
 import Link from 'next/link'
-import Logo from "@/app/components/logo"
-import { TrackedImage } from '@/app/lib/TrackedImage'
+import { Logo } from "@/app/components/logo"
+// import { TrackedImage } from '@/app/lib/TrackedImage'
 import { useMousePositionToVar } from "@/app/lib/useMousePosition";
 import { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,7 +14,8 @@ import { BackgroundPixel } from "@/app/components/Background";
 import { useSplitTextAnimation } from "@/app/lib/useSplitTextAnimation";
 import BlogPostsList from "@/app/components/PostsList"
 import { useGridReveal } from '@/app/lib/useGridReveal'
-import ImageSlideshow from "../ImageSlideshow";
+import ImageSlideshow from "@/app/components/ImageSlideshow"
+import PhotoCard from "@/app/components/PhotoCard";
 
 library.add(faInstagram, faTwitter, faLinkedin, faGithub)
 
@@ -30,6 +31,7 @@ export default function MainPage() {
   const pageRef = useRef<HTMLDivElement>(null)
   const linkRef1 = useRef<HTMLHeadingElement>(null)
   const linkRef2 = useRef<HTMLParagraphElement>(null)
+  const linkRef5 = useRef<HTMLParagraphElement>(null)
   const linkRef3 = useRef<HTMLHeadingElement>(null)
   const linkRef4 = useRef<HTMLHeadingElement>(null)
   useMousePositionToVar(mainRef)
@@ -38,10 +40,12 @@ export default function MainPage() {
   useSplitTextAnimation(linkRef2)
   useSplitTextAnimation(linkRef3)
   useSplitTextAnimation(linkRef4)
+  useSplitTextAnimation(linkRef5)
 
   return (
     <div className={styles.page} ref={pageRef}>
       <BackgroundPixel />
+
       <div className={styles.logo}>
         <Logo />
       </div>
@@ -53,7 +57,9 @@ export default function MainPage() {
               <Link href='https://chloethinks.vercel.app' target='_blank' >
                 <p ref={linkRef1}>Chloe</p></Link> &nbsp;&nbsp;&nbsp;&nbsp;
               <Link href='https://unangifier.vercel.app' target='_blank'>
-                <p ref={linkRef2}>Unangifier</p></Link>
+                <p ref={linkRef2}>Unangifier</p></Link> &nbsp;&nbsp;&nbsp;&nbsp;
+              <Link href='https://thoughtilets.vercel.app' target='_blank'>
+                <p ref={linkRef5}>thoughtilets</p></Link>
             </div></div>
         </div>
         <div className={`${styles.greeting} grid-item`}>
@@ -61,13 +67,8 @@ export default function MainPage() {
             <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
         </div>
         <div className={`${styles.photo} grid-item`}>
-          <div className={styles.content}>
-            <TrackedImage
-              src='/images/profPict.jpg'
-              alt='profile picture'
-              fill
-              quality={75}
-            /></div>
+            <div className={styles.content}>
+              <PhotoCard/></div>
         </div>
         <div className={`${styles.works} grid-item`}>
           <div className={styles.content}>
