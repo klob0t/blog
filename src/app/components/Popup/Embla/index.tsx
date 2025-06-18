@@ -12,8 +12,7 @@ import {
   usePrevNextButtons
 } from './ArrowButtons'
 import { DotButton, useDotButton } from './DotButton'
-import { TrackedImage } from '@/app/lib/TrackedImage' // <-- Import your TrackedImage
-
+import { TrackedImage } from '@/app/lib/TrackedImage'
 const TWEEN_FACTOR_BASE = 0.52
 
 const numberWithinRange = (number: number, min: number, max: number): number =>

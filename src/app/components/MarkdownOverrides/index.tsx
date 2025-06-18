@@ -10,7 +10,12 @@ interface CodeBlockProps {
    children: React.ReactNode
 }
 
-const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
+interface EditorCodeBlockProps {
+   language?: string
+   code: string
+}
+
+export const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
    const [isMounted, setIsMounted] = useState(false)
 
    useEffect(() => {
@@ -69,6 +74,59 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
    )
 }
 
+export const EditorCodeBlock: React.FC<EditorCodeBlockProps> = ({ language, code }) => {
+   const [isMounted, setIsMounted] = useState(false)
+
+   useEffect(() => {
+      setIsMounted(true)
+   }, [])
+
+
+   if (!isMounted) {
+      return (
+         <pre>
+            <code>{code}</code>
+         </pre>
+      )
+   }
+
+   const customTheme = {
+      ...atomOneDarkReasonable,
+      'hljs': {
+         backgroundColor: 'black'
+      },
+      'hljs-comment': { fontStyle: 'italic' },
+   }
+
+   const lineNumStyles = {
+      color: 'var(--gray)'
+   }
+
+   const preTagStyles: CSSProperties = {
+      backgroundColor: 'transparent',
+      padding: '0 0em 1em 1em',
+      marginLeft: 0,
+      marginBottom: 0,
+      overflowX: 'auto',
+   }
+
+   return (
+      <div className={styles.wrapper}>
+         <p>{language}</p>
+         <SyntaxHighlighter
+            showInlineLineNumbers={true}
+            showLineNumbers={true}
+            lineNumberStyle={lineNumStyles}
+            language={language || 'text'}
+            customStyle={preTagStyles}
+            style={customTheme}
+            PreTag='pre'>
+            {code}
+         </SyntaxHighlighter>
+      </div>
+   )
+}
+
 export const PreBlock = ({ children }: { children: React.ReactNode }) => {
    if (React.isValidElement(children) && children.type === 'code') {
       return <CodeBlock {...children.props as CodeBlockProps} />
@@ -83,7 +141,7 @@ interface MarkdownImageProps {
 
 export const MarkdownImage = ({ src, alt = '' }: MarkdownImageProps) => {
    const [hasError, setHasError] = useState(false)
-   
+
    if (!src) {
       return null
    }
