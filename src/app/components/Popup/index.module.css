@@ -1,0 +1,41 @@
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100%;
+  backdrop-filter: blur(0.5em);
+}
+
+.popup {
+  position: relative;
+  border-radius: 7px;
+  width: 100%;
+  height: 95%;
+  max-width: 1200px;
+  /* We remove padding here because the carousel itself will have it */
+}
+
+.popup img {
+  border-radius: 7px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1010;
+}

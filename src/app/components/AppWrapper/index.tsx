@@ -6,7 +6,8 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/navigation'
 import { usePrevious } from '@/app/lib/usePrevious'
-
+import { usePopupStore } from '@/app/lib/store/popupStore'
+import CarouselPopup from '@/app/components/Popup'
 
 export default function AppWrapper({ children }: { children: ReactNode }) {
   const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
@@ -14,12 +15,14 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
   const contentRef = useRef<HTMLDivElement>(null)
   const prevIsAppLoading = usePrevious(isAppLoading)
   const router = useRouter()
+  const { isOpen, images, closePopup } = usePopupStore()
+  const { finishLoading } = useLoadingStore()
 
   useEffect(() => {
-    useLoadingStore.getState().finishLoading('initial-page-load')
-  })
+    finishLoading('Initial Page Load')
+  },[finishLoading])
 
-  
+
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
       const targetElement = event.target as HTMLElement
@@ -60,7 +63,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
     const content = contentRef.current
     if (!loader || !content) return
 
-    
+
     if (prevIsAppLoading === true && !isAppLoading) {
       gsap.to(loader, {
         y: '-110%',
@@ -79,43 +82,43 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
         ease: 'power3.inOut',
       })
     }
-    
+
     else if (prevIsAppLoading === undefined && isAppLoading) {
-        gsap.set(content, { filter: 'blur(1em)' });
+      gsap.set(content, { filter: 'blur(1em)' });
     }
 
-  
+
   }, { dependencies: [isAppLoading] })
 
   return (
     <>
       <div
         ref={loaderRef}
-        
         style={{
-            position: 'fixed',
-            top: 0,
-            left: '-50%',
-            width: '200%',
-            height: '100%',
-            zIndex: 9999,
-            overflow: 'hidden',
-            display: 'block',
-            transform: 'translateY(0%)'
-        }}
-      >
+          position: 'fixed',
+          top: 0,
+          left: '-50%',
+          width: '200%',
+          height: '100%',
+          zIndex: 9999,
+          overflow: 'hidden',
+          display: 'block',
+          transform: 'translateY(0%)'
+        }}>
         <Loading />
       </div>
-
       <div
         ref={contentRef}
-        
         style={{
           opacity: 1,
-        }}
-      >
+        }}>
         {children}
       </div>
+      <CarouselPopup
+        isOpen={isOpen}
+        onClose={closePopup}
+        images={images}
+      />
     </>
   )
 }

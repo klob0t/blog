@@ -1,0 +1,129 @@
+.embla {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  --slide-height: 20rem;
+  --slide-spacing: 0rem;
+  /* --- FIX 1: Change slide size to show adjacent slides --- */
+  /* Was 100%, now 80%. Adjust this value to your liking. */
+  --slide-size: 80%;
+}
+.embla__viewport {
+  overflow: hidden;
+  width: 100%; height: 100%;
+}
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+  height: 100%;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.embla__slide__img-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+  justify-content: center;
+  width: 80%;
+  max-height: 90%;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 50px black;
+}
+
+.embla__controls {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-content: space-around;
+  gap: 0.4rem;
+  margin-top: 1.8rem;
+  position: absolute; /* Position controls over the carousel */
+  bottom: 0rem;
+  left: 0;
+  right: 0;
+  padding: 1em 0em 0em 0em;
+  place-items: center;
+  width: 100%;
+}
+
+.embla__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.embla__button {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0;
+  margin: 0;
+  width: 2rem;
+  height: 2rem;
+  z-index: 1;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.embla__button:disabled {
+  color: #555;
+  background-color: rgba(0,0,0,0.3);
+  cursor: default;
+}
+.embla__button__svg {
+  width: 35%;
+  height: 35%;
+}
+
+.embla__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.embla__dot {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.embla__dot:after {
+  background-color: #555; /* Inactive dot color */
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  content: '';
+}
+.embla__dot--selected:after {
+  background-color: white; /* Active dot color */
+}

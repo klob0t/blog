@@ -107,15 +107,7 @@ export const BackgroundPixel = () => {
     <div className={styles.container}>
     <canvas
       ref={canvasRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: -1, 
-        backgroundColor: '#000'
-      }}
+      className={styles.canvasRef}
     />
     </div>
   )

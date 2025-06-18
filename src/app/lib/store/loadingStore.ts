@@ -20,5 +20,8 @@ export const useLoadingStore = create<LoadingState>((set) => ({
       set((state) => ({ activeLoaders: Math.max(0, state.activeLoaders - 1) }))
    
    }
-
 }))
+
+useLoadingStore.subscribe((state) => {
+  console.log('%c Loader count:', 'color: yellow', state.activeLoaders)
+})

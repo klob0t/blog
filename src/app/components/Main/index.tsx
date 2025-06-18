@@ -3,30 +3,26 @@ import styles from "./index.module.css";
 import { TextScramble, TextScrambleHover } from "@/app/components/TextScramble";
 import Link from 'next/link'
 import { Logo } from "@/app/components/logo"
-// import { TrackedImage } from '@/app/lib/TrackedImage'
+import { usePopupStore } from "@/app/lib/store/popupStore";
 import { useMousePositionToVar } from "@/app/lib/useMousePosition";
-import { useRef } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faInstagram, faTwitter, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { useRef, useEffect, useState } from 'react'
 import { BackgroundPixel } from "@/app/components/Background";
 import { useSplitTextAnimation } from "@/app/lib/useSplitTextAnimation";
 import BlogPostsList from "@/app/components/PostsList"
 import { useGridReveal } from '@/app/lib/useGridReveal'
 import ImageSlideshow from "@/app/components/ImageSlideshow"
-import PhotoCard from "@/app/components/PhotoCard";
+import PhotoCard from "@/app/components/PhotoCard"
+import { useLoadingStore } from "@/app/lib/store/loadingStore"
+import SocialLinks from "@/app/components/SocialLinks"
 
-library.add(faInstagram, faTwitter, faLinkedin, faGithub)
 
-const socials = [
-  { href: 'https://instagram.com/airlanggga', icon: 'instagram' as const },
-  { href: 'https://github.com/klob0t', icon: 'github' as const },
-  { href: 'https://x.com/klob0t', icon: 'twitter' as const },
-  { href: 'https://linkedin/in/airlanggakb', icon: 'linkedin' as const }
-]
+interface ImageData {
+  src: string
+  alt: string
+}
 
 export default function MainPage() {
+  const openPopup = usePopupStore((state) => state.openPopup)
   const mainRef = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLDivElement>(null)
   const linkRef1 = useRef<HTMLHeadingElement>(null)
@@ -34,6 +30,8 @@ export default function MainPage() {
   const linkRef5 = useRef<HTMLParagraphElement>(null)
   const linkRef3 = useRef<HTMLHeadingElement>(null)
   const linkRef4 = useRef<HTMLHeadingElement>(null)
+  const { startLoading, finishLoading } = useLoadingStore()
+  const [images, setImages] = useState<ImageData[]>([])
   useMousePositionToVar(mainRef)
   useGridReveal(mainRef)
   useSplitTextAnimation(linkRef1)
@@ -41,6 +39,35 @@ export default function MainPage() {
   useSplitTextAnimation(linkRef3)
   useSplitTextAnimation(linkRef4)
   useSplitTextAnimation(linkRef5)
+
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        startLoading('Images Fetching')
+        const response = await fetch('/api/images')
+        if (!response.ok) {
+          throw new Error(`Failed to fetch images: ${response.statusText}`)
+        }
+
+        const fetchedImagePaths: string[] = await response.json()
+        const formattedImages: ImageData[] = fetchedImagePaths.map((path, index) => ({
+          src: path,
+          alt: `Work image ${index + 1}`
+        }))
+
+        if (formattedImages.length > 0) {
+          setImages(formattedImages)
+        }
+      } catch (error) {
+        console.error('Error fetching images: ', error)
+        setImages([])
+      } finally {
+        finishLoading('Images Fetched')
+      }
+    }
+    fetchImages()
+  }, [startLoading, finishLoading])
 
   return (
     <div className={styles.page} ref={pageRef}>
@@ -67,12 +94,14 @@ export default function MainPage() {
             <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
         </div>
         <div className={`${styles.photo} grid-item`}>
-            <div className={styles.content}>
-              <PhotoCard/></div>
-        </div>
-        <div className={`${styles.works} grid-item`}>
           <div className={styles.content}>
-            <ImageSlideshow />
+            <PhotoCard /></div>
+        </div>
+        <div
+          className={`${styles.works} grid-item`}
+          onClick={() => openPopup(images)}>
+          <div className={styles.content}>
+            <ImageSlideshow images={images} />
           </div>
         </div>
         <div className={`${styles.cv} grid-item`}>
@@ -99,11 +128,7 @@ export default function MainPage() {
         </div>
         <div className={`${styles.links} grid-item`}>
           <div className={styles.content}>
-            {socials.map(link => (
-              <Link key={link.href} href={link.href} aria-label={`Follow me on ${link.icon}`} target='_blank' >
-                <FontAwesomeIcon icon={['fab', link.icon] as IconProp} />
-              </Link>
-            ))}
+            <SocialLinks />
           </div>
         </div>
       </div>

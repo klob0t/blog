@@ -1,22 +1,23 @@
+//@/app/lib/useGridReveal.ts
 'use client'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { RefObject } from 'react'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import { usePrevious } from "@/app/lib/usePrevious"
-
+import { usePopupStore } from '@/app/lib/store/popupStore'
 
 export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
-
    const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
    const prevIsAppLoading = usePrevious(isAppLoading)
+   const isPopupOpen = usePopupStore(state => state.isOpen)
 
    useGSAP(() => {
       if (!scope.current) return
 
       const gridItems = gsap.utils.toArray('.grid-item', scope.current)
 
-      if (prevIsAppLoading === true && !isAppLoading) {
+      if (prevIsAppLoading === true && !isAppLoading && !isPopupOpen) {
          gsap.set(gridItems, {
             opacity: 0,
             translateY: 20,
@@ -35,5 +36,5 @@ export const useGridReveal = (scope: RefObject<HTMLDivElement | null>) => {
             delay: 1.1
          })
       }
-   }, { scope, dependencies: [isAppLoading] })
+   }, { scope, dependencies: [isAppLoading, isPopupOpen] })
 }
