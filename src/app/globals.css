@@ -1,3 +1,6 @@
+
+
+
 :root {
   --black: #000;
   --white: #fff;
@@ -79,17 +82,21 @@ a:hover{
   opacity: 0;
 }
 
-body::-webkit-scrollbar {
-   width: 8px;
-   height: 3px;
+::-webkit-scrollbar {
+  width: auto;
+}
+::-webkit-scrollbar-track {
+   background: rgba(0, 0, 0, 0);
 }
 
-body::-webkit-scrollbar-track {
-   background: black;
+::-webkit-scrollbar-thumb {
+   background-color: var(--border);
+   border-radius: 600px;
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb:hover {
    background-color: var(--gray);
+   border-radius: 600px;
 }
 
 body.no-scroll {

@@ -2,20 +2,40 @@
    border: 1px solid var(--gray);
    padding: 0em 1em 1em 2em;
    border-radius: 7px;
-   scrollbar-width: 8px;
-   scrollbar-color: var(--gray) black;
+   overflow-x: auto;
+   
    font-family: var(--font-geist-mono);
 }
 
-.wrapper::-webkit-scrollbar {
-   width: 8px;
-   height: 3px;
+.content {
+   border-radius: 7px;
 }
 
-.wrapper::-webkit-scrollbar-track {
-   background: black;
+.content span {
+   line-height: 0.5rem;
 }
 
-.wrapper::-webkit-scrollbar-thumb {
-   background-color: var(--gray);
+
+
+/* src/app/components/MarkdownOverrides/index.module.css */
+
+/* ... (keep your existing styles) ... */
+
+/* Add these new styles for the line numbers */
+.content :global(.line) {
+  display: block;
+  padding-left: 1.5em; /* Creates space on the left for the numbers */
+  text-indent: -2.5em;  /* Moves the line number into the padding area */
+}
+
+.content :global(.line::before) {
+  content: attr(data-line-number); /* Display the line number */
+  display: inline-block;
+  width: 2em; /* Set a fixed width for the number column */
+  padding-right: 0.5em;
+  margin-right: 0.5em;
+  text-align: right;
+  color: var(--gray); /* Use a color from your globals.css */
+  user-select: none; /* Make numbers unselectable */
+  -webkit-user-select: none;
 }
