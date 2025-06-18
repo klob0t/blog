@@ -1,6 +1,7 @@
 :root {
   --black: #000;
   --white: #fff;
+  --text: #dfdfdf;
   --gray: #525252;
   --border: rgba(255, 255, 255, 0.143);
   --size: 90%;
@@ -94,3 +95,8 @@ body::-webkit-scrollbar-thumb {
 body.no-scroll {
   overflow: hidden;
 }
+
+
+/* src/app/admin/submit/theme.css */
+
+/* 2. Define your custom editor theme by overriding CSS variables */

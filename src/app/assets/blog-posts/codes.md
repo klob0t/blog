@@ -10,7 +10,7 @@ Welcome to this test post! The purpose of this page is to showcase all the diffe
 
 Here is a typical React component written in TypeScript. This example includes JSX, hooks, and basic logic, which is great for testing syntax highlighting.
 
-```javascript
+```js
 'use client';
 
 import React, { useState, useEffect } from 'react';

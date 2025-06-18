@@ -1,0 +1,101 @@
+.dark-editor {
+   --basePageBg: var(--card-bg);
+   --baseBgSubtle: var(--card-bg);
+   --spacing-1: 1em;
+   --radius-base: 0em;
+
+   font-family: var(--font-geist-sans), sans-serif;
+
+   color: var(--text);
+   background-color: var(--card-bg);
+   border-radius: 4px;
+   padding: 0rem;
+   letter-spacing: 0em;
+}
+
+.mdxeditor-toolbar {
+   background-color: var(--card-bg);
+   border-bottom: 1px solid var(--gray);
+   justify-content: center;
+   border-radius: 0;
+   width: 100%;
+   gap: 0em !important;
+
+   background-color: var(--card-bg);
+
+}
+
+.mdxeditor-toolbar span {
+   padding: 0.5em !important;
+   margin: 0em;
+   border-radius: 0px !important;
+}
+
+.mdxeditor-toolbar>div>div>button {
+   margin: 0.1rem !important;
+   padding: 0em !important;
+   width: 100%;
+   
+
+}
+
+.mdxeditor-toolbar>div>div>button>span {
+
+
+}
+
+.mdxeditor-toolbar>div {
+   margin: 0.3rem !important;
+   padding: 0em !important;
+
+   border-radius: 0px !important;
+}
+
+.mdxeditor-toolbar button {
+   background-color: var(--card-bg);
+   font-family: var(--font-geist-sans);
+}
+
+.mdxeditor-diff-source-wrapper {
+   background-color: var(--card-bg);
+}
+
+.mdxeditor-rich-text-editor .cm-lineWrapping {
+   background-color: var(--card-bg);
+   font-family: var(--font-geist-mono);
+}
+
+.mdxeditor-rich-text-editor .cm-gutters,
+.mdxeditor-rich-text-editor .cm-activeLineGutter {
+   background-color: var(--card-bg);
+   color: var(--gray);
+   font-size: 1rem;
+   font-family: var(--font-geist-mono);
+}
+
+.mdxeditor-source-editor .cm-editor {
+   background-color: var(--card-bg);
+   color: var(--text);
+   padding: 1em 0em 1em 0em;
+}
+
+.mdxeditor-source-editor .cm-content {
+   font-size: 1rem;
+   line-height: 1.2rem;
+}
+
+.mdxeditor-source-editor .cm-gutters,
+.mdxeditor-source-editor .cm-activeLineGutter {
+   background-color: var(--card-bg);
+   color: var(--gray);
+   font-size: 1rem;
+}
+
+.mdxeditor-select-content {
+   background-color: var(--card-bg);
+   border: 1px solid var(--gray)
+}
+
+.mdxeditor-popup-container {
+   background-color: red;
+}

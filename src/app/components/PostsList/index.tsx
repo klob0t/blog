@@ -7,6 +7,7 @@ import { SplitText } from 'gsap/SplitText'
 import { useSplitTextAnimation } from '@/app/lib/useSplitTextAnimation'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import { usePrevious } from "@/app/lib/usePrevious"
+import { usePopupStore } from '@/app/lib/store/popupStore'
 
 gsap.registerPlugin(SplitText)
 
@@ -23,6 +24,8 @@ function PostsListComponent() {
    const prevIsAppLoading = usePrevious(isAppLoading);
    const ref = useRef<HTMLParagraphElement>(null)
    useSplitTextAnimation(ref)
+   const isPopupOpen = usePopupStore(state => state.isOpen)
+   
 
    useEffect(() => {
       const fetchPosts = async () => {
@@ -43,7 +46,7 @@ function PostsListComponent() {
    useGSAP(() => {
       let timeout: NodeJS.Timeout | undefined
 
-      if (posts.length > 0 && prevIsAppLoading === true && !isAppLoading) {
+      if (!isPopupOpen && posts.length > 0 && prevIsAppLoading === true && !isAppLoading) {
          timeout = setTimeout(() => {
             const titles = gsap.utils.toArray('.post-title')
             const tl = gsap.timeline()
