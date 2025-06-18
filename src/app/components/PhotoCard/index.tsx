@@ -55,7 +55,7 @@ export default function PhotoCard() {
         const ctx = canvas.getContext('2d')
         if (!ctx) return
         
-        const PIXEL_SIZE = 10
+        const PIXEL_SIZE = 25
         const FADE_DURATION = 4000
         let animationFrameId: number
 
