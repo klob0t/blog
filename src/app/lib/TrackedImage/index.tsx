@@ -1,71 +1,67 @@
 'use client'
 import Image, { ImageProps } from 'next/image'
-import { useEffect, useRef, useCallback, SyntheticEvent } from 'react'
+import { useEffect, useCallback, SyntheticEvent, useRef } from 'react'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 
-type OnLoadingComplete = (img: HTMLImageElement) => void
-
-type NextImageOnLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => void;
-type NextImageOnError = (event: SyntheticEvent<HTMLImageElement, Event>) => void;
+type NextImageOnLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => void
+type NextImageOnError = (event: SyntheticEvent<HTMLImageElement, Event>) => void
 
 interface TrackedImageProps extends Omit<ImageProps, 'onLoad' | 'onError'> {
-  onLoad?: OnLoadingComplete
+  onLoad?: NextImageOnLoad
   onError?: NextImageOnError
 }
 
 export const TrackedImage = (props: TrackedImageProps) => {
   const { startLoading, finishLoading } = useLoadingStore()
-  
-  const { onLoad, onError, alt = '', src, ...rest } = props
-  
-  const isFinished = useRef(false)
-  
+  const { src, alt = '', onLoad, onError, ...rest } = props
+
   const loaderId = `image-${src?.toString() || 'unknown'}`
-  
-  const handleFinish = useCallback(() => {
-    
-    if (!isFinished.current) {
+
+  const isFinishedRef = useRef(false)
+
+  const safeFinishLoading = useCallback(() => {
+    if (!isFinishedRef.current) {
       finishLoading(loaderId)
-      isFinished.current = true
+      isFinishedRef.current =true
     }
-  }, [finishLoading, loaderId]) 
+  }, [finishLoading, loaderId])
+
 
   useEffect(() => {
-    
-    if (!src) return;
-    
-    isFinished.current = false
+    if (!src) return
+
+
+    isFinishedRef.current = false
+
     startLoading(loaderId)
-    
+
     return () => {
-      handleFinish()
+      safeFinishLoading()
     }
-    
-  }, [src, startLoading, handleFinish, loaderId])
+  }, [src, startLoading, loaderId, safeFinishLoading])
+  
+  const handleLoadingComplete: NextImageOnLoad = useCallback((event) => {
+    safeFinishLoading()
 
-  const handleLoadingComplete: NextImageOnLoad = (event) => {
-    handleFinish()
-    
     if (onLoad) {
-      onLoad(event.currentTarget)
+      onLoad(event)
     }
-  }
+  }, [safeFinishLoading, onLoad])
 
-  const handleError: NextImageOnError = (event) => {
-    handleFinish()
-    
+  const handleError: NextImageOnError = useCallback((event) => {
+    safeFinishLoading()
+
     if (onError) {
       onError(event)
     }
-  }
+  }, [safeFinishLoading, onError])
 
-  
   if (!src) {
-    return null;
+    return null
   }
 
   return (
-    <Image
+    <Image 
       {...rest}
       src={src}
       alt={alt}

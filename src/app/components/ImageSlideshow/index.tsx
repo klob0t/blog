@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import styles from './index.module.css'
 import { useGSAP } from "@gsap/react"
+import { usePrevious } from "@/app/lib/usePrevious"
 
 interface LoopConfig {
     repeat?: number
@@ -31,7 +32,9 @@ interface ImageSlideshowProps {
 }
 
 function SlideShow({ images }: ImageSlideshowProps) {
-    const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
+    const activeLoadersCount = useLoadingStore(state => state.activeLoaders.size)
+    const isAppLoading = activeLoadersCount > 0
+    const prevIsAppLoading = usePrevious(isAppLoading)
 
     const marqueeContainerRef = useRef<HTMLDivElement>(null)
     const marqueeContentRef = useRef<HTMLDivElement>(null)
@@ -43,7 +46,7 @@ function SlideShow({ images }: ImageSlideshowProps) {
             return;
         }
 
-        if (!isAppLoading) {
+        if (!isAppLoading && prevIsAppLoading === true) {
             const boxes = gsap.utils.toArray('.cover-item', marqueeContentRef.current)
             gsap.fromTo(boxes, {
                 height: '100%',

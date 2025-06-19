@@ -1,26 +1,40 @@
 'use client'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import Loading from '@/app/components/LoadingPage'
-import { ReactNode, useRef, useEffect } from 'react'
+import { ReactNode, useRef, useEffect, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/navigation'
-import { usePrevious } from '@/app/lib/usePrevious'
-import { usePopupStore } from '@/app/lib/store/popupStore'
 import CarouselPopup from '@/app/components/Popup'
 
 export default function AppWrapper({ children }: { children: ReactNode }) {
-  const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
+  const activeLoadersCount = useLoadingStore(state => state.activeLoaders.size)
   const loaderRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const prevIsAppLoading = usePrevious(isAppLoading)
   const router = useRouter()
-  const { isOpen, images, closePopup } = usePopupStore()
   const { finishLoading } = useLoadingStore()
+
+  const [isReadyForAnimation, setIsReadyForAnimation] = useState(false)
 
   useEffect(() => {
     finishLoading('Initial Page Load')
-  },[finishLoading])
+  }, [finishLoading])
+
+
+  useEffect(() => {
+    if (activeLoadersCount > 0) {
+      setIsReadyForAnimation(false)
+      return
+    }
+
+    const timeoutId = setTimeout(() => {
+      if (useLoadingStore.getState().activeLoaders.size === 0) {
+        setIsReadyForAnimation(true)
+      }
+    }, 100)
+
+    return () => clearTimeout(timeoutId)
+  }, [activeLoadersCount])
 
 
   useEffect(() => {
@@ -64,7 +78,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
     if (!loader || !content) return
 
 
-    if (prevIsAppLoading === true && !isAppLoading) {
+    if (isReadyForAnimation) {
       gsap.to(loader, {
         y: '-110%',
         duration: 0.8,
@@ -82,13 +96,12 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
         ease: 'power3.inOut',
       })
     }
-
-    else if (prevIsAppLoading === undefined && isAppLoading) {
+    else {
       gsap.set(content, { filter: 'blur(1em)' });
     }
 
 
-  }, { dependencies: [isAppLoading] })
+  }, { dependencies: [isReadyForAnimation] })
 
   return (
     <>
@@ -114,11 +127,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
         }}>
         {children}
       </div>
-      <CarouselPopup
-        isOpen={isOpen}
-        onClose={closePopup}
-        images={images}
-      />
+      <CarouselPopup />
     </>
   )
 }

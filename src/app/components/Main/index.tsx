@@ -43,7 +43,7 @@ export default function MainPage() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        startLoading('Images Fetching')
+        startLoading('Images Lists')
         const response = await fetch('/api/images')
         if (!response.ok) {
           throw new Error(`Failed to fetch images: ${response.statusText}`)
@@ -62,7 +62,7 @@ export default function MainPage() {
         console.error('Error fetching images: ', error)
         setImages([])
       } finally {
-        finishLoading('Images Fetched')
+        finishLoading('Images Lists')
       }
     }
     fetchImages()

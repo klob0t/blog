@@ -16,5 +16,5 @@ export const usePopupStore = create<PopupState>((set) => ({
    isOpen: false,
    images: [],
    openPopup: (images: ImageData[]) => set({ isOpen: true, images: images }),
-   closePopup: () => set({ isOpen: false, images: [] })
+   closePopup: () => set({ isOpen: false, images: [] }),
 }))

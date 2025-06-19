@@ -6,6 +6,7 @@ import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useSplitTextAnimation } from '@/app/lib/useSplitTextAnimation'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
+import { usePrevious } from '@/app/lib/usePrevious'
 
 gsap.registerPlugin(SplitText)
 
@@ -18,7 +19,9 @@ interface PostMetadata {
 function PostsListComponent() {
    const [posts, setPosts] = useState<PostMetadata[]>([])
    const { startLoading, finishLoading } = useLoadingStore()
-   const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
+   const activeLoadersCount = useLoadingStore(state => state.activeLoaders.size)
+   const isAppLoading = activeLoadersCount > 0
+   const prevIsAppLoading = usePrevious(isAppLoading)
    const ref = useRef<HTMLParagraphElement>(null)
    useSplitTextAnimation(ref)
    
@@ -26,14 +29,14 @@ function PostsListComponent() {
    useEffect(() => {
       const fetchPosts = async () => {
          try {
-            startLoading('postsList start')
+            startLoading('postsList')
             const response = await fetch('/api/posts')
             const data: PostMetadata[] = await response.json()
             setPosts(data)
          } catch (error) {
             console.error('Failed to fetch blog posts', error)
          } finally {
-            finishLoading('postsList finish')
+            finishLoading('postsList')
          }
       }
       fetchPosts()
@@ -41,7 +44,7 @@ function PostsListComponent() {
 
    useGSAP(() => {
 
-      if (posts.length > 0 && !isAppLoading) {
+      if (posts.length > 0 && !isAppLoading && prevIsAppLoading === true) {
 
             const titles = gsap.utils.toArray('.post-title')
             const tl = gsap.timeline()

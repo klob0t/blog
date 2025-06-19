@@ -31,7 +31,7 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
    useEffect(() => {
       const fetchPost = async () => {
          try {
-            startLoading()
+            startLoading('blog')
             setError(null)
             const response = await fetch(`/api/posts/${slug}`)
 
@@ -50,7 +50,7 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
             }
             console.error('Failed to fetch post:', err)
          } finally {
-            finishLoading()
+            finishLoading('blog')
          }
       }
 
