@@ -30,12 +30,11 @@ export default function CarouselPopup({ isOpen, onClose, images }: CarouselPopup
     useEffect(() => {
         if (isOpen) {
             
-            gsap.set(containerRef.current, { display: 'flex', opacity: 0 });
-            
+            gsap.set(containerRef.current, { opacity: 0 });
             
             gsap.to(containerRef.current, { opacity: 1, duration: 0.3 });
             gsap.fromTo(popupRef.current, 
-                { scale: 0.3, opacity: 0 }, 
+                { scale: 0.5, opacity: 0 }, 
                 { scale: 1, opacity: 1, duration: 0.3, ease: 'power2.out' }
             );
         }
@@ -81,8 +80,7 @@ export default function CarouselPopup({ isOpen, onClose, images }: CarouselPopup
             className={styles.overlay} 
             ref={containerRef} 
             onClick={handleClose}
-            
-            style={{ opacity: 0, display: 'none' }} 
+            style={{ opacity: 0, display: 'flex' }} 
         >
             <div className={styles.popup} ref={popupRef} onClick={(e) => e.stopPropagation()}>
                 <button className={styles.closeButton} onClick={handleClose}>

@@ -40,6 +40,9 @@ export default function MainPage() {
   useSplitTextAnimation(linkRef4)
   useSplitTextAnimation(linkRef5)
 
+  useEffect(() => {
+    finishLoading('Initial Page Load')
+  }, [finishLoading])
 
   useEffect(() => {
     const fetchImages = async () => {

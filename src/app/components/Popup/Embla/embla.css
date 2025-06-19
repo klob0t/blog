@@ -2,11 +2,13 @@
   width: 100%;
   height: 100%;
   margin: auto;
-  --slide-height: 20rem;
+  --slide-height: 2rem;
   --slide-spacing: 0rem;
-  /* --- FIX 1: Change slide size to show adjacent slides --- */
-  /* Was 100%, now 80%. Adjust this value to your liking. */
-  --slide-size: 80%;
+  --slide-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .embla__viewport {
   overflow: hidden;
@@ -38,7 +40,8 @@
   border-radius: 7px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 0px 50px black;
+  border: 1px solid rgba(255, 255, 255, 0.286);
+  box-shadow: 0px 0px 20px black;
 }
 
 .embla__controls {
@@ -46,12 +49,10 @@
   grid-template-rows: auto 1fr;
   justify-content: space-around;
   gap: 0.4rem;
-  margin-top: 1.8rem;
-  position: absolute; /* Position controls over the carousel */
   bottom: 0rem;
   left: 0;
   right: 0;
-  padding: 1em 0em 0em 0em;
+  padding: 0em 0em 0em 0em;
   place-items: center;
   width: 100%;
 }

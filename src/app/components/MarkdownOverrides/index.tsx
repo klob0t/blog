@@ -6,7 +6,7 @@ import { TrackedImage } from '@/app/lib/TrackedImage'
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.css'
 import '@wooorm/starry-night/style/dark'
-import { starryNightGutter } from '@/app/lib/StarryNightGutter'
+import { starryNightGutter } from '@/app/lib/starry-night-gutter'
 
 interface CodeBlockProps {
    className?: string
