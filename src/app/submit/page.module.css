@@ -31,7 +31,7 @@
   resize: vertical;
   font-family: var(--font-geist-sans);
   line-height: 1.2rem;
-  
+
 }
 
 .frontmatter:focus {
@@ -86,21 +86,21 @@
   padding: 0.4rem 1rem 0.4rem 0.5rem;
   border: 1px solid var(--border);
   border-radius: 4px;
-  
+
   font-family: var(--font-geist-sans);
 }
 
-.toolbar option{
+.toolbar option {
   border-radius: 0px !important;
 }
 
 .contentArea {
-  border: 1px solid var(--gray);
+  border: 1px solid var(--border);
   border-radius: 7px;
   overflow: hidden;
 }
 
-.contentArea:focus {
+.contentArea:hover {
   border: 1px solid blue;
   outline: 1px solid blue
 }
@@ -143,22 +143,26 @@
   display: flex;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
-  padding: 0.5rem ;
+  padding: 0.5rem;
   justify-content: center;
   align-items: center;
   width: 90px;
   margin: 1rem 0;
+  font-family: var(--font-geist-sans);
+  justify-self: flex-end;
 }
 
-.tiptapContent{
+.tiptapContent {
   border: none;
   outline: none;
   font-family: var(--font-geist-sans);
-  font-feature-settings: 'ss06' on, 'ss05' on, 'ss08' on;
+  font-feature-settings: 'ss06' on, 'ss05' on, 'ss08' on !important;
 }
 
 .tiptapContent pre code {
   font-family: var(--font-geist-mono);
+
+  font-feature-settings: 'ss03' on, 'ss04' on, 'ss06' on, 'ss08' on !important;
   border: 1px solid var(--border);
   width: 100%;
   display: flex;
@@ -167,6 +171,8 @@
 
 .tiptapContent code {
   font-family: var(--font-geist-mono);
+
+  font-feature-settings: 'ss03' on, 'ss04' on, 'ss06' on, 'ss08' on !important;
   border: 1px solid var(--border);
   padding: 0.2em 0.5em;
 }
@@ -174,6 +180,6 @@
 .tiptapContent img {
   max-width: 40%;
   height: auto;
-  display: block; /* Optional: Prevents extra space below the image */
-  border-radius: 8px; 
+  display: block;
+  border-radius: 4px;
 }

@@ -8,6 +8,10 @@ import Placeholder from '@tiptap/extension-placeholder'
 import Heading from '@tiptap/extension-heading'
 import HorizontalRule from '@tiptap/extension-horizontal-rule'
 import Blockquote from '@tiptap/extension-blockquote'
+import Superscript from '@tiptap/extension-superscript'
+import Subscript from '@tiptap/extension-subscript'
+import Paragraph from '@tiptap/extension-paragraph'
+import Typography from '@tiptap/extension-typography'
 import { useState } from 'react'
 import TurndownService from 'turndown'
 import styles from './page.module.css'
@@ -15,15 +19,20 @@ import { FaBold, FaItalic, FaUnderline, FaListUl, FaListOl, FaQuoteRight, FaCode
 import { VscHorizontalRule } from 'react-icons/vsc'
 import { Toaster, toast } from 'react-hot-toast'
 
+import 'highlight.js/styles/github-dark.css'
 
 export default function SubmitPage() {
    const [title, setTitle] = useState('Title')
    const [tags, setTags] = useState('Tags')
    const [isUploading, setIsUploading] = useState(false)
 
-
    const editor = useEditor({
-      extensions: [StarterKit,
+      extensions: [
+         StarterKit,
+         Typography,
+         Paragraph,
+         Superscript,
+         Subscript,
          Underline,
          Link,
          Image.configure({ inline: false }),
@@ -86,7 +95,6 @@ export default function SubmitPage() {
       } finally {
          setIsUploading(false)
          event.target.value = ''
-         // Stop loading
       }
    }
 
@@ -96,6 +104,25 @@ export default function SubmitPage() {
       const turndown = new TurndownService({
          codeBlockStyle: 'fenced',
          fence: '```',
+
+      })
+
+      turndown.addRule('fencedCodeBlock', {
+         filter: function (node, _options) {
+            return !!(
+               node.nodeName === 'PRE' &&
+               node.firstChild &&
+               node.firstChild.nodeName === 'CODE'
+            )
+         },
+         replacement: function (content, node, _options) {
+            const el = node as HTMLElement
+            const codeNode = el.firstChild as HTMLElement
+
+            const className = codeNode.getAttribute('class') || ''
+            const language = (className.match(/language-(\S+)/) || [null, ''])[1]
+            return `\n\n\`\`\`${language}\n${content}\n\`\`\`\n\n`
+         }
       })
       const markdown = turndown.turndown(html)
 

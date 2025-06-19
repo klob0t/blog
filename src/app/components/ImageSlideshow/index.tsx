@@ -5,7 +5,6 @@ import { gsap } from 'gsap'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import styles from './index.module.css'
 import { useGSAP } from "@gsap/react"
-import { usePopupStore } from "@/app/lib/store/popupStore"
 
 interface LoopConfig {
     repeat?: number
@@ -26,14 +25,13 @@ interface ExtendedTimeline extends gsap.core.Timeline {
 
 interface ImageSlideshowProps {
     images: {
-      src: string
-      alt: string
-    }[] 
+        src: string
+        alt: string
+    }[]
 }
 
-function SlideShow({images}: ImageSlideshowProps) {
+function SlideShow({ images }: ImageSlideshowProps) {
     const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
-    const isPopupOpen = usePopupStore(state => state.isOpen)
 
     const marqueeContainerRef = useRef<HTMLDivElement>(null)
     const marqueeContentRef = useRef<HTMLDivElement>(null)
@@ -45,7 +43,7 @@ function SlideShow({images}: ImageSlideshowProps) {
             return;
         }
 
-        if (!isAppLoading && !isPopupOpen) {
+        if (!isAppLoading) {
             const boxes = gsap.utils.toArray('.cover-item', marqueeContentRef.current)
             gsap.fromTo(boxes, {
                 height: '100%',
@@ -78,8 +76,8 @@ function SlideShow({images}: ImageSlideshowProps) {
             let curIndex: number = 0
             const pixelsPerSecond = (cfg.speed || 1) * 100
             const snap = cfg.snap === false
-            ? (v: number) => v
-            : gsap.utils.snap(typeof cfg.snap === 'number' ? cfg.snap : 1)
+                ? (v: number) => v
+                : gsap.utils.snap(typeof cfg.snap === 'number' ? cfg.snap : 1)
             let curX: number, distanceToStart: number, distanceToLoop: number, item: HTMLElement, i: number
             gsap.set(elements, {
                 xPercent: (i, el: HTMLElement) => {
@@ -162,25 +160,25 @@ function SlideShow({images}: ImageSlideshowProps) {
 
 
     return (
-      <div ref={marqueeContainerRef} className={styles.marqueeContainer}>
-          <div ref={marqueeContentRef} className={styles.marqueeContent}>
-              {loopedImages.map((image, index) => (
-                  <div
-                      key={index}
-                      className={styles.imageCard}>
-                      <div className={styles.imageWrapper}>
-                          <div className={`${styles.cover} cover-item`}></div>
-                          <TrackedImage
-                              src={image.src}
-                              fill
-                              sizes='500px'
-                              alt={image.alt}
-                          />
-                      </div>
-                  </div>
-              ))}
-          </div>
-      </div>
+        <div ref={marqueeContainerRef} className={styles.marqueeContainer}>
+            <div ref={marqueeContentRef} className={styles.marqueeContent}>
+                {loopedImages.map((image, index) => (
+                    <div
+                        key={index}
+                        className={styles.imageCard}>
+                        <div className={styles.imageWrapper}>
+                            <div className={`${styles.cover} cover-item`}></div>
+                            <TrackedImage
+                                src={image.src}
+                                fill
+                                sizes='500px'
+                                alt={image.alt}
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     )
 }
 

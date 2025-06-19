@@ -1,10 +1,10 @@
 'use client'
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react"
 
 export function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T | undefined>(undefined);
+  const ref = useRef<T | undefined>(undefined)
   useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
+    ref.current = value
+  })
+  return ref.current
 }

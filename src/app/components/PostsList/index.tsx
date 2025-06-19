@@ -6,8 +6,6 @@ import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useSplitTextAnimation } from '@/app/lib/useSplitTextAnimation'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
-import { usePrevious } from "@/app/lib/usePrevious"
-import { usePopupStore } from '@/app/lib/store/popupStore'
 
 gsap.registerPlugin(SplitText)
 
@@ -21,10 +19,8 @@ function PostsListComponent() {
    const [posts, setPosts] = useState<PostMetadata[]>([])
    const { startLoading, finishLoading } = useLoadingStore()
    const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
-   const prevIsAppLoading = usePrevious(isAppLoading);
    const ref = useRef<HTMLParagraphElement>(null)
    useSplitTextAnimation(ref)
-   const isPopupOpen = usePopupStore(state => state.isOpen)
    
 
    useEffect(() => {
@@ -44,10 +40,9 @@ function PostsListComponent() {
    }, [startLoading, finishLoading])
 
    useGSAP(() => {
-      let timeout: NodeJS.Timeout | undefined
 
-      if (!isPopupOpen && posts.length > 0 && prevIsAppLoading === true && !isAppLoading) {
-         timeout = setTimeout(() => {
+      if (posts.length > 0 && !isAppLoading) {
+
             const titles = gsap.utils.toArray('.post-title')
             const tl = gsap.timeline()
 
@@ -61,15 +56,10 @@ function PostsListComponent() {
                   ease: 'power2.out',
                }, "<0.000001");
             });
-         }, 1300)
       }
 
-      return () => {
-         if (timeout) {
-            clearTimeout(timeout);
-         }
-      }
-   }, { dependencies: [posts, isAppLoading, prevIsAppLoading] })
+
+   }, { dependencies: [posts, isAppLoading] })
 
 
    return (

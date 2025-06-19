@@ -1,0 +1,70 @@
+.loginContainer {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   gap: 1em;
+   margin: 1em;
+}
+
+.loginWrapper {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-self: center;
+   align-items: center;
+   background-color: black;
+}
+
+.loginContainer svg {
+   color: white;
+   fill: rgb(0, 0, 0);
+   width: 50px;
+
+}
+
+.loginWrapper h1 {
+   font-family: var(--font-serif);
+   color: var(--text);
+   font-weight: 400
+}
+
+.loginWrapper p {
+   font-family: var(--font-pecita);
+   font-size: 1.6em;
+}
+
+.loginWrapper form {
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.loginWrapper input {
+   padding: 1em;
+   width: 100%;
+   text-align: center;
+   background-color: var(--card-bg);
+   border: 1px solid var(--border);
+   border-radius: 4px
+}
+
+.loginWrapper button {
+   display: flex;
+   background-color: var(--card-bg);
+   border: 1px solid var(--border);
+   padding: 0.5rem;
+   justify-content: center;
+   align-items: center;
+   width: 90px;
+   margin: 1rem 0;
+   font-family: var(--font-geist-sans);
+   justify-self: flex-end;
+   border-radius: 4px;
+   cursor: pointer;
+}

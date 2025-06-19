@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Markdown from 'markdown-to-jsx'
 import { formatDate } from '@/app/lib/formatDate'
 import {Logo} from '@/app/components/logo'
-import { PreBlock, MarkdownImage } from '@/app/components/MarkdownOverrides'
+import { PreBlock, MarkdownImage } from '@/app/components/PostComponents'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 
 interface PostData {

@@ -8,15 +8,12 @@ import styles from './index.module.css'
 import '@wooorm/starry-night/style/dark'
 import { starryNightGutter } from '@/app/lib/starry-night-gutter'
 
+
 interface CodeBlockProps {
    className?: string
    children: React.ReactNode
 }
 
-// interface EditorCodeBlockProps {
-//    language?: string
-//    code: string
-// }
 
 interface MarkdownImageProps {
    src?: string;
