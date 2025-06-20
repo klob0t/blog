@@ -137,6 +137,7 @@ export const MarkdownImage = ({ src, alt = '' }: MarkdownImageProps) => {
          width={0}
          height={0}
          alt={alt}
+         loading='eager'
          sizes='100vw'
          style={{ width: '100%', height: 'auto' }}
          quality={100}

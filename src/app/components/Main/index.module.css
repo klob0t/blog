@@ -44,35 +44,38 @@
 }
 
 .main {
-   padding: 0.8em;
+   padding: 0em;
+   margin-top: 2em;
    aspect-ratio: 12/25;
    width: var(--size);
    display: grid;
    grid-template-columns: repeat(12, 1fr);
-   grid-template-rows: repeat(25, 2fr);
+   grid-template-rows: repeat(47, 1fr);
    gap: 0.5em;
    grid-template-areas:
       " A A A A A A A A A A A A "
-
-
-      " B B B B B B B C C C C C "
-      " B B B B B B B C C C C C "
-      " B B B B B B B C C C C C "
-      " B B B B B B B C C C C C "
-
-
-      " D D D D D D D C C C C C "
-      " D D D D D D D C C C C C "
-      " D D D D D D D C C C C C "
-
-      " D D D D D D D C C C C C "
-      " D D D D D D D C C C C C "
-
-
-
+      " A A A A A A A A A A A A "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " B B B B B B B B B B B B "
+      " C C C C C C C C C C C C "
+      " C C C C C C C C C C C C "
+      " C C C C C C C C C C C C "
+      " C C C C C C C C C C C C "
+      " C C C C C C C C C C C C "
+      " C C C C C C C C C C C C "
+      " C C C C C C C C C C C C "
+      " D D D D D D D D D D D D "
+      " D D D D D D D D D D D D "
+      " D D D D D D D D D D D D "
       " H H H H H H H H H H H H "
       " H H H H H H H H H H H H "
-
+      " H H H H H H H H H H H H "
       " E E E E E E E E E E E E "
       " E E E E E E E E E E E E "
       " E E E E E E E E E E E E "
@@ -82,11 +85,20 @@
       " E E E E E E E E E E E E "
       " E E E E E E E E E E E E "
       " E E E E E E E E E E E E "
-
+      " E E E E E E E E E E E E "
+      " E E E E E E E E E E E E "
+      " E E E E E E E E E E E E "
+      " E E E E E E E E E E E E "
       " F F F F F F F F F F F F "
       " F F F F F F F F F F F F "
       " F F F F F F F F F F F F "
-
+      " F F F F F F F F F F F F "
+      " F F F F F F F F F F F F "
+      " F F F F F F F F F F F F "
+      " F F F F F F F F F F F F "
+      " F F F F F F F F F F F F "
+      " F F F F F F F F F F F F "
+      " G G G G G G G G G G G G "
       " G G G G G G G G G G G G ";
 
    position: relative
@@ -151,7 +163,7 @@
    overflow: hidden;
    color: var(--gray);
    font-weight: 400;
-   height: 1.4em;
+   height: 1.1em;
    margin: 0;
 }
 
@@ -167,6 +179,7 @@
    align-items: center;
    padding: 0em 0em 0em 1em !important;
    align-items: center;
+   font-feature-settings: 'ss03' on, 'ss04' on, 'ss06' on, 'ss08' on !important;
 }
 
 /** ---- TITLE END ---- */
@@ -303,13 +316,13 @@
    align-items: center;
    width: 100%;
    justify-content: center;
-   padding: 1em 0em 1em 0em !important;
+   padding: 1.4em 0em 1em 0em !important;
 }
 
 /** ---- LINKS END ---- */
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px){
    /** TABLET */
 
    .page {
@@ -318,10 +331,10 @@
 
    .main {
       aspect-ratio: 12/22;
+      margin-top: 2em !important;
       grid-template-columns: repeat(12, 1fr);
       grid-template-rows: repeat(22, 1fr);
       gap: 0.5em;
-      margin: 0em 0em 0em 0em;
       grid-template-areas:
          " A A A A A A A A A A A A "
          " B B B B B B B B C C C C "
@@ -557,20 +570,23 @@
       align-items: center;
       width: 100%;
       justify-content: center;
-      padding: 1em 0em 1em 0em !important;
+      align-items: center;
+      padding: 1.4em 0em 1em 0em !important;
    }
 
    /** ---- LINKS END ---- */
 
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) and (hover: hover) {
    /** ---- DESKTOP ---- */
 
    .page {
       justify-content: center;
-      height: 100%;
-      width: 100%;
+      height: 100% !important;
+      overflow: hidden;
+      width: 100% !important;
+      align-items: center;
    }
 
    .logo {
@@ -597,8 +613,8 @@
    }
 
    .main {
+      overflow: hidden;
       width: 1025px;
-      max-width: 1025px;
       position: relative !important;
       z-index: 2 !important;
       height: 80%;

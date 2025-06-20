@@ -174,6 +174,7 @@ function SlideShow({ images }: ImageSlideshowProps) {
                             <TrackedImage
                                 src={image.src}
                                 fill
+                                loading='eager'
                                 sizes='500px'
                                 alt={image.alt}
                             />

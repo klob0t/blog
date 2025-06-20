@@ -69,72 +69,73 @@ export default function MainPage() {
   }, [startLoading, finishLoading])
 
   return (
-    <div className={styles.page} ref={pageRef}>
+    <>
       <BackgroundPixel />
+      <div className={styles.page} ref={pageRef}>
 
-      <div className={styles.logo}>
-        <Logo />
-      </div>
-      <div className={styles.main} ref={mainRef} >
-        <div className={`${styles.title} grid-item`}>
-          <div className={styles.content}>
-            <TextScramble />
-            <div>
-              <Link href='https://chloethinks.vercel.app' target='_blank' >
-                <p ref={linkRef1}>Chloe</p></Link> &nbsp;&nbsp;&nbsp;&nbsp;
-              <Link href='https://unangifier.vercel.app' target='_blank'>
-                <p ref={linkRef2}>Unangifier</p></Link> &nbsp;&nbsp;&nbsp;&nbsp;
-              <Link href='https://thoughtilets.vercel.app' target='_blank'>
-                <p ref={linkRef5}>thoughtilets</p></Link>
-            </div></div>
+
+        <div className={styles.logo}>
+          <Logo />
         </div>
-        <div className={`${styles.greeting} grid-item`}>
-          <div className={styles.content}>
-            <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
-        </div>
-        <div className={`${styles.photo} grid-item`}>
-          <div className={styles.content}>
-            <PhotoCard /></div>
-        </div>
-        <div
-          className={`${styles.works} grid-item`}
-          onClick={() => openPopup(images)}>
-          <div className={styles.content}>
-            <ImageSlideshow images={images} />
+        <div className={styles.main} ref={mainRef} >
+          <div className={`${styles.title} grid-item`}>
+            <div className={styles.content}>
+              <TextScramble />
+              <div>
+                <Link href='https://chloethinks.vercel.app' target='_blank' >
+                  <p ref={linkRef1}>Chloe</p></Link>
+                <Link href='https://thoughtilets.vercel.app' target='_blank'>
+                  <p ref={linkRef5}>thoughtilets</p></Link>
+              </div></div>
           </div>
-        </div>
-        <div className={`${styles.cv} grid-item`}>
-          <div className={styles.content}>
-            <Link
-              href='https://www.dropbox.com/scl/fi/vur035gsji14rotc6uvf7/Airlangga-Kusuma-Bangsa_CV.pdf?rlkey=2azag0dttatczqla2xhuzt4k8&dl=0'>
-              <h3 ref={linkRef3}>Curriculum Vitae</h3>
-            </Link>
+          <div className={`${styles.greeting} grid-item`}>
+            <div className={styles.content}>
+              <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
           </div>
-        </div>
-        <div className={`${styles.blogs} grid-item`}>
-          <div className={styles.content}> <h3>Blog Posts</h3>
-            <BlogPostsList />
+          <div className={`${styles.photo} grid-item`}>
+            <div className={styles.content}>
+              <PhotoCard /></div>
           </div>
-        </div>
-        <div className={`${styles.contact} grid-item`}>
-          <div className={styles.content}>
-            <div>
-              <Link href='mailto:klob0t@yahoo.com'>
-                <h3 ref={linkRef4}>Get in touch ↗</h3>
+          <div
+            className={`${styles.works} grid-item`}
+            onClick={() => openPopup(images)}>
+            <div className={styles.content}>
+              <ImageSlideshow images={images} />
+            </div>
+          </div>
+          <div className={`${styles.cv} grid-item`}>
+            <div className={styles.content}>
+              <Link
+                href='https://www.dropbox.com/scl/fi/vur035gsji14rotc6uvf7/Airlangga-Kusuma-Bangsa_CV.pdf?rlkey=2azag0dttatczqla2xhuzt4k8&dl=0'>
+                <h3 ref={linkRef3}>Curriculum Vitae</h3>
               </Link>
             </div>
-            <div>
-              <p>Got a clear vision or still figuring it out? I’d love to help.</p>
+          </div>
+          <div className={`${styles.blogs} grid-item`}>
+            <div className={styles.content}> <h3>Blog Posts</h3>
+              <BlogPostsList />
+            </div>
+          </div>
+          <div className={`${styles.contact} grid-item`}>
+            <div className={styles.content}>
+              <div>
+                <Link href='mailto:klob0t@yahoo.com'>
+                  <h3 ref={linkRef4}>Get in touch ↗</h3>
+                </Link>
+              </div>
+              <div>
+                <p>Got a clear vision or still figuring it out? I’d love to help.</p>
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.links} grid-item`}>
+            <div className={styles.content}>
+              <SocialLinks />
             </div>
           </div>
         </div>
-        <div className={`${styles.links} grid-item`}>
-          <div className={styles.content}>
-            <SocialLinks />
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   )
 }
 

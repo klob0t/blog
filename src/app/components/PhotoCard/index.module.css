@@ -16,8 +16,8 @@
 }
 
 @media screen and (max-width: 600px) {
-   .canvas {
-      width: 0%;
-      height: 0%;
+   .revealCanvas {
+      width: 0;
+      height: 0;
    }
 }

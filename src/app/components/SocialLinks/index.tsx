@@ -41,6 +41,9 @@ export default function SocialLinks() {
           <Link
             key={link.name}
             href={link.href}
+            style={{
+              alignItems: 'center'
+            }}
             aria-label={`Follow me on ${link.name}`}
           >
             <IconComponent />

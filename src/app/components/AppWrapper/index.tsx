@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/navigation'
 import CarouselPopup from '@/app/components/Popup'
+import styles from './index.module.css'
 
 export default function AppWrapper({ children }: { children: ReactNode }) {
   const activeLoadersCount = useLoadingStore(state => state.activeLoaders.size)
@@ -57,7 +58,10 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
         duration: 0.4,
         ease: 'power3.inOut',
         onComplete: () => {
-          router.push(href)
+          const timeoutId = setTimeout(() => {
+            router.push(href)
+          }, 500)
+          clearTimeout(timeoutId)
         }
       })
       gsap.to(content, {
@@ -122,9 +126,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
       </div>
       <div
         ref={contentRef}
-        style={{
-          opacity: 1,
-        }}>
+        className={styles.content}>
         {children}
       </div>
       <CarouselPopup />

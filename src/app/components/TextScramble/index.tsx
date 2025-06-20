@@ -9,7 +9,7 @@ type ScrambleQueueItem = {
   tempChar?: string;
 };
 
-const phrases = ['klob0t', 'Airlangga K.'];
+const phrases = ['klob0t', 'Airlangga'];
 const scrambleChars = "!-_\\/—=+*^?";
 
 const initialPhrase = 'Engineer';
@@ -96,7 +96,11 @@ export function TextScramble() {
     return (
         <p>
             {displayedText.map((char, index) => (
-                <span key={index}>{char}</span>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-geist-mono)'
+                  }}
+                 key={index}>{char}</span>
             ))}
         </p>
     );
