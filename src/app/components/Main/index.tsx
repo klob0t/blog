@@ -105,7 +105,10 @@ export default function MainPage() {
         </div>
         <div className={`${styles.cv} grid-item`}>
           <div className={styles.content}>
-            <h3 ref={linkRef3}>Curriculum Vitae</h3>
+            <Link
+              href='https://www.dropbox.com/scl/fi/vur035gsji14rotc6uvf7/Airlangga-Kusuma-Bangsa_CV.pdf?rlkey=2azag0dttatczqla2xhuzt4k8&dl=0'>
+              <h3 ref={linkRef3}>Curriculum Vitae</h3>
+            </Link>
           </div>
         </div>
         <div className={`${styles.blogs} grid-item`}>

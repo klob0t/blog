@@ -13,11 +13,12 @@ import Subscript from '@tiptap/extension-subscript'
 import Paragraph from '@tiptap/extension-paragraph'
 import Typography from '@tiptap/extension-typography'
 import { useState } from 'react'
+import { useCallback } from 'react'
 import TurndownService from 'turndown'
 import styles from './page.module.css'
 import { FaBold, FaItalic, FaUnderline, FaListUl, FaListOl, FaQuoteRight, FaCode, FaRegFileImage } from 'react-icons/fa6'
 import { VscHorizontalRule } from 'react-icons/vsc'
-import { PiTextSuperscript, PiTextSubscript } from 'react-icons/pi'
+import { PiTextSuperscript, PiTextSubscript, PiLinkSimpleHorizontalBold } from 'react-icons/pi'
 import { Toaster, toast } from 'react-hot-toast'
 
 import 'highlight.js/styles/github-dark.css'
@@ -72,7 +73,7 @@ export default function SubmitPage() {
       formData.append('file', file)
 
       try {
-         setIsUploading(true) // Start loading
+         setIsUploading(true) 
          const response = await fetch('/api/images', {
             method: 'POST',
             body: formData
@@ -84,13 +85,14 @@ export default function SubmitPage() {
             throw new Error(data.error || 'Upload failed')
          }
 
-         const url = data.url
+         const url = data.publicUrl
+
+         console.log(url)
          if (url) {
             editor.chain().focus().setImage({ src: url }).run()
             toast.success('Image uploaded successfully!')
          }
       } catch (error) {
-         // 3. Use toast for errors
          toast.error(error instanceof Error ? error.message : 'An error occurred')
          console.error(error)
       } finally {
@@ -105,7 +107,28 @@ export default function SubmitPage() {
       const turndown = new TurndownService({
          codeBlockStyle: 'fenced',
          fence: '```',
+      })
 
+      turndown.addRule('preserve-all-links', {
+         filter: 'a',
+
+         // The 'node' parameter is the raw HTML element.
+         replacement: function (content: string, node: Node) {
+            // Cast the node to an HTMLElement to use getAttribute.
+            const htmlNode = node as HTMLElement;
+            // Get the raw href attribute. This will be the original, unmodified URL.
+            const href = htmlNode.getAttribute('href');
+
+            // If for some reason there is no href, just return the plain text.
+            if (!href) {
+               return content;
+            }
+
+            // Manually construct the Markdown link.
+            // We use turndownService.escape() to safely handle special characters
+            // in the link text (content), just like the default rule would.
+            return `[${turndown.escape(content)}](${href})`;
+         }
       })
 
       turndown.addRule('fencedCodeBlock', {
@@ -178,6 +201,38 @@ export default function SubmitPage() {
       currentFormat = 'h3';
    }
 
+   const setLink = useCallback(() => {
+    if (!editor) {
+        return;
+    }
+
+    const previousUrl = editor.getAttributes('link').href;
+    // Use 'let' so we can modify the URL
+    let url = window.prompt('URL', previousUrl);
+
+    // If the user cancels the prompt, do nothing.
+    if (url === null) {
+        return;
+    }
+
+    // If the user clears the input, unset the link.
+    if (url === '') {
+        editor.chain().focus().extendMarkRange('link').unsetLink().run();
+        return;
+    }
+
+    // --- THE REAL FIX IS HERE ---
+    // Check if the URL starts with http, https, mailto, etc.
+    // If not, prepend "https://" to it.
+    if (!/^(https?:\/\/|mailto:|tel:)/i.test(url)) {
+        url = 'https://' + url;
+    }
+    // --- END OF THE FIX ---
+
+    // Set the link in the editor with the now-absolute URL.
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+}, [editor]);
+
    const toolbarButtons = [
       {
          name: 'bold',
@@ -238,6 +293,12 @@ export default function SubmitPage() {
          icon: VscHorizontalRule,
          command: () => editor?.chain().focus().setHorizontalRule().run(),
          isActive: () => false,
+      },
+      {
+         name: 'Link',
+         icon: PiLinkSimpleHorizontalBold,
+         command: setLink,
+         isActive: () => editor?.isActive('link') ?? false,
       },
    ]
 

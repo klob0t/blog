@@ -1,9 +1,9 @@
 import { NextResponse, NextRequest } from "next/server"
-import { supabase } from "@/app/lib/supabase"
+import { createClient } from "@/app/lib/supabase/server"
 
-
-export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
    try {
+      const supabase = await createClient()
       const { slug } = await params
       const { data: post, error } = await supabase
          .from('posts')
