@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 import Link from 'next/link'
 import { Logo } from '@/app/components/logo'
-import { createClient } from '@/app/lib/supabase/client'
 
 export default function LoginPage() {
    const [email, setEmail] = useState('')
@@ -13,23 +12,32 @@ export default function LoginPage() {
    const [isLoading, setIsLoading] = useState(false)
    const router = useRouter()
 
-   const supabase = createClient()
-
    const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       setIsLoading(true)
       setError('')
 
-      const { error } = await supabase.auth.signInWithPassword({
-         email,
-         password,
-      })
+      try {
+         const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+         });
 
-      if (error) {
-         setError('Invalid credentials. Please try again.')
-         setIsLoading(false)
-      } else {
-         router.push('/admin/submit/')
+         if (!response.ok) {
+            // Get the error message from the response if it exists
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Invalid credentials. Please try again.');
+         }
+
+         router.push('/admin/submit/');
+
+      } catch (err) {
+         if (err instanceof Error) setError(err.message);
+      } finally {
+         setIsLoading(false);
       }
    }
 

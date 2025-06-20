@@ -4,7 +4,7 @@ type LogoProps = {
   children?: React.ReactNode;
 };
 
-export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
+export const Logo = forwardRef<HTMLDivElement, LogoProps>((_props, ref) => {
    return (
       <div ref={ref}>
          <svg width="100%" height="100%" viewBox="0 0 4166.67 4166.67" version="1.1" xmlns="http://www.w3.org/2000/svg"

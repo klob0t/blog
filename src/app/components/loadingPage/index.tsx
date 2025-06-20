@@ -8,12 +8,11 @@ import { usePrevious } from '@/app/lib/usePrevious'
 import{ Logo } from '@/app/components/logo'
 
 export default function Loading() {
-   const isAppLoading = useLoadingStore(state => state.activeLoaders > 0)
+   const isAppLoading = useLoadingStore(state => state.activeLoaders.size > 0)
    const prevIsAppLoading = usePrevious(isAppLoading)
    const containerRef = useRef<HTMLDivElement>(null)
 
    const loaderTl = useRef<gsap.core.Timeline>(undefined)
-
 
    useGSAP(() => {
       const el = containerRef.current

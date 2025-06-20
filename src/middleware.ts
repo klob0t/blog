@@ -1,23 +1,58 @@
-// src/middleware.ts
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  // Get the auth cookie from the request
-  const authToken = request.cookies.get('submit-auth-token')?.value;
+export async function middleware(request: NextRequest) {
+  let response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  })
 
-  // If the user tries to access /submit but doesn't have the cookie,
-  // redirect them to the /login page.
-  if (!authToken) {
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('from', request.nextUrl.pathname); // Optional: tell login where user was going
-    return NextResponse.redirect(loginUrl);
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return request.cookies.get(name)?.value
+        },
+        set(name: string, value: string, options) {
+          request.cookies.set({ name, value, ...options })
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
+          response.cookies.set({ name, value, ...options })
+        },
+        remove(name: string, options) {
+          request.cookies.set({ name, value: '', ...options })
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
+          response.cookies.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+
+  // This will refresh the session if it's expired
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // If there's no user and the user is trying to access a protected route,
+  // redirect them to the login page.
+  if (!user && request.nextUrl.pathname.startsWith('/admin')) {
+    const loginUrl = new URL('/login', request.url)
+    return NextResponse.redirect(loginUrl)
   }
 
-  // If the cookie exists, allow the request to proceed
-  return NextResponse.next();
+  return response
 }
 
 export const config = {
-  matcher: '/admin/submit',
+  matcher: ['/admin/:path*'], // Protect all routes under /admin
 }
