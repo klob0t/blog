@@ -49,6 +49,7 @@
 .meta {
    font-family: var(--font-geist-mono), monospace;
    font-weight: 400;
+   margin-top: -2em;
 }
 
 .meta>span:nth-of-type(1) span {

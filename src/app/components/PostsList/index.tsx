@@ -24,7 +24,7 @@ function PostsListComponent() {
    const prevIsAppLoading = usePrevious(isAppLoading)
    const ref = useRef<HTMLParagraphElement>(null)
    useSplitTextAnimation(ref)
-   
+
 
    useEffect(() => {
       const fetchPosts = async () => {
@@ -46,19 +46,19 @@ function PostsListComponent() {
 
       if (posts.length > 0 && !isAppLoading && prevIsAppLoading === true) {
 
-            const titles = gsap.utils.toArray('.post-title')
-            const tl = gsap.timeline()
+         const titles = gsap.utils.toArray('.post-title')
+         const tl = gsap.timeline({ delay: 1.3 })
 
-            titles.forEach(title => {
-               const split = new SplitText(title as HTMLElement, { type: 'chars' });
-               tl.from(split.chars, {
-                  opacity: 0,
-                  y: 20,
-                  delay: 0.2,
-                  stagger: 0.01,
-                  ease: 'power2.out',
-               }, "<0.000001");
-            });
+         titles.forEach(title => {
+            const split = new SplitText(title as HTMLElement, { type: 'chars' });
+            tl.from(split.chars, {
+               opacity: 0,
+               y: 20,
+               delay: 0.1,
+               stagger: 0.01,
+               ease: 'power2.out',
+            }, "<0.000001");
+         });
       }
 
 

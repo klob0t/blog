@@ -154,8 +154,10 @@
 
 .tiptapContent {
   border: none;
+  padding: 0em 0em 1em 0em;
   outline: none;
   font-family: var(--font-geist-sans);
+  line-height: 1.5em;
   font-feature-settings: 'ss06' on, 'ss05' on, 'ss08' on !important;
 }
 
