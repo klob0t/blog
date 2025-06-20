@@ -17,6 +17,7 @@ import TurndownService from 'turndown'
 import styles from './page.module.css'
 import { FaBold, FaItalic, FaUnderline, FaListUl, FaListOl, FaQuoteRight, FaCode, FaRegFileImage } from 'react-icons/fa6'
 import { VscHorizontalRule } from 'react-icons/vsc'
+import { PiTextSuperscript, PiTextSubscript } from 'react-icons/pi'
 import { Toaster, toast } from 'react-hot-toast'
 
 import 'highlight.js/styles/github-dark.css'
@@ -219,6 +220,18 @@ export default function SubmitPage() {
          icon: FaCode,
          command: () => editor?.chain().focus().toggleCodeBlock().run(),
          isActive: () => editor?.isActive('codeBlock') ?? false,
+      },
+      {
+         name: 'subscript',
+         icon: PiTextSubscript,
+         command: () => editor?.chain().focus().toggleSubscript().run(),
+         isActive: () => editor?.isActive('codeBlock') ?? false,
+      },
+      {
+         name: 'superscript',
+         icon: PiTextSuperscript,
+         command: () => editor?.chain().focus().toggleSuperscript().run(),
+         isActive: () => editor?.isActive('superscript') ?? false,
       },
       {
          name: 'horizontalRule',

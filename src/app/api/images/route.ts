@@ -1,53 +1,76 @@
-//src/app/api/images/route.ts
-// import { createClient } from '@supabase/supabase-js'
-import { promises as fs } from 'fs'
-import { NextRequest, NextResponse } from 'next/server'
-import path from 'path'
-
-
-
-export async function GET() {
-   try {
-      const folder = path.join(process.cwd(), 'public', 'images', 'marquee')
-      const filenames = await fs.readdir(folder)
-
-      const images = filenames
-         .filter((file: string) => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(file))
-         .map((file:string) => `/images/marquee/${file}`)
-      return NextResponse.json(images)
-   } catch (error) {
-      console.error('Failed to read images: ', error)
-
-      return new NextResponse(
-         JSON.stringify({ message: 'Internal Server Error: Could no load images' }), { status: 500, headers: { 'Content-Type': 'application/json' } }
-      )
-   }
-}
+import { NextResponse, NextRequest } from "next/server"
+import { supabase } from "@/app/lib/supabase"
 
 export async function POST(req: NextRequest) {
-   try {
-      const formData = await req.formData()
-      const file = formData.get('file') as File | null
+   const formData = await req.formData()
+   const file = formData.get('file') as File
 
-      if (!file) {
-         return NextResponse.json({ error: 'No file provided.' }, { status: 400 })
+   if (!file) {
+      return NextResponse.json({ error: 'No file provided' }, { status: 400 })
+   }
+
+   const fileExt = file.name.split('.').pop()
+   const fileName = `${Date.now()}.${fileExt}`
+   const filePath = `${fileName}`
+
+   try {
+      const { error: uploadError } = await supabase.storage
+         .from('images')
+         .upload(filePath, file)
+
+      if (uploadError) {
+         throw uploadError
       }
 
-      const buffer = Buffer.from(await file.arrayBuffer())
+      const { data: urlData } = supabase.storage
+         .from('images')
+         .getPublicUrl(filePath)
 
-      const filename = `${Date.now()}-${file.name.replace(/\s/g, '_')}`
+      if (!urlData.publicUrl) {
+         throw new Error('Could not get public URL for the uploaded image.')
+      }
 
-      const uploadDir = path.join(process.cwd(), 'public/images/blogs')
-      await fs.mkdir(uploadDir, { recursive: true })
-      const destination = path.join(uploadDir, filename)
+      const { error: insertError } = await supabase
+         .from('images')
+         .insert([{ filename: fileName, public_url: urlData.publicUrl }])
 
-      await fs.writeFile(destination, buffer)
+      if (insertError) {
+         console.error('Failed to save image metadata to the database', insertError)
+      }
 
-      const publicUrl = `/images/blogs/${filename}`
-
-      return NextResponse.json({ url: publicUrl })
+      return NextResponse.json({ publicUrl: urlData.publicUrl })
    } catch (error) {
-      console.error('File Upload Error', error)
-      return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+      console.error('Error uploading image:', error)
+      return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 })
    }
+
 }
+
+
+// export async function POST(req: NextRequest) {
+//    try {
+//       const formData = await req.formData()
+//       const file = formData.get('file') as File | null
+
+//       if (!file) {
+//          return NextResponse.json({ error: 'No file provided.' }, { status: 400 })
+//       }
+
+//       const buffer = Buffer.from(await file.arrayBuffer())
+
+//       const filename = `${Date.now()}-${file.name.replace(/\s/g, '_')}`
+
+//       const uploadDir = path.join(process.cwd(), 'public/images/blogs')
+//       await fs.mkdir(uploadDir, { recursive: true })
+//       const destination = path.join(uploadDir, filename)
+
+//       await fs.writeFile(destination, buffer)
+
+//       const publicUrl = `/images/blogs/${filename}`
+
+//       return NextResponse.json({ url: publicUrl })
+//    } catch (error) {
+//       console.error('File Upload Error', error)
+//       return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+//    }
+// }

@@ -18,7 +18,6 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-// This config tells the middleware to ONLY run on the /submit route
 export const config = {
-  matcher: '/submit',
+  matcher: '/admin/submit',
 }

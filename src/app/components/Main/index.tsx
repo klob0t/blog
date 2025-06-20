@@ -44,7 +44,7 @@ export default function MainPage() {
     const fetchImages = async () => {
       try {
         startLoading('Images Lists')
-        const response = await fetch('/api/images')
+        const response = await fetch('/api/images/marquee')
         if (!response.ok) {
           throw new Error(`Failed to fetch images: ${response.statusText}`)
         }

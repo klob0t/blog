@@ -183,3 +183,13 @@
   display: block;
   border-radius: 4px;
 }
+
+.tiptapContent sup {
+  vertical-align: super;
+  font-size: x-small;
+}
+
+.tiptapContent sub {
+  vertical-align: sub;
+  font-size: x-small;
+}

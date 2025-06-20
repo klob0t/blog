@@ -11,7 +11,7 @@ import { useLoadingStore } from '@/app/lib/store/loadingStore'
 interface PostData {
    title: string
    date: string
-   content: string
+   markdown: string
 }
 
 const markdownOptions = {
@@ -69,7 +69,7 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
       )
    }
 
-   const readTime = Math.ceil(post.content.split(/\s+/).length / 200)
+   const readTime = Math.ceil(post.markdown.split(/\s+/).length / 200)
    const date = formatDate(post.date)
 
    return (
@@ -90,7 +90,7 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
             <hr />
             <div className={styles.content}>
                <Markdown options={markdownOptions}>
-                  {post.content}
+                  {post.markdown}
                </Markdown>
             </div>
             <hr />

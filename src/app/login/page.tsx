@@ -4,49 +4,52 @@ import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 import Link from 'next/link'
 import { Logo } from '@/app/components/logo'
+import { createClient } from '@/app/lib/supabase/client'
 
 export default function LoginPage() {
-   const [secret, setSecret] = useState('')
+   const [email, setEmail] = useState('')
+   const [password, setPassword] = useState('')
    const [error, setError] = useState('')
    const [isLoading, setIsLoading] = useState(false)
    const router = useRouter()
 
-   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+   const supabase = createClient()
+
+   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       setIsLoading(true)
       setError('')
 
-      try {
-         const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ secret }),
-         })
+      const { error } = await supabase.auth.signInWithPassword({
+         email,
+         password,
+      })
 
-         if (!response.ok) {
-            throw new Error('Incorrect secret word.')
-         }
-
-
-         router.push('/submit')
-
-      } catch (err) {
-         if (err instanceof Error) setError(err.message)
-
-      } finally {
+      if (error) {
+         setError('Invalid credentials. Please try again.')
          setIsLoading(false)
+      } else {
+         router.push('/admin/submit/')
       }
    }
 
    return (
       <main className={styles.loginContainer}>
          <div className={styles.loginWrapper}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
                <h1>Login</h1>
                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+               />
+               <input
                   type="password"
-                  value={secret}
-                  onChange={(e) => setSecret(e.target.value)}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                />
                <button type="submit" disabled={isLoading}>
@@ -60,7 +63,6 @@ export default function LoginPage() {
             href='/'>
             <Logo />
          </Link>
-
       </main>
    )
 }

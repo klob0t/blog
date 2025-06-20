@@ -1,27 +1,24 @@
-import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
+// src/app/api/login/route.ts
+import { createClient } from '@/app/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function POST(request: Request) {
-   try {
-      const { secret } = await request.json()
-      if (secret === process.env.PASSWORD) {
+export async function POST(req: NextRequest) {
+  const supabase = await createClient()
+  const { email, password } = await req.json()
 
-         const cookieStore = await cookies()
+  if (!email || !password) {
+    return NextResponse.json({ error: 'Email and password are required' }, { status: 400 })
+  }
 
-         cookieStore.set('submit-auth-token', 'true', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            path: '/',
-            sameSite: 'strict',
-            maxAge: 60 * 60 * 24 // Cookie lasts for 1 day
-         })
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  })
 
-         return NextResponse.json({ success: true })
-      } else {
-         // If it doesn't match, return an error
-         return NextResponse.json({ success: false, error: 'Invalid secret word' }, { status: 401 })
-      }
-   } catch (err) {
-      return NextResponse.json({ error: 'Internal Server Error', err }, { status: 500 })
-   }
+  if (error) {
+    console.error('Login error:', error)
+    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+  }
+
+  return NextResponse.json({ message: 'Login successful' })
 }
