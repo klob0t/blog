@@ -46,18 +46,15 @@
 .main {
    padding: 0em;
    margin-top: 2em;
-   aspect-ratio: 12/25;
+   aspect-ratio: 12/44;
    width: var(--size);
    display: grid;
    grid-template-columns: repeat(12, 1fr);
-   grid-template-rows: repeat(47, 1fr);
+   grid-template-rows: repeat(44, 1fr);
    gap: 0.5em;
    grid-template-areas:
       " A A A A A A A A A A A A "
       " A A A A A A A A A A A A "
-      " B B B B B B B B B B B B "
-      " B B B B B B B B B B B B "
-      " B B B B B B B B B B B B "
       " B B B B B B B B B B B B "
       " B B B B B B B B B B B B "
       " B B B B B B B B B B B B "
@@ -105,7 +102,7 @@
 }
 
 .main>div {
-   border: 1px solid rgba(255, 255, 255, 0.119);
+   border: 1px solid var(--border);
    position: relative !important;
    border-radius: 7px;
    z-index: 4 !important;
@@ -334,7 +331,6 @@
       margin-top: 2em !important;
       grid-template-columns: repeat(12, 1fr);
       grid-template-rows: repeat(22, 1fr);
-      gap: 0.5em;
       grid-template-areas:
          " A A A A A A A A A A A A "
          " B B B B B B B B C C C C "
@@ -361,18 +357,14 @@
    }
 
    .main>div {
-      border: 1px solid rgba(255, 255, 255, 0.119);
       position: relative !important;
       border-radius: 7px;
       z-index: 4 !important;
       padding: 1em 0em 1em 1em !important;
-      color: #fff;
-      background: rgb(0, 0, 0);
       transition: background 500ms linear;
    }
 
    .content {
-      background-color: var(--card-bg);
       position: absolute;
       top: 0;
       left: 0;
@@ -623,7 +615,6 @@
       aspect-ratio: 12 /10;
       grid-template-columns: repeat(12, 1fr);
       grid-template-rows: repeat(10, 1fr);
-      gap: 0.5em !important;
       grid-template-areas:
          " A A A A A A A A A A A A "
          " B B B B B C C C E E E E "
@@ -638,15 +629,12 @@
    }
 
    .main>div {
-      border: 1px solid rgba(255, 255, 255, 0.119);
       position: relative !important;
       border-radius: 7px;
       z-index: 4 !important;
       padding: 0.1em 0em 0.1em 1em;
-      color: #fff;
       background: rgb(0, 0, 0);
       transition: background 500ms linear;
-      backdrop-filter: blur(1em);
    }
 
    @property --angle {

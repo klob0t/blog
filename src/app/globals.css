@@ -5,7 +5,7 @@
   --gray: #525252;
   --border: rgba(255, 255, 255, 0.143);
   --size: 90%;
-  --card-bg: rgb(18, 18, 18);
+  --card-bg: rgb(15, 15, 15);
   --radius: 200px;
   --blue: rgb(6, 39, 173);
 }
@@ -20,8 +20,6 @@ body {
   font-feature-settings: 'ss06' on, 'ss05' on, 'ss08' on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-
   scrollbar-gutter: stable;
 }
 

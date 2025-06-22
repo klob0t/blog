@@ -99,7 +99,7 @@ export default function BlogPage({ params }: { params: Promise<{ slug: string }>
             <hr />
          </article>
 
-         <div>klob0t <span>@</span> 2025</div>
+         <div className={styles.footer}>klob0t <span>@</span> 2025</div>
       </div>
    )
 }
