@@ -191,10 +191,12 @@
 
 .greeting .content p {
    font-family: var(--font-geist-mono), monospace;
-   background-color: rgba(255, 255, 255, 0.1);
    padding: 0em 0.2em 0em 0.2em;
-   border: 1px solid #ffffff39;
    margin: 0em;
+   background-image: repeating-linear-gradient(180deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px), repeating-linear-gradient(270deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px), repeating-linear-gradient(0deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px), repeating-linear-gradient(90deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px);
+   background-size: 1px calc(100% + 28px), calc(100% + 28px) 1px, 1px calc(100% + 28px), calc(100% + 28px) 1px;
+   background-position: 0 0, 0 0, 100% 0, 0 100%;
+   background-repeat: no-repeat;
 }
 
 .greeting .content>div>div:last-child span:nth-of-type(2) {
@@ -319,7 +321,7 @@
 /** ---- LINKS END ---- */
 
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
    /** TABLET */
 
    .page {
@@ -444,7 +446,6 @@
       font-family: var(--font-geist-mono), monospace;
       background-color: rgba(255, 255, 255, 0.1);
       padding: 0em 0.2em 0em 0.2em;
-      border: 1px solid #ffffff39;
       margin: 0em;
    }
 
@@ -744,7 +745,6 @@
       font-family: var(--font-geist-mono), monospace;
       background-color: rgba(255, 255, 255, 0.1);
       padding: 0em 0.2em 0em 0.2em;
-      border: 1px solid #ffffff39;
       margin: 0em;
    }
 

@@ -47,13 +47,14 @@ function SlideShow({ images }: ImageSlideshowProps) {
         }
 
         if (!isAppLoading && prevIsAppLoading === true) {
+
             const boxes = gsap.utils.toArray('.cover-item', marqueeContentRef.current)
             gsap.fromTo(boxes, {
                 height: '100%',
                 backgroundColor: 'black'
             }, {
                 height: '0%',
-                delay: 1.3,
+                delay: 1.6,
                 stagger: 0.05,
                 ease: 'power2.inOut',
             })

@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './index.module.css'
 import '@wooorm/starry-night/style/dark'
 import { starryNightGutter } from '@/app/lib/starry-night-gutter'
+import Link from 'next/link'
 
 
 
@@ -15,10 +16,26 @@ interface CodeBlockProps {
    children: React.ReactNode
 }
 
+interface LinkProps {
+   href?: string
+   children: React.ReactNode
+}
+
 
 interface MarkdownImageProps {
    src?: string;
    alt?: string;
+}
+
+export const MarkdownLink: React.FC<LinkProps> = ({ href, children }) => {
+   if (!href) {
+      return <span>{children}</span>
+   }
+      return (
+         <Link href = {href} target='_blank'>
+            {children}
+         </Link>
+      )
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {

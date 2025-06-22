@@ -47,7 +47,7 @@ function PostsListComponent() {
       if (posts.length > 0 && !isAppLoading && prevIsAppLoading === true) {
 
          const titles = gsap.utils.toArray('.post-title')
-         const tl = gsap.timeline({ delay: 1.3 })
+         const tl = gsap.timeline({ delay: 1.7 })
 
          titles.forEach(title => {
             const split = new SplitText(title as HTMLElement, { type: 'chars' });

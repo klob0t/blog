@@ -90,7 +90,7 @@ export default function MainPage() {
           </div>
           <div className={`${styles.greeting} grid-item`}>
             <div className={styles.content}>
-              <div><span><TextScrambleHover /> *</span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
+              <div><span><TextScrambleHover /></span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
           </div>
           <div className={`${styles.photo} grid-item`}>
             <div className={styles.content}>

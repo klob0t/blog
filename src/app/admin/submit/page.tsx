@@ -21,8 +21,6 @@ import { VscHorizontalRule } from 'react-icons/vsc'
 import { PiTextSuperscript, PiTextSubscript, PiLinkSimpleHorizontalBold } from 'react-icons/pi'
 import { Toaster, toast } from 'react-hot-toast'
 
-import 'highlight.js/styles/github-dark.css'
-
 export default function SubmitPage() {
    const [title, setTitle] = useState('Title')
    const [tags, setTags] = useState('Tags')

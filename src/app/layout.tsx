@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono';
 import { Instrument_Serif } from 'next/font/google'
 import "./globals.css"
 import AppWrapper from "@/app/components/AppWrapper"
+import { Analytics } from '@vercel/analytics/next'
 
 
 const InstrumentSerif = Instrument_Serif({
@@ -24,11 +25,10 @@ export default function RootLayout({ children
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${InstrumentSerif.variable} ${GeistMono.variable}`}>
-
-          <AppWrapper>
-            {children}
-          </AppWrapper>
-
+        <AppWrapper>
+          {children}
+        </AppWrapper>
+        <Analytics mode="production" />
       </body>
     </html>
   )

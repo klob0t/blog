@@ -7,6 +7,7 @@ import './Embla/embla.css'
 import { EmblaOptionsType } from 'embla-carousel'
 import { gsap } from 'gsap'
 import { usePopupStore } from '@/app/lib/store/popupStore'
+import CustomEase from 'gsap/CustomEase'
 
 const OPTIONS: EmblaOptionsType = {
     loop: true,
@@ -27,8 +28,16 @@ export default function CarouselPopup() {
 
             gsap.to(containerRef.current, { opacity: 1, duration: 0.3 });
             gsap.fromTo(popupRef.current,
-                { scale: 0.5, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 0.3, ease: 'power2.out' }
+                {
+                    scale: 0,
+                    opacity: 0
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: CustomEase.create("custom", "M0,0 C0,0 0.113,-0.013 0.272,0.233 0.454,0.519 0.408,1.107 0.665,1.024 0.735,0.999 1,1 1,1 ")
+                }
             );
         }
     }, [isOpen]);
@@ -40,7 +49,7 @@ export default function CarouselPopup() {
             scale: 0.95,
             opacity: 0,
             duration: 0.3,
-            ease: 'power2.in'
+            ease: 'bounce.inOut'
         });
 
 
