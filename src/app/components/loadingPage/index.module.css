@@ -10,32 +10,24 @@
 .loadingContainer svg {
    color: rgb(255, 255, 255);
    fill: white;
-   animation: rotation 1000ms ease-in-out infinite;
+   /* animation: pulse 1000ms ease-in-out infinite; */
 }
 
 .svgWrapper {
-   width: 50px;
-   height: 50px;
+   width: 70px;
+   height: 70px;
    display: block;
    position: fixed;
 }
 
-@keyframes rotation {
+/* @keyframes pulse {
    0% {
-      rotate: 0deg;
-      fill: rgb(0, 0, 0);
-   }
-   20% {
-      fill: rgb(0, 0, 0);
+      opacity: 0;
    }
    50% {
-      fill: white;
-   }
-   70% {
-      fill: rgb(255, 255, 255);
+      opacity: 1;
    }
    100% {
-      rotate: 360deg;
-      fill: rgb(0, 0, 0)
+      opacity: 0;
    }
-}
+} */

@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useLoadingStore } from '@/app/lib/store/loadingStore'
 import { usePrevious } from '@/app/lib/usePrevious'
-import{ Logo } from '@/app/components/logo'
+import { Logo } from '@/app/components/logo'
 
 export default function Loading() {
    const isAppLoading = useLoadingStore(state => state.activeLoaders.size > 0)
@@ -15,14 +15,13 @@ export default function Loading() {
    const loaderTl = useRef<gsap.core.Timeline>(undefined)
 
    useGSAP(() => {
-      const el = containerRef.current
-      if (!el) return
-      const svg = el.querySelector('svg')
-      if (!svg) return
 
 
       if (!isAppLoading && prevIsAppLoading === true) {
          loaderTl.current?.kill()
+
+         const svg = containerRef.current?.querySelector('svg')
+         if (!svg) return
 
          const finishTl = gsap.timeline()
 
@@ -43,6 +42,40 @@ export default function Loading() {
       }
 
    }, { scope: containerRef, dependencies: [isAppLoading, prevIsAppLoading] })
+
+   useGSAP(() => {
+      const svg = containerRef.current?.querySelector('svg')
+      if (!svg) {
+         console.log('SVG element not found in DOM')
+         return
+      }
+      const paths = svg.querySelectorAll('path')
+      console.log('Found paths:', paths.length)
+      console.log('Loading state:', isAppLoading)
+
+      if (isAppLoading) {
+         console.log('Creating blinking lamp animation')
+         const lastPath = paths[paths.length - 1]
+         if (lastPath) {
+
+            const tl = gsap.timeline({ repeat: -1 })
+            tl.to(lastPath, {
+               opacity: 0,
+               duration: 0.4,
+               ease: "none"
+            })
+
+         }
+      } else {
+         console.log('Stopping animation')
+         const lastPath = paths[paths.length - 1]
+         if (lastPath) {
+            gsap.killTweensOf(lastPath)
+            gsap.set(lastPath, { opacity: 1 })
+         }
+      }
+
+   }, { dependencies: [isAppLoading] })
 
    return (
       <div
