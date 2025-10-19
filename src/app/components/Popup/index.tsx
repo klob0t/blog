@@ -24,6 +24,7 @@ export default function CarouselPopup() {
     useEffect(() => {
         if (isOpen) {
 
+            window.scrollTo({ top: 0, behavior: 'smooth' })
             gsap.set(containerRef.current, { opacity: 0 });
 
             gsap.to(containerRef.current, { opacity: 1, duration: 0.3 });

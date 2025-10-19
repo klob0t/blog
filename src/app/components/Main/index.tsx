@@ -106,7 +106,7 @@ export default function MainPage() {
           <div className={`${styles.cv} grid-item`}>
             <div className={styles.content}>
               <Link
-                href='https://www.dropbox.com/scl/fi/vur035gsji14rotc6uvf7/Airlangga-Kusuma-Bangsa_CV.pdf?rlkey=2azag0dttatczqla2xhuzt4k8&dl=0' target="_blank">
+                href='https://www.dropbox.com/scl/fi/vur035gsji14rotc6uvf7/Airlangga-Kusuma-Bangsa_CV.pdf?rlkey=2azag0dttatczqla2xhuzt4k8&dl=0' target='_blank'>
                 <h3 ref={linkRef3}>Curriculum Vitae</h3>
               </Link>
             </div>
@@ -119,7 +119,7 @@ export default function MainPage() {
           <div className={`${styles.contact} grid-item`}>
             <div className={styles.content}>
               <div>
-                <Link href='mailto:klob0t@yahoo.com'>
+                <Link href='mailto:klob0t@yahoo.com' target='_blank'>
                   <h3 ref={linkRef4}>Get in touch ↗</h3>
                 </Link>
               </div>

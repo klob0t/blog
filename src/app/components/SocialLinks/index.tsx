@@ -39,6 +39,7 @@ export default function SocialLinks() {
 
         return (
           <Link
+            target='_blank'
             key={link.name}
             href={link.href}
             style={{
