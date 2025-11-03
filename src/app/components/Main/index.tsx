@@ -14,6 +14,7 @@ import ImageSlideshow from "@/app/components/ImageSlideshow"
 import PhotoCard from "@/app/components/PhotoCard"
 import { useLoadingStore } from "@/app/lib/store/loadingStore"
 import SocialLinks from "@/app/components/SocialLinks"
+import { DotGrid } from "@/app/components/DotGrid";
 
 
 interface ImageData {
@@ -72,8 +73,6 @@ export default function MainPage() {
     <>
       <BackgroundPixel />
       <div className={styles.page} ref={pageRef}>
-
-
         <div className={styles.logo}>
           <Logo />
         </div>
@@ -82,15 +81,19 @@ export default function MainPage() {
             <div className={styles.content}>
               <TextScramble />
               <div>
-                <Link href='https://chloethinks.vercel.app' target='_blank' >
+                <Link href='https://chloe.klob0t.xyz' target='_blank' >
                   <p ref={linkRef1}>Chloe</p></Link>
                 <Link href='https://thoughtilets.vercel.app' target='_blank'>
                   <p ref={linkRef5}>thoughtilets</p></Link>
               </div></div>
           </div>
           <div className={`${styles.greeting} grid-item`}>
+
             <div className={styles.content}>
+
+              <DotGrid />
               <div><span><TextScrambleHover /></span>  <div><span>based in Jakarta, ID</span> <br /> <span>Portfolio © 2025</span></div></div></div>
+
           </div>
           <div className={`${styles.photo} grid-item`}>
             <div className={styles.content}>

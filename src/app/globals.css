@@ -1,11 +1,11 @@
 :root {
   --black: #000;
   --white: #fff;
-  --text: #dfdfdf;
-  --gray: #525252;
+  --text: rgb(223, 223, 223);
+  --gray: rgb(82, 82, 82);
   --border: rgba(255, 255, 255, 0.143);
   --size: 90%;
-  --card-bg: rgb(15, 15, 15);
+  --card-bg: #0f0f0f;
   --radius: 200px;
   --blue: rgb(6, 39, 173);
 }

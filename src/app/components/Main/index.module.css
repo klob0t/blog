@@ -6,6 +6,17 @@
    grid-area: B;
 }
 
+/* .greeting .content::before {
+   width: 100%;
+   content: '';
+   height: 100%;
+   top: 0;
+   z-index: 0;
+   left: 0;
+   position: absolute;
+   background: linear-gradient(to top, var(--card-bg) 20%, transparent 80%);
+} */
+
 .photo {
    grid-area: C;
 }
@@ -187,11 +198,13 @@
    height: 100%;
    font-size: 1.8em;
    padding: 0.5em 0em 0.5em 0.5em !important;
+   text-shadow: 0px 0px 20px var(--card-bg);
 }
 
 .greeting .content p {
    font-family: var(--font-geist-mono), monospace;
    padding: 0em 0.2em 0em 0.2em;
+   backdrop-filter: blur(0.1rem);
    margin: 0em;
    background-image: repeating-linear-gradient(180deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px), repeating-linear-gradient(270deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px), repeating-linear-gradient(0deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px), repeating-linear-gradient(90deg, #7a7a7a, #7a7a7a 17px, transparent 17px, transparent 28px, #7a7a7a 28px);
    background-size: 1px calc(100% + 28px), calc(100% + 28px) 1px, 1px calc(100% + 28px), calc(100% + 28px) 1px;
